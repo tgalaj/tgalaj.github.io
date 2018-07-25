@@ -306,4 +306,4 @@ If you noticed any errors or typos, or something wasn't working just let me know
 1. CMake official [documentation](https://cmake.org/cmake/help/latest/)
 2. CMake Community [Wiki](https://gitlab.kitware.com/cmake/community/wikis/home)
 
-[sample-project-zip]: http://rtrclass.type.pl/download/Sample_project.zip
+[sample-project-zip]: https://drive.google.com/file/d/13FSX7GcrVXpGMM1zUwJnjwinS8Ym5G-H/view?usp=sharing

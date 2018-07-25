@@ -1,9 +1,9 @@
--
+---
 layout: post
 title: Tutorial 07 - Witaj 3D!
 subtitle: Kurs OpenGL dla początkujących
 tags: [beginner-opengl-pl, tutorial]
--
+---
 
 ## Wstęp
 

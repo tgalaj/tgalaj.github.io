@@ -1,9 +1,9 @@
--
+---
 layout: post
 title: Tutorial 04 - What is a programmable rendering pipeline?
 subtitle: Beginner OpenGL course
 tags: [beginner-opengl-en, tutorial]
--
+---
 
 ## Introduction
 

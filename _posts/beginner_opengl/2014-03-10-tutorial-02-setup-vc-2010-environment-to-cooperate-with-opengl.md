@@ -1,9 +1,10 @@
--
+---
 layout: post
 title: Tutorial 02 - Setup VC++ 2010 environment to cooperate with OpenGL
 subtitle: Beginner OpenGL course
 tags: [beginner-opengl-en, tutorial]
--
+---
+
 ## Setting up the environment
 Before we start creating our awesome graphical applications in OpenGL technology, first, we have to adjust ourprogramming environment to cooperate with this library. To begin, we have to have Microsoft Visual C++ 2010 Expressinstalled (here is the [link](http://www.microsoft.com/visualstudio/plk#downloads+d-2010-express)). 
 

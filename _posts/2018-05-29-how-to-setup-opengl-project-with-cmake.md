@@ -1,8 +1,8 @@
--
+---
 layout: post
 title: How to setup OpenGL project with CMake
 tags: [cmake, other, opengl, tutorial]
--
+---
 
 I decided to create this tutorial about CMake and OpenGL since I couldn't find many articles about this specific topic on the Internet. Most CMake tutorials focus on the very basic usage - one file *main.cpp* and then create project with one CMake function *add_executable* and that's it. That was not enough for me since setting up an OpenGL project is quite cumbersome and requires some additional libraries to configure.
 

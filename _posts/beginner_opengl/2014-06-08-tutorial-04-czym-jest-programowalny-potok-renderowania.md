@@ -1,9 +1,9 @@
--
+---
 layout: post
 title: Tutorial 04 - Czym jest programowalny potok renderingu?
 subtitle: Kurs OpenGL dla początkujących
 tags: [beginner-opengl-pl, tutorial]
--
+---
 ## Wstęp
 
 Na początku tej części chciałbym przeprosić, że już od dłuższego czasu nie było żadnych nowości - postaram się to nadrobić w nadchodzących tygodniach :-) . Poniżej znajduje się link do odpowiedzi do ćwiczeń z poprzedniej części. Zachęcam do zwerwfikowania swoich odpowiedzi.

@@ -1,9 +1,9 @@
--
+---
 layout: post
 title: Tutorial 02 - Konfiguracja środowiska VC++ 2010 do współpracy z OpenGL i pierwsze okienko
 subtitle: Kurs OpenGL dla początkujących
 tags: [beginner-opengl-pl, tutorial]
--
+---
 
 ## Konfiguracja środowiska
 

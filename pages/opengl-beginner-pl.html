@@ -1,0 +1,40 @@
+---
+layout: page
+title: Kurs OpenGL
+subtitle: dla początkujących
+lang: pl
+langref: opengl-beginner
+---
+
+{% include language-selector.html %}
+
+<div class="box-note">
+<strong>Uwaga</strong>: Kurs OpenGL 4.x został zakończony! Więcej informacji <a href="{{ site.baseurl }}{% post_url 2016-03-09-kurs-opengl-4-pozegnanie %}">tutaj</a>.
+</div>
+
+<p>
+<font style="font-weight: bold">Czego nauczysz się w tym kursie</font>:
+<ul>
+<li>Poznasz technologię OpenGL w wersji 4.0+, dzięki czemu będziesz mógł programować grafikę 3D na Windows/Linux/MacOS oraz urządzenia mobilne</li>
+<li>Dzięki tej wiedzy będziesz mógł bez problemu programować w technologii WebGL, która bazuje praktycznie na tym samym API</li>
+<li>Poznasz język pisania programów cieniujących (shaderów), dzięki któremu będziesz mógł tworzyć niesamowite efekty</li>
+</ul>
+</p>
+
+<p>
+<font style="font-weight: bold">Czego nie nauczysz się na tym kursie</font>:
+<ul>
+<li>Na pewno nie będę uczył matematyki – zakładam, że zainteresowani posiadają wiedzę z zakresu geometrii trójwymiarowej – wektory 3D, równanie płaszczyzny, macierze etc.</li>
+<li>Nie będzie nauki programowania w językach C++/Java/C#</li>
+</ul>
+</p>
+
+<p>Jeżeli nadal jesteś zainteresowany to zapraszam Cię do lektury kursu 🙂</p>
+
+<ul>
+    {% assign posts=site.posts | where:"tags", 'beginner-opengl-pl' | sort: post.date %}
+    {% for post in posts %}
+      <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+</ul>
+

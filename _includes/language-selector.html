@@ -1,0 +1,6 @@
+<p align="center">   
+    {% assign pages=site.pages | where:"langref", page.langref | sort: 'lang' %}
+    {% for page in pages %}
+      <a href="{{ page.url }}"><img style="margin-right: 10px" src="/img/lang-{{ page.lang }}.png"></a>
+    {% endfor %}
+</p>

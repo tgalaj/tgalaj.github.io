@@ -1,0 +1,1 @@
+<a href="{{ site.baseurl }}/{{ include.src }}" data-lightbox="{{ include.data }}" data-title="{{ include.title }}"><img src="{{ site.baseurl }}/{{ include.src }}" alt="{{ include.alt || include.title }}" class="{{ include.class }}"/></a>

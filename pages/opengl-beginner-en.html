@@ -1,0 +1,39 @@
+---
+layout: page
+title: OpenGL course
+subtitle: for beginners
+lang: en
+langref: opengl-beginner
+---
+
+{% include language-selector.html %}
+
+<div class="box-note">
+<strong>Note</strong>: OpenGL 4.x course has been canceled! More information <a href="{{ site.baseurl }}{% post_url 2016-03-09-opengl-course-4-farewell %}">here</a>.
+</div>
+
+<p>
+<font style="font-weight: bold">What you will learn in this course</font>:
+<ul>
+<li>Learn OpenGL version 4.x and then you will be able to create 3D applications for Windows/Linux/MacOS and mobile devices,</li>
+<li>Thanks to this knowledge you will be able to use WebGL technology which is based on OpenGL,</li>
+<li>You will get to know OpenGL Shading Language (GLSL) which will give you the ability to create outstanding effects.</li>
+</ul>
+</p>
+
+<p>
+<font style="font-weight: bold">What you will NOT learn in this course</font>:
+<ul>
+<li>You will not learn 3D mathematics. I assume that people who are interested in programming in OpenGL are familiar with vectors, matrices, quaternions, etc.,</li>
+<li>I will not be teaching programming in C/C++/Java/C#. I assume that you can programm in one of the mentioned languages.</li>
+</ul>
+</p>
+
+<p>If you are still interested in this course, I would like to encourage you to read the articles 🙂</p>
+
+<ul>
+    {% assign posts=site.posts | where:"tags", 'beginner-opengl-en' | sort: post.date %}
+    {% for post in posts %}
+      <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+</ul>

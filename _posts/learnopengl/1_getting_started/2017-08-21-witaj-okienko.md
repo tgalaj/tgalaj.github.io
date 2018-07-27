@@ -204,7 +204,8 @@ glClear(GL_COLOR_BUFFER_BIT);
 
 Zauważ, że ustawiamy również kolor czyszczący za pomocą funkcji <span class="fun">glClearColor</span>, którym będziemy czyścić ekran. Za każdym razem kiedy wywołamy funkcję <span class="fun">glClear</span> z zamiarem czyszczenia bufora koloru, to cały ten bufor będzie wyczyszczony za pomocą wartości zdefiniowanych za pomoca funkcji <span class="fun">glClearColor</span>. Te operacje powinny dać nam kolor zbliżony do ciemno-zielono-niebieskiego koloru.
 
-<note>Jak możesz sobie przypominać z części kursu pt. _OpenGL_, funkcja <span class="fun">glClearColor</span> jest funkcją _ustawiającą stan_ (ang. _state-setting_), natomiast funkcja <span class="fun">glClear</span> jest funkcją _używającą stanu_ (ang. _state-using_) - używa obecnego stanu by pobrać wartość koloru czyszczącego.</note>
+{: .box-note }
+Jak możesz sobie przypominać z części kursu pt. _OpenGL_, funkcja <span class="fun">glClearColor</span> jest funkcją _ustawiającą stan_ (ang. _state-setting_), natomiast funkcja <span class="fun">glClear</span> jest funkcją _używającą stanu_ (ang. _state-using_) - używa obecnego stanu by pobrać wartość koloru czyszczącego.
 
 ![Image of GLFW's window creation with glClearColor defined]({{ site.baseurl }}/img/learnopengl/hellowindow2.png){: .center-image}
 

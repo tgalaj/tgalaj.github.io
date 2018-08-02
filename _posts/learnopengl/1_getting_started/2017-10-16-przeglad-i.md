@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Przegląd I
+title: Przegląd
 subtitle: LearnOpenGL.com
 tags: [learnopengl, tutorial]
 subtag: pierwsze-kroki
@@ -11,14 +11,6 @@ subtag: pierwsze-kroki
 Gratuluję dotarcia do końca sekcji _Pierwsze kroki_. Teraz umiesz już tworzyć okna z kontekstem OpenGL, tworzyć i kompilować shadery, wysyłać dane wierzchołkowe do shaderów poprzez obiekty buforów lub uniformy, rysować obiekty, używać tekstur, rozumiesz czym są wektory i macierze oraz umiesz połączyć całą tą wiedzę, aby stworzyć pełną scenę 3D z wirtualną kamerą.  
 
 Uff, nauczyliśmy się bardzo dużo z ostatnich kilku rozdziałów. Staraj się bawić samouczkami, trochę eksperymentuj lub spróbuj zaimplementować własne pomysły. Jak tylko poczujesz, że wszystkie wcześniej omówione materiały nie kryją przed Tobą żadnych tajemnic, to nadszedł czas, aby przejść do następnych tutoriali.
-
-<div class="box-note">
-
-**Notka od tłumacza**  
-Jeżeli chodzi o dalsze tłumaczenia samoczuków LearnOpenGL.com, to mam do wszystkich czytelników ogromną prośbę o wsparcie - ale zanim o tym, to najpierw o samych tłumaczeniach.
-
-Mam ostatnio coraz mniej czasu na tłumaczenie kolejnych samoczuków, które jak mogliście się przekonać są dosyć obszerne. Jeden samoczuek zajmuje mi około 1.5 tygodnia do przetłumaczenia. Stąd prośba do wszystkich chętnych, o wsparcie mnie w tłumaczeniu. Wszystkich zainteresowanych proszę o kontakt ze mną, za pomocą formularza kontaktowego znajdującego się [tutaj](/pages/aboutme).
-</div>
 
 ## Słowniczek
 

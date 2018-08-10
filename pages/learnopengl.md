@@ -43,4 +43,14 @@ This page contains the Polish translation of the most popular OpenGL tutorial se
   {% endfor %}
   </ul>
 </details>
+
+<details>
+  <summary>Zaawansowany OpenGL</summary>
+  <ul>
+  {% assign posts=site.posts | where:"subtag", 'zaawansowany-opengl' | sort: post.date %}
+  {% for post in posts %}
+    <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+  {% endfor %}
+  </ul>
+</details>
 </ul>

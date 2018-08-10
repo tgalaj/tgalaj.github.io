@@ -13,6 +13,8 @@ baseurl: ""
 
 # Of course don't forget to change the username and projectname to YOUR username and project
 
+future: false
+
 # Name of website
 title: Real-time rendering class
 
@@ -177,6 +179,7 @@ exclude:
   - LICENSE
   - README.md
   - Vagrantfile
+  - vendor
 
 # prose.io config
 prose:

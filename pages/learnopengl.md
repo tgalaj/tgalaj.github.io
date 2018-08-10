@@ -35,6 +35,16 @@ This page contains the Polish translation of the most popular OpenGL tutorial se
 </details>
 
 <details>
+  <summary>Ładowanie modeli</summary>
+  <ul>
+  {% assign posts=site.posts | where:"subtag", 'ladowanie-modeli' | sort: post.date %}
+  {% for post in posts %}
+    <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+  {% endfor %}
+  </ul>
+</details>
+
+<details>
   <summary>Zaawansowany OpenGL</summary>
   <ul>
   {% assign posts=site.posts | where:"subtag", 'zaawansowany-opengl' | sort: post.date %}

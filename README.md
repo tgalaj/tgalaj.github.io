@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Shot511/shot511.github.io.svg?branch=master)](https://travis-ci.org/Shot511/shot511.github.io)
+
 # shot511.github.io
 
 > *Copyright 2018 [Tomasz Gałaj](https://shot511.github.io). Licensed under the MIT license.*

@@ -106,4 +106,31 @@ This page contains the Polish translation of the most popular OpenGL tutorial se
 
   </ul>
 </details>
+
+<details>
+  <summary style="margin-left: -20px;">W praktyce</summary>
+  <ul>
+  {% assign posts=site.posts | where:"subtag", 'in-practice' | sort: post.date %}
+  {% for post in posts %}
+    <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+  {% endfor %}
+
+  <details>
+    <summary style="margin-left: -20px;">Gra 2D</summary>
+    <ul>
+    {% assign posts=site.posts | where:"subtag", 'in-practice-2dgame' | sort: post.date %}
+    {% for post in posts %}
+      <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+    </ul>
+  </details>
+
+  </ul>
+</details>
+
+{% assign posts=site.posts | where:"subtag", 'intro-learnopengl-2' | sort: post.date %}
+{% for post in posts %}
+  <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+{% endfor %}  
+
 </ul>

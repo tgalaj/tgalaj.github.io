@@ -67,6 +67,11 @@ img.left {
     display: block;
 }
 
+video {
+  max-width: 100%;
+  height: auto;
+}
+
 body {
   font-family: 'Lora', 'Times New Roman', serif;
   font-size: 18px;

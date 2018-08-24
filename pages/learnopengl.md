@@ -122,8 +122,24 @@ This page contains the Polish translation of the most popular OpenGL tutorial se
     {% for post in posts %}
       <li><a href="{{ post.url }}">{{ post.title }}</a></li>
     {% endfor %}
+
+    <details>
+      <summary style="margin-left: -20px;">Kolizje</summary>
+      <ul>
+      {% assign posts=site.posts | where:"subtag", 'in-practice-2dgame-collisions' | sort: post.date %}
+      {% for post in posts %}
+        <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+      {% endfor %}
+      </ul>
+    </details>
+
     </ul>
   </details>
+
+  {% assign posts=site.posts | where:"subtag", 'in-practice-2dgame-p2' | sort: post.date %}
+  {% for post in posts %}
+    <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+  {% endfor %}
 
   </ul>
 </details>

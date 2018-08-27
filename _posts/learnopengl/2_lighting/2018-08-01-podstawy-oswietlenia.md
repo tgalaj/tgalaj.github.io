@@ -150,7 +150,7 @@ Pierwszą rzeczą, którą musimy obliczyć, jest wektor kierunkowy między źr�
 {: .box-note }
 Przy obliczaniu oświetlenia zwykle nie dbamy o wielkość wektora lub jego położenie; dbamy tylko o ich kierunek. Ponieważ zależy nam tylko na ich kierunku, prawie wszystkie obliczenia są wykonywane za pomocą wektorów jednostkowych, ponieważ upraszcza to większość obliczeń (jak iloczyn skalarny). Więc podczas wykonywania obliczeń oświetlenia, upewnij się, że zawsze normalizujesz odpowiednie wektory. Zapomnienie o normalizacji wektora jest popularnym błędem.
 
-Następnie chcemy obliczyć rzeczywisty rozproszony wpływ światła na bieżący fragment, obiczając iloczyn skalarny pomiędzy wektorami <span class="var">norm</span> i <span class="var">lightDir</span>. Otrzymana wartość jest następnie mnożona przez kolor światła, aby uzyskać komponent rozproszony, co powoduje ciemniejszą składową rozproszoną, im większy kąt znajduje się pomiędzy dwoma wektorami:
+Następnie chcemy obliczyć rzeczywisty rozproszony wpływ światła na bieżący fragment, obliczając iloczyn skalarny pomiędzy wektorami <span class="var">norm</span> i <span class="var">lightDir</span>. Otrzymana wartość jest następnie mnożona przez kolor światła, aby uzyskać komponent rozproszony, co powoduje ciemniejszą składową rozproszoną, im większy kąt znajduje się pomiędzy dwoma wektorami:
 
 ```glsl
     float diff = max(dot(norm, lightDir), 0.0);
@@ -203,7 +203,7 @@ Inwersja (odwrotność) macierzy jest kosztowną operacją nawet dla shaderów, 
 
 # Oświetlenie zwierciadlane
 
-Jeśli nie jesteś jeszcze wyczerpany wszystkimi obliczeniami oświetlenia, możemy po mału kończyć omawianie modelu Phong. Zostały nam tylko zwierciadlane refleksy.
+Jeśli nie jesteś jeszcze wyczerpany wszystkimi obliczeniami oświetlenia, możemy pomału kończyć omawianie modelu Phonga. Zostały nam tylko zwierciadlane refleksy.
 
 Podobnie jak oświetlenie rozproszone, oświetlenie zwierciadlane jest oparte na wektorze kierunku światła i wektorach normalnych obiektu, ale tym razem jest również oparte na kierunku widzenia, np. z którego kierunku gracz patrzy na fragment. Oświetlenie zwierciadlane opiera się na właściwościach odblaskowych światła. Jeśli myślimy o powierzchni obiektu jako lustrze, to oświetlenie zwierciadlane jest najsilniejsze, gdy widzimy światło odbite na powierzchni. Efekt ten można zobaczyć na następującym obrazie:
 
@@ -277,6 +277,6 @@ Pewnie już zauważyłeś, jak potężne są shadery. Przy użyciu niewielu info
 ## Ćwiczenia
 
 *   W tej chwili źródłem światła jest nudne, statyczne źródło światła, które się nie porusza. Spróbuj przesuwać źródło światła wokół sceny w czasie, używając funkcji <span class="fun">sin</span> lub <span class="fun">cos</span>. Oglądanie zmiany oświetlenia w czasie daje dobre zrozumienie modelu oświetlenia Phonga: [rozwiązanie](https://learnopengl.com/code_viewer.php?code=lighting/basic_lighting-exercise1).
-*   Pobaw się z różnymi intesywnościami swiatła otoczenia, rozproszenia i lustrzanego i zobacz, jak wpływają one na wynik. Eksperymentuj także z czynnikiem połysku. Postaraj się zrozumieć, dlaczego pewne wartości mają określony efekt wizualny.
+*   Pobaw się z różnymi intensywnościami światła otoczenia, rozproszenia i lustrzanego i zobacz, jak wpływają one na wynik. Eksperymentuj także z czynnikiem połysku. Postaraj się zrozumieć, dlaczego pewne wartości mają określony efekt wizualny.
 *   Wykonaj cieniowanie Phong'a w przestrzeni widoku zamiast w przestrzeni świata: [rozwiązanie](https://learnopengl.com/code_viewer.php?code=lighting/basic_lighting-exercise2).
 *   Zaimplementuj cieniowanie Gouraud zamiast cieniowania Phong'a. Jeśli zrobiłeś to dobrze, oświetlenie powinno [wyglądać na przygaszone](https://learnopengl.com/img/lighting/basic_lighting_exercise3.png) (zwłaszcza rozbłyski). Spróbuj wyjaśnić, dlaczego wygląda to dziwnie: [rozwiązanie](https://learnopengl.com/code_viewer.php?code=lighting/basic_lighting-exercise3).

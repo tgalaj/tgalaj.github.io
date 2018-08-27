@@ -7,7 +7,7 @@ tags: [beginner-opengl-pl, tutorial]
 
 ## Wstęp
 
-W dzisiejszym tutorialu przyjrzymy się ważnemu etapowi w potoku renderowania - interpolacji, którą wykonuje rasteryzer na wartościach, które wychodzą z vertex shader'a. Była o tym drobna wzmianka w [Tutorial 04]({{ site.baseurl }}{% post_url beginner_opengl/2014-06-08-tutorial-04-czym-jest-programowalny-potok-renderowania %} "Tutorial 04 – Czym jest programowalny potok renderingu?") w sekcji dotyczącej rasteryzacji, a dzisiaj zobaczymy jak to działa w praktyce. Odpowiedzi do ćwieczeń z poprzedniego kursu są zamieszczone poniżej:
+W dzisiejszym tutorialu przyjrzymy się ważnemu etapowi w potoku renderowania - interpolacji, którą wykonuje rasteryzer na wartościach, które wychodzą z vertex shader'a. Była o tym drobna wzmianka w [Tutorial 04]({{ site.baseurl }}{% post_url beginner_opengl/2014-06-08-tutorial-04-czym-jest-programowalny-potok-renderowania %} "Tutorial 04 – Czym jest programowalny potok renderingu?") w sekcji dotyczącej rasteryzacji, a dzisiaj zobaczymy jak to działa w praktyce. Odpowiedzi do ćwiczeń z poprzedniego kursu są zamieszczone poniżej:
 
 <details class="panel panel-success">
   <summary markdown="span" class="panel-heading">
@@ -28,7 +28,7 @@ fragColor = vec4(0.0f, 1.0f, 0.0f, 1.0f);
 
 </details>
 
-Rasteryzer interpoluje (uśrednia) wartości między trzema wierzchołkami trójkąta, a następnie "odwiedza" każdy piksel poprzez wywołanie fragment shader'a, który zwraca kolor danego piksela, który jest zapisywany przez rasteryzer do bufora koloru. Czyniąc długą historię krótką, jeżeli mamy zdefiniowany kolor dla każdego wierzchołka, przyjmijmy lewy-dolny czarny, prawy-dolny czerwony, górny zielony, to w końcowym efekcie wartość koloru w tych wierzchołkach będzie wynosił odpowiednio: (0, 0, 0), (1, 0, 0), (0, 1, 0). Następnie wywoływany jest fragment shader, dla każego piksela na ekranie (nas interesuje to co dzieje się podczas kolorowania prymitywu) i podczas tego procesu fragment shader koloruje każdy piksel uśrednionym kolorem.
+Rasteryzer interpoluje (uśrednia) wartości między trzema wierzchołkami trójkąta, a następnie "odwiedza" każdy piksel poprzez wywołanie fragment shader'a, który zwraca kolor danego piksela, który jest zapisywany przez rasteryzer do bufora koloru. Czyniąc długą historię krótką, jeżeli mamy zdefiniowany kolor dla każdego wierzchołka, przyjmijmy lewy-dolny czarny, prawy-dolny czerwony, górny zielony, to w końcowym efekcie wartość koloru w tych wierzchołkach będzie wynosił odpowiednio: (0, 0, 0), (1, 0, 0), (0, 1, 0). Następnie wywoływany jest fragment shader, dla każdego piksela na ekranie (nas interesuje to co dzieje się podczas kolorowania prymitywu) i podczas tego procesu fragment shader koloruje każdy piksel uśrednionym kolorem.
 
 Ten sam proces jest wykonywany dla innych wartości, które z reguły przypisane są do wierzchołków. Jedną z tych wartości są wektory normalne, które są wykorzystywane do obliczeń światła oraz współrzędne tekstury, które zastępują nam kolor.
 

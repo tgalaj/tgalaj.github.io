@@ -46,7 +46,7 @@ Zauważ, że najpierw negujemy wektor <span class="var">light.direction</span>. 
 
 Powstały wektor <span class="var">lightDir</span> jest następnie używany jak poprzednio w obliczeniach komponentu rozproszonego i lustrzanego.
 
-Aby wyraźnie pokazać, że światło kierunkowe ma ten sam efekt na wszystkich obiektach, powróćmy do sceny kontenerów z końca samouczka [Układy współrzednych]({% post_url /learnopengl/1_getting_started/2017-09-25-uklady-wspolrzednych %}). W przypadku, gdy ominąłeś ten tutorial, najpierw zdefiniowaliśmy 10 różnych [pozycji kontenera](https://learnopengl.com/code_viewer.php?code=lighting/light_casters_container_positions) i wygenerowaliśmy inną macierz modelu na każdy pojemnik, gdzie każda macierz modelu zawiera odpowiednie transformacje:
+Aby wyraźnie pokazać, że światło kierunkowe ma ten sam efekt na wszystkich obiektach, powróćmy do sceny kontenerów z końca samouczka [Układy współrzędnych]({% post_url /learnopengl/1_getting_started/2017-09-25-uklady-wspolrzednych %}). W przypadku, gdy ominąłeś ten tutorial, najpierw zdefiniowaliśmy 10 różnych [pozycji kontenera](https://learnopengl.com/code_viewer.php?code=lighting/light_casters_container_positions) i wygenerowaliśmy inną macierz modelu na każdy pojemnik, gdzie każda macierz modelu zawiera odpowiednie transformacje:
 
 ```cpp
     for(unsigned int i = 0; i < 10; i++)
@@ -78,7 +78,7 @@ Wektory kierunkowe są następnie reprezentowane tak: `vec4 (0.2f, 1.0f, 0.3f, 0
       // wykonaj obliczenia światła używając pozycji światła (jak np. w ostatnim tutorialu)
 ```
 
-Ciekawostka: tak to było robione w starej wersji OpenGL (stały potok renderingu), żeby sprawdzić z jakim typem światła miało się doczynienia - czy było to światło kierunkowe czy np. punktowe i na tej podstawie dokonywano obliczeń.
+Ciekawostka: tak to było robione w starej wersji OpenGL (stały potok renderingu), żeby sprawdzić z jakim typem światła miało się do czynienia - czy było to światło kierunkowe czy np. punktowe i na tej podstawie dokonywano obliczeń.
 </div>
 
 Jeśli teraz skompilujesz aplikację i obejrzysz scenę, zobaczysz, że światło kierunkowe rzuca światło na wszystkie obiekty (tak jakby były oświetlane przez Słońce). Czy widzisz, że światło rozproszone i lustrzane reagują tak, jakby na niebie znajdowało się źródło światła? Powinno to wyglądać mniej więcej tak:
@@ -257,7 +257,7 @@ Widać teraz, że tylko przednie pojemniki są oświetlone, a najbliższy konten
 
 Ostatnim rodzajem światła, które omówimy, jest <span class="def">reflektor</span> (ang. *spotlight*). Reflektor jest źródłem światła, które zamiast rzucać promienie światła we wszystkie kierunki, rzuca je tylko w określonym kierunku. Efekt jest taki, że oświetlane są tylko obiekty, które znajdują się w obrębie stożka reflektora. Dobrym przykładem reflektora może być latarnia uliczna lub latarka.
 
-Reflektor w OpenGL jest reprezentowany przez położenie w przestrzeni świata, kierunek i kąt <span class="def">odcięcia</span> (ang. *cutoff*), który określa promień reflektora. Dla każdego fragmentu obliczamy, czy fragment znajduje się pomiędzy wektorami, które definują kąt odcięcia światła reflektorowego (a więc znajdują się w jego stożku). Jeśli tak, to odpowiednio cieniujemy ten fragment. Poniższy obraz przedstawia sposób działania reflektora:
+Reflektor w OpenGL jest reprezentowany przez położenie w przestrzeni świata, kierunek i kąt <span class="def">odcięcia</span> (ang. *cutoff*), który określa promień reflektora. Dla każdego fragmentu obliczamy, czy fragment znajduje się pomiędzy wektorami, które definiują kąt odcięcia światła reflektorowego (a więc znajdują się w jego stożku). Jeśli tak, to odpowiednio cieniujemy ten fragment. Poniższy obraz przedstawia sposób działania reflektora:
 
 ![](/img/learnopengl/light_casters_spotlight_angles.png){: .center-image }
 
@@ -291,7 +291,7 @@ Następnie przekazujemy odpowiednie wartości do shader'a:
     lightingShader.setFloat("light.cutOff",   glm::cos(glm::radians(12.5f)));
 ```
 
-Jak widać, nie ustawiamy wartości kąta odcięcia, ale obliczamy wartość cosinusa na podstawie kąta i przekazujemy wynik cosinusa do Fragment Shader. Powodem tego jest to, że w Fragment Shader obliczamy iloczyn skalarny między wektorem `LightDir` i `SpotDir`, a iloczyn skalarny zwraca wartość cosinusa, a nie kąt, więc nie możemy bezpośrednio porównać kąta z wartością cosinusa. Aby uzyskać kąt, musimy obliczyć odwrtoność wyniku cosinusa iloczynu skalarnego, który jest kosztowną operacją. Aby zaoszczędzić trochę mocy obliczeniowej, obliczamy cosinus o danym kącie odcięcia i przekazujemy ten wynik do Fragment Shader'a. Ponieważ oba kąty są teraz reprezentowane jako cosinusy, możemy je bezpośrednio porównywać bez żadnych kosztownych operacji.
+Jak widać, nie ustawiamy wartości kąta odcięcia, ale obliczamy wartość cosinusa na podstawie kąta i przekazujemy wynik cosinusa do Fragment Shader. Powodem tego jest to, że w Fragment Shader obliczamy iloczyn skalarny między wektorem `LightDir` i `SpotDir`, a iloczyn skalarny zwraca wartość cosinusa, a nie kąt, więc nie możemy bezpośrednio porównać kąta z wartością cosinusa. Aby uzyskać kąt, musimy obliczyć odwrotność wyniku cosinusa iloczynu skalarnego, który jest kosztowną operacją. Aby zaoszczędzić trochę mocy obliczeniowej, obliczamy cosinus o danym kącie odcięcia i przekazujemy ten wynik do Fragment Shader'a. Ponieważ oba kąty są teraz reprezentowane jako cosinusy, możemy je bezpośrednio porównywać bez żadnych kosztownych operacji.
 
 Teraz pozostaje tylko obliczyć wartość theta $\theta$ i porównać ją z wartością odcięcia $\phi$, aby ustalić, czy znajdujemy się w stożku reflektora, czy poza nim:
 
@@ -325,7 +325,7 @@ Nadal wygląda to jednak trochę sztucznie, głównie dlatego, że reflektor ma 
 
 ## Gładkie/miękkie krawędzie
 
-Aby stworzyć gładkie krawędzie reflektora, chcemy zasymulować światło reflektora, który posiada <span class="def">wewnętrzny</span> (ang. *inner*) i <span class="def">zewnętrzny</span> (ang. *outer*) stożek. Możemy ustawić wewnętrzny stożek jako stożek zdefiniowany w poprzedniej sekcji, ale chcemy również dodać zewnętrzny stożek, który stopniowo przyciemnia światło od krawędzi wenętrznego stożka do krawędzi zewnętrznego stożka.
+Aby stworzyć gładkie krawędzie reflektora, chcemy zasymulować światło reflektora, który posiada <span class="def">wewnętrzny</span> (ang. *inner*) i <span class="def">zewnętrzny</span> (ang. *outer*) stożek. Możemy ustawić wewnętrzny stożek jako stożek zdefiniowany w poprzedniej sekcji, ale chcemy również dodać zewnętrzny stożek, który stopniowo przyciemnia światło od krawędzi wewnętrznego stożka do krawędzi zewnętrznego stożka.
 
 Aby utworzyć zewnętrzny stożek, po prostu definiujemy inną wartość cosinusa, która reprezentuje kąt między wektorem kierunkowym światła reflektora a wektorem zewnętrznym stożka (równym jego promieniowi). Następnie, jeśli fragment znajduje się między stożkiem wewnętrznym a zewnętrznym, należy obliczyć wartość intensywności między `0.0` a `1.0`. Jeśli fragment znajduje się wewnątrz stożka wewnętrznego, jego intensywność jest równa `1.0`, jeśli fragment znajduje się poza zewnętrznym stożkiem to jego intensywność jest równa `0.0`.
 
@@ -432,8 +432,6 @@ Upewnij się, że dodałeś <span class="var">outerCutOff</span> do struktury <s
 ![](/img/learnopengl/light_casters_spotlight.png){: .center-image }
 
 Ahhh, jest znacznie lepiej. Pobaw się z wewnętrznymi i zewnętrznymi kątami odcięcia i spróbuj stworzyć reflektor, który będzie lepiej pasował do twoich potrzeb. Możesz znaleźć kod źródłowy aplikacji [tutaj](https://learnopengl.com/code_viewer_gh.php?code=src/2.lighting/5.4.light_casters_spot_soft/light_casters_spot_soft.cpp).
-
-Such a flashlight/spotlight type of lamp is perfect for horror games and combined with directional and point lights the environment will really start to light up. In the [next](https://learnopengl.com/#!Lighting/Multiple-lights) tutorial we'll combine all the lights and tricks we've discussed so far.
 
 Światło typu latarka/reflektor jest idealne do gier typu horror, a w połączeniu ze światłami kierunkowymi i punktowymi środowisko naprawdę zaczyna świecić. W następnym samouczku połączymy wszystkie światła i triki, które omawialiśmy do tej pory.
 

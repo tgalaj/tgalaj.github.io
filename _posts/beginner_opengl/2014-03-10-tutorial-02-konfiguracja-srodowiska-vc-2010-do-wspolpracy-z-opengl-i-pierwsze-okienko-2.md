@@ -174,7 +174,7 @@ while (!glfwWindowShouldClose(window))
 
 W tej pętli zaczyna się dziać to co nas będzie interesować najbardziej. Jest to tzw. główna pętla aplikacji, w której co klatkę będą rysowane w oknie nasze modele 3D i będą aktualizowane wszystkie zmienne, które tego wymagają.
 
-W pętli sprawdzamy warunek czy okno naszej aplikacji ma być zamknięte. Funkcja **_glfwWindowShouldClose()_** zwraca 1 jeżeli użytkownik naciśnie krzyżyk do zamykania okna, lub naciśnie kombinację klawiszy Alt+F4\. Dalej w tej pętli wywołujemy wszystkie operacje dotyczące renderowania/rysowania (których teraz nie ma, dlatego mamy czarne tło).
+W pętli sprawdzamy warunek czy okno naszej aplikacji ma być zamknięte. Funkcja **_glfwWindowShouldClose()_** zwraca 1 jeżeli użytkownik naciśnie krzyżyk do zamykania okna, lub naciśnie kombinację klawiszy Alt+F4. Dalej w tej pętli wywołujemy wszystkie operacje dotyczące renderowania/rysowania (których teraz nie ma, dlatego mamy czarne tło).
 
 Okienko GLFW zawsze używa podwójnych buforów, co zapobiega miganiu ekranu przy renderowaniu kolejnych klatek. Funkcja **_glfwSwapBuffers()_** zamienia ze sobą przedni i tylni bufor.
 

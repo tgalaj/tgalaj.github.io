@@ -35,7 +35,7 @@ Przez powiązanie framebuffera z opcją <var>GL_FRAMEBUFFER</var> wszystkie nast
 Niestety nie możemy użyć naszego framebuffera, ponieważ nie jest on <def>kompletny</def>. Aby bufor ramki był kompletny, muszą być spełnione następujące warunki:
 
 *   Musimy dołączyć co najmniej jeden bufor (koloru, głębokości lub bufor szablonu).
-*   Powinnien być przynajmniej jeden załącznik koloru (ang. *color attachment*).
+*   Powinien być przynajmniej jeden załącznik koloru (ang. *color attachment*).
 *   Wszystkie załączniki powinny być również kompletne (muszą mieć zarezerwowaną pamięć).
 *   Każdy bufor powinien mieć taką samą liczbę próbek.
 
@@ -48,7 +48,7 @@ Patrząc na warunki powinno być jasne, że musimy stworzyć pewien rodzaj zał�
       // wykonaj taniec zwycięstwa
 ```
 
-Wszystkie kolejne operacje renderowania będą teraz renderowane do załączników aktualnie powiązanego bufora ramki. Ponieważ nasz framebuffer nie jest domyślnym buforem ramki, polecenia renderowania nie będą miały wpływu na wizualne wyjście twojego okna. Z tego powodu proces renderowania do innego bufora ramki jest nazywany <def>renderowaniem pozaekranowym</def> (ang. *off-screen rendering*). Aby upewnić się, że wszystkie operacje renderowania będą miały wizualny wpływ na główne okno, musimy ponownie aktywować domyślny bufor ramki, wiążąc go z obiektem `0`:
+Wszystkie kolejne operacje renderowania będą teraz renderowane do załączników aktualnie powiązanego bufora ramki. Ponieważ nasz framebuffer nie jest domyślnym buforem ramki, polecenia renderowania nie będą miały wpływu na wizualne wyjście twojego okna. Z tego powodu proces renderowania do innego bufora ramki jest nazywany <def>renderowaniem poza ekranowym</def> (ang. *off-screen rendering*). Aby upewnić się, że wszystkie operacje renderowania będą miały wizualny wpływ na główne okno, musimy ponownie aktywować domyślny bufor ramki, wiążąc go z obiektem `0`:
 
 ```cpp
     glBindFramebuffer(GL_FRAMEBUFFER, 0);   
@@ -113,7 +113,7 @@ Możliwe jest również dołączenie zarówno bufora głębi, jak i bufora szabl
 
 ### Załączniki obiektu Renderbuffer
 
-<span class="def">Obiekty renderbuffer</span> zostały wprowadzone do OpenGL po teksturach jako możliwy typ załączników bufora ramki. Tekstury były jedynymi załącznikami używanymi w starych czasach OpenGL. Podobnie jak obraz tekstury, obiekt renderbuffer jest rzeczywistym buforem, np. tablicą bajtów, liczb całkowitych, pikseli lub czegokolwiek innego. Obiekt renderbuffer ma tę dodatkową zaletę, że przechowuje dane w natywnym formacie OpenGL, dzięki czemu jest zoptymalizowany pod kątem renderowania pozaekranowym do bufora ramki.
+<span class="def">Obiekty renderbuffer</span> zostały wprowadzone do OpenGL po teksturach jako możliwy typ załączników bufora ramki. Tekstury były jedynymi załącznikami używanymi w starych czasach OpenGL. Podobnie jak obraz tekstury, obiekt renderbuffer jest rzeczywistym buforem, np. tablicą bajtów, liczb całkowitych, pikseli lub czegokolwiek innego. Obiekt renderbuffer ma tę dodatkową zaletę, że przechowuje dane w natywnym formacie OpenGL, dzięki czemu jest zoptymalizowany pod kątem renderowania poza ekranowym do bufora ramki.
 
 Obiekty Renderbuffer przechowują wszystkie dane renderowania bezpośrednio w swoich buforach bez żadnych konwersji do formatów specyficznych dla tekstury, dzięki czemu dane są szybciej zapisywane. Jednak obiekty renderbuffer są obiektami tylko do zapisu, więc nie można ich odczytać (jak to można robić w przypadku tekstur). Można z nich odczytać dane za pomocą <fun>glReadPixels</fun>, ale zwraca ona określony obszar pikseli z aktualnie powiązanego framebuffera, a nie bezpośrednio z samego załącznika.
 
@@ -250,7 +250,7 @@ Nic nadzwyczajnego. Fragment Shader będzie jeszcze prostszy, ponieważ jedyną 
     }
 ```
 
-Teraz to do Ciebie należy stworzenie i skonfigurowanie VAO dla pełno-ekarnowego kwadratu. Iteracja renderowania za pomocą tekstury bufora ramki wygląda następująco:
+Teraz to do Ciebie należy stworzenie i skonfigurowanie VAO dla pełno-ekranowego kwadratu. Iteracja renderowania za pomocą tekstury bufora ramki wygląda następująco:
 
 ```cpp
     // pierwsze przejście

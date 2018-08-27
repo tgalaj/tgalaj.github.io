@@ -25,7 +25,7 @@ Jeśli na początku założymy, że tłumienie światła (przyciemnianie świat�
 
 Radiancja również przyjmuje pozycję $p$ jako parametr, a ponieważ każde realistyczne punktowe źródło światła uwzględnia tłumienie (ang. *attenuation*), intensywność radiancji punktowego źródła światła jest skalowana za pomocą jakiejś odległości między punktem $p$ a źródłem światła. Następnie, w wyniku wyodrębnienia z pierwotnego równania radiancji, wynik jest skalowany przez iloczyn skalarny między wektorem normalnym powierzchni $n$ i kierunkiem światła $w_i$.
 
-Mówiąc bardziej praktycznie: w przypadku bezpośredniego światła punktowego funkcja radiancji $L$ mierzy kolor światła, tłumionego wraz z odległościa aż do $p$ i skalowaną przez $n \cdot w_i$, ale tylko dla pojedynczego promienia światła $w_i$, który trafia w $p$, który jest równy wektorowi kierunkowemu światła od $p$. To przekłada się na kod:
+Mówiąc bardziej praktycznie: w przypadku bezpośredniego światła punktowego funkcja radiancji $L$ mierzy kolor światła, tłumionego wraz z odległością aż do $p$ i skalowaną przez $n \cdot w_i$, ale tylko dla pojedynczego promienia światła $w_i$, który trafia w $p$, który jest równy wektorowi kierunkowemu światła od $p$. To przekłada się na kod:
 
 ```glsl
     vec3  lightColor  = vec3(23.47, 21.31, 20.79);
@@ -93,7 +93,7 @@ W przykładzie demonstracyjnym tego tutoriala mamy w sumie 4-punktowe światła,
         [...]  
 ```
 
-Podczas obliczania oświetlenia w przestrzeni liniowej (będziemy poprawiać wartości gamma na końcu shadera) tłumimy źródła światła bardziej fizycznie poprawnie poprzez <def>prawo odwrtoności kwadratów</def> (ang. *inverse-square law*).
+Podczas obliczania oświetlenia w przestrzeni liniowej (będziemy poprawiać wartości gamma na końcu shadera) tłumimy źródła światła bardziej fizycznie poprawnie poprzez <def>prawo odwrotności kwadratów</def> (ang. *inverse-square law*).
 
 {: .box-note }
 Choć fizycznie poprawne, nadal możesz chcieć użyć wartości stałej, liniowej i kwadratowej równania tłumienia, które (choć nie jest poprawne fizycznie) może zaoferować ci znacznie większą kontrolę nad spadkiem energii światła.
@@ -306,7 +306,7 @@ Mam nadzieję, że dzięki [teorii]({% post_url /learnopengl/6_pbr/2018-09-17-te
 
 Od dołu do góry wartość metaliczna mieści się w zakresie od `0.0` do `1.0`, a chropowatość wzrasta od lewej do prawej od `0.0` do `1.0`. Widać, że zmieniając tylko te dwa proste do zrozumienia parametry, możemy już wyświetlić szeroką gamę różnych materiałów.
 
-Możesz znaleźć pełny kod źródłowy dema [tutaj](https://learnopengl.com/code_viewer_gh.php?code=src/6.pbr/1.1.lighting/lighting.cpp).
+Możesz znaleźć pełny kod źródłowy demo [tutaj](https://learnopengl.com/code_viewer_gh.php?code=src/6.pbr/1.1.lighting/lighting.cpp).
 
 ## Teksturowane PBR
 

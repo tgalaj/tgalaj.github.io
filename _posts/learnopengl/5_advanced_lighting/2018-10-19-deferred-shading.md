@@ -19,7 +19,7 @@ Deferred shading opiera się na pomyśle, że my _odraczamy_ lub _opóźniamy_ w
 
 ![Przykład G-buffer wypełnionego danymi geometrycznymi sceny w OpenGL](/img/learnopengl/deferred_g_buffer.png){: .center-image }
 
-Korzystamy z tekstur G-buffera w drugim przebiegu zwanym <def>przejściem oświetlenia</def>, w którym renderijemy ekran wypełniony kwadratem i obliczamy oświetlenie sceny dla każdego fragmentu przy użyciu informacji geometrycznych przechowywanych w G-buffer; piksel po pikselu iterujemy po G-buffer. Zamiast przenosić każdy obiekt z Vertex Shadera do Fragment Shadera, odraczamy zaawansowane procesy FS na późniejszy etap. Obliczenia oświetlenia pozostają dokładnie takie same, jak robiliśmy do tej pory, ale tym razem pobierzemy wszystkie wymagane zmienne wejściowe z odpowiednich tekstur G-buffer zamiast z Vertex Shadera (plus niektóre zmienne uniform).
+Korzystamy z tekstur G-buffera w drugim przebiegu zwanym <def>przejściem oświetlenia</def>, w którym renderujemy ekran wypełniony kwadratem i obliczamy oświetlenie sceny dla każdego fragmentu przy użyciu informacji geometrycznych przechowywanych w G-buffer; piksel po pikselu iterujemy po G-buffer. Zamiast przenosić każdy obiekt z Vertex Shadera do Fragment Shadera, odraczamy zaawansowane procesy FS na późniejszy etap. Obliczenia oświetlenia pozostają dokładnie takie same, jak robiliśmy do tej pory, ale tym razem pobierzemy wszystkie wymagane zmienne wejściowe z odpowiednich tekstur G-buffer zamiast z Vertex Shadera (plus niektóre zmienne uniform).
 
 Poniższy obrazek dobrze ilustruje całkowity proces odroczonego cieniowania.
 
@@ -114,7 +114,7 @@ W przypadku przejścia geometrii musimy zainicjować obiekt bufora ramki, który
 
 Ponieważ używamy multiple render targets, musimy wyraźnie powiedzieć OpenGL, który z buforów kolorów jest powiązany z <var>gBuffer</var> do którego chcemy renderować za pomocą <fun>glDrawBuffers</fun>. Warto również zauważyć, że przechowujemy dane pozycji i normalnych w teksturze `RGB`, ponieważ mamy 3 komponenty, ale przechowujemy kolory i dane intensywności specular połączone w jedną teksturę `RGBA`; to oszczędza nam konieczności zadeklarowania dodatkowej tekstury bufora koloru. Ponieważ odroczony rendering staje się coraz bardziej złożony i wymaga więcej danych, szybko znajdziesz nowe sposoby łączenia danych w poszczególnych teksturach.
 
-Następnie musimy wyrenderować scenę do G-buffera. Zakładając, że każdy obiekt ma tekstury diffuse, normalnych i intensowności specular, użyjemy następującego Fragment Shadera do renderowania do G-buffera:
+Następnie musimy wyrenderować scenę do G-buffera. Zakładając, że każdy obiekt ma tekstury diffuse, normalnych i intensywności specular, użyjemy następującego Fragment Shadera do renderowania do G-buffera:
 
 ```glsl
     #version 330 core
@@ -142,7 +142,7 @@ Następnie musimy wyrenderować scenę do G-buffera. Zakładając, że każdy ob
     }  
 ```
 
-Ponieważ korzystamy z multiple render targets, specyfikator układu (layout) informuje OpenGL, do którego bufora kolorów aktualnie aktywnego bufora ramki renderujemy. Zauważ, że nie przechowujemy intensywności zwierciadlanej w pojedynczej teksturze bufora kolorów, ponieważ możemy przechowywać jej wartość pojedynczego floata w elemencie alfa jednej z pozostałych tekstur bufora kolorów.
+Ponieważ korzystamy z multiple render targets, specyfikator układu (layout) informuje OpenGL, do którego bufora kolorów aktualnie aktywnego bufora ramki renderujemy. Zauważ, że nie przechowujemy intensywności zwierciadlanej w pojedynczej teksturze bufora kolorów, ponieważ możemy przechowywać jej wartość pojedynczego float'a w elemencie alfa jednej z pozostałych tekstur bufora kolorów.
 
 {: .box-error }
 Należy pamiętać, że przy obliczeniach oświetlenia niezwykle ważne jest zachowanie wszystkich zmiennych w tej samej przestrzeni współrzędnych; w tym przypadku przechowujemy (i obliczamy) wszystkie zmienne w przestrzeni świata.
@@ -259,9 +259,9 @@ Jednak te wyrenderowane kostki nie uwzględniają żadnej z głębokości geomet
 
 ![Obraz odroczonego renderowania z forward renderingiem, w którym nie skopiowaliśmy danych i świateł bufora głębi, jest renderowany na wierzchu całej geometrii w OpenGL](/img/learnopengl/deferred_lights_no_depth.png){: .center-image }
 
-Musimy najpierw skopiować informacje o głębokości do domyślnego bufora głębi bufora ramki, a dopiero potem renderować kostki światła. W ten sposób fragmenty kostek światła są tylko renderowane jezeli znajdują na wierzchu poprzednio wyrenderowanej geometrii.
+Musimy najpierw skopiować informacje o głębokości do domyślnego bufora głębi bufora ramki, a dopiero potem renderować kostki światła. W ten sposób fragmenty kostek światła są tylko renderowane jeżeli znajdują na wierzchu poprzednio wyrenderowanej geometrii.
 
-Możemy skopiować zawartość bufora ramki do zawartości innego framebuffera za pomocą <fun>glBlitFramebuffer</fun>, funkcja używana również w samoczuku o [antyaliasingu]({% post_url /learnopengl/4_advanced_opengl/2018-09-14-antyaliasing %}). Funkcja <fun>glBlitFramebuffer</fun> pozwala nam skopiować zdefiniowany przez użytkownika region bufora ramki do zdefiniowanego przez użytkownika regionu innego bufora ramki.
+Możemy skopiować zawartość bufora ramki do zawartości innego framebuffera za pomocą <fun>glBlitFramebuffer</fun>, funkcja używana również w samouczku o [antyaliasingu]({% post_url /learnopengl/4_advanced_opengl/2018-09-14-antyaliasing %}). Funkcja <fun>glBlitFramebuffer</fun> pozwala nam skopiować zdefiniowany przez użytkownika region bufora ramki do zdefiniowanego przez użytkownika regionu innego bufora ramki.
 
 Przechowywaliśmy głębokość wszystkich obiektów renderowanych w odroczonym przejściu cieniowania w <var>gBuffer</var> FBO. Gdybyśmy po prostu skopiowali zawartość jego bufora głębi do bufora głębi domyślnego bufora ramki, kostki światła renderowałyby się tak, jakby cała geometria sceny była renderowana z forward renderingiem. Jak wyjaśniłem pokrótce w samouczku o antyaliasingu, musimy określić bufor ramki <var>gBuffer</var> jako bufor ramki do odczytu i podobnie określić domyślny bufor ramki jako framebuffer do zapisu:
 
@@ -280,7 +280,7 @@ Tutaj kopiujemy całą zawartość bufora głębi do domyślnego bufora głębi 
 
 ![Obraz odroczonego renderowania z renderowaniem w przód, w którym skopiowaliśmy dane i światła bufora głębi, jest renderowany poprawnie z całą geometrią w OpenGL](/img/learnopengl/deferred_lights_depth.png){: .center-image }
 
-Możesz znaleźć pełny kod źródłowy dema [tutaj](https://learnopengl.com/code_viewer_gh.php?code=src/5.advanced_lighting/8.1.deferred_shading/deferred_shading.cpp).
+Możesz znaleźć pełny kod źródłowy demo [tutaj](https://learnopengl.com/code_viewer_gh.php?code=src/5.advanced_lighting/8.1.deferred_shading/deferred_shading.cpp).
 
 Dzięki takiemu podejściu możemy łatwo połączyć opóźnione cieniowanie z forward shadingiem. Jest to świetne, ponieważ możemy nadal stosować mieszanie i renderować obiekty wymagające specjalnych efektów cieniowania, co nie jest możliwe w kontekście samego odroczonego renderowania.
 
@@ -367,7 +367,7 @@ Obliczamy ten promień dla każdego źródła światła sceny i używamy go tylk
 
 Wyniki są dokładnie takie same jak poprzednio, ale tym razem każde światło oblicza jedynie oświetlenie dla źródeł światła, w których znajduje się fragment.
 
-Możesz znaleźć ostateczny kod źródłowy dema [tutaj](https://learnopengl.com/code_viewer_gh.php?code=src/5.advanced_lighting/8.2.deferred_shading_volumes/deferred_shading_volumes.cpp).
+Możesz znaleźć ostateczny kod źródłowy demo [tutaj](https://learnopengl.com/code_viewer_gh.php?code=src/5.advanced_lighting/8.2.deferred_shading_volumes/deferred_shading_volumes.cpp).
 
 ### Jak naprawdę używamy świateł objętościowych
 
@@ -381,7 +381,7 @@ Odbywa się to dla każdego źródła światła w scenie, a powstałe fragmenty 
 
 Nadal występuje problem z tym podejściem: należy uaktywnić funkcję usuwania ścianek (w przeciwnym razie renderowalibyśmy efekt oświetlenia dwukrotnie) i gdy jest włączona, użytkownik może wejść w objętość źródła światła, po czym światło objętościowe nie jest już renderowane (z powodu usuwania tylnych ścianek), co usuwa wpływ źródła światła; można to rozwiązać za pomocą sztuczki z buforem szablonu.
 
-Renderowanie świateł objetościowych niesie za sobą ogromne straty wydajności. Podczas gdy, generalnie jest szybsze niż normalne odroczone cieniowanie, ale nie jest ono najlepszą optymalizacją. Istnieją dwa inne popularne (i bardziej wydajne) rozszerzenia w stosunku do odroczonego cieniowania o nazwie <def>odroczone oświetlenie</def> (ang. *deferred lighting*) i <def>odroczone cieniowanie oparte na kafelkach</def> (ang. *tile-based deferred shading*). Są niewiarygodnie wydajne w renderowaniu dużych ilości światła, a także pozwalają na stosunkowo wydajne MSAA. Jednak ze względu na długość tego samouczka, te techniki nie zostaną omówione.
+Renderowanie świateł objętościowych niesie za sobą ogromne straty wydajności. Podczas gdy, generalnie jest szybsze niż normalne odroczone cieniowanie, ale nie jest ono najlepszą optymalizacją. Istnieją dwa inne popularne (i bardziej wydajne) rozszerzenia w stosunku do odroczonego cieniowania o nazwie <def>odroczone oświetlenie</def> (ang. *deferred lighting*) i <def>odroczone cieniowanie oparte na kafelkach</def> (ang. *tile-based deferred shading*). Są niewiarygodnie wydajne w renderowaniu dużych ilości światła, a także pozwalają na stosunkowo wydajne MSAA. Jednak ze względu na długość tego samouczka, te techniki nie zostaną omówione.
 
 ## Deferred rendering vs forward rendering
 
@@ -394,4 +394,4 @@ Na koniec chciałbym również wspomnieć, że zasadniczo wszystkie efekty, któ
 ## Dodatkowe materiały
 
 *   [Tutorial 35: Deferred Shading - Part 1](http://ogldev.atspace.co.uk/www/tutorial35/tutorial35.html): trzyczęściowy samouczek o odroczonym cieniowaniu autorstwa OGLDev. W części 2 i 3 omówiony jest temat renderowania świateł objętościowych.
-*   [Deferred Rendering for Current and Future Rendering Pipelines](https://software.intel.com/sites/default/files/m/d/4/1/d/8/lauritzen_deferred_shading_siggraph_2010.pdf): slajdy Andrew Lauritzena omawiające odroczone cieniowanie oparte na tile'ach.
+*   [Deferred Rendering for Current and Future Rendering Pipelines](https://software.intel.com/sites/default/files/m/d/4/1/d/8/lauritzen_deferred_shading_siggraph_2010.pdf): slajdy Andrew Lauritzena omawiające odroczone cieniowanie oparte na kafelkach.

@@ -15,9 +15,10 @@ Sprawdźmy czy jesteśmy w stanie uruchomić GLFW. Na początek, utwórz nowy pl
 #include <GLFW/glfw3.h>
 ```
 
-<warning>Upewnij się, że najpierw dołączasz plik nagłówkowy GLAD, a później GLFW. W pliku nagłówkowym GLAD są zawarte instrukcje, które dołączają prawidłowe pliki nagłówkowe OpenGL (jak <span class="var">GL/gl.h</span>). Dlatego dołączanie GLAD przed dołączaniem innych plików nagłówkowych, które wymagają OpenGL załatwia sprawę.</warning>
+{: .box-error }
+Upewnij się, że najpierw dołączasz plik nagłówkowy GLAD, a później GLFW. W pliku nagłówkowym GLAD są zawarte instrukcje, które dołączają prawidłowe pliki nagłówkowe OpenGL (jak <span class="var">GL/gl.h</span>). Dlatego dołączanie GLAD przed dołączaniem innych plików nagłówkowych, które wymagają OpenGL załatwia sprawę.
 
-Następnie utwórzmy funkcję <span class="fun">main</span>, gdzie zainicializujemy okno GLFW:
+Następnie utwórzmy funkcję <span class="fun">main</span>, gdzie zainicjalizujemy okno GLFW:
 
 ```cpp
 int main()  
@@ -83,7 +84,7 @@ Pierwsze dwa parametry funkcji <span class="fun">glViewport</span> ustawiają lo
 Możemy oczywiście ustawić wymiary obszaru renderowania na mniejsze niż dla okna GLFW; wtedy OpenGL będzie rysował na mniejszym obszarze niż obszar całego okna GLFW i wtedy poza viewportem OpenGL możemy wyświetlać inne rzeczy (np. kontrolki GUI).
 
 {: .box-note }
-Za kurtyną, OpenGL używa danych przekazanych do funkcji <span class="fun">glViewport</span> żeby przetransformować współrzędne 2D do przestrzeni współrzędnych Twojego ekranu (okna). Na przykład, przetwarzany punkt <span class="var">(-0.5, 0.5)</span> może być (jako jego ostantnia transformacja) zmapowany do punktu <span class="var">(200, 450)</span> na Twoim ekranie (oknie). Zauważ, że przetwarzane współrzędne w OpenGL są pomiędzy -1 i 1, dlatego w efekcie przedział (-1 do 1) jest mapowany do (0, 800) i (0, 600).
+Za kurtyną, OpenGL używa danych przekazanych do funkcji <span class="fun">glViewport</span> żeby przetransformować współrzędne 2D do przestrzeni współrzędnych Twojego ekranu (okna). Na przykład, przetwarzany punkt <span class="var">(-0.5, 0.5)</span> może być (jako jego ostatnia transformacja) zmapowany do punktu <span class="var">(200, 450)</span> na Twoim ekranie (oknie). Zauważ, że przetwarzane współrzędne w OpenGL są pomiędzy -1 i 1, dlatego w efekcie przedział (-1 do 1) jest mapowany do (0, 800) i (0, 600).
 
 Jednakże, moment, w którym użytkownik zmienia rozmiar okna, obszar renderowania powinien być również zmieniony. Żeby to zrobić możemy zarejestrować wywołanie zwrotne (ang. _callback_) dla okna i będzie ono wywoływane za każdym razem kiedy okno będzie zmieniało rozmiar. Funkcja wywołania zwrotnego dla zmieniania rozmiaru okna ma następujący prototyp:
 
@@ -123,7 +124,7 @@ while(!glfwWindowShouldClose(window))
 ```
 
 Funkcja <span class="fun">glfwWindowShouldClose</span> sprawdza na początku każdej iteracji, czy GLFW był poinstruowany, by zamknąć okno, jeżeli tak, funkcja zwraca wartość _true_ i pętla gry kończy swoje działanie, po czym możemy zamknąć aplikację.  
-Funkcja <span class="fun">glfwPollEvents</span> sprawdza czy zostały wywołane jakieś zdarzenia (ang. _events_), jak naciśnięcie przysisku na klawiaturze lub poruszenie myszą, i wywołuje odpowiednią funkcję (którą możemy ustawić przez wywołanie zwrotne). Funkcje, które zajmują się przetwarzaniem zdarzeń, zwykle wywołujemy na początku iteracji.  
+Funkcja <span class="fun">glfwPollEvents</span> sprawdza czy zostały wywołane jakieś zdarzenia (ang. _events_), jak naciśnięcie przycisku na klawiaturze lub poruszenie myszą, i wywołuje odpowiednią funkcję (którą możemy ustawić przez wywołanie zwrotne). Funkcje, które zajmują się przetwarzaniem zdarzeń, zwykle wywołujemy na początku iteracji.  
 Funkcja <span class="fun">glfwSwapBuffers</span> zamienia bufor koloru (duży bufor, który przechowuje wartości koloru dla każdego piksela w oknie GLFW), który był używany do narysowania ramki w tej iteracji z buforem zawierającym ramkę z poprzedniej iteracji i wyświetla wynik na ekranie.
 
 {: .box-note }
@@ -141,11 +142,11 @@ return 0;
 
 Powyższy kod usunie nam wszystkie zasoby związane z GLFW i poprawnie zamknie aplikację. Spróbuj teraz skompilować aplikację i jeżeli wszystko poszło dobrze powinieneś zobaczyć rezultat podobny do poniższego obrazka:
 
-![Image of GLFW window output as most basic example]({{ site.baseurl }}/img/learnopengl/hellowindow.png){: .center-image}
+![Obraz wyjściowy okna GLFW jako najbardziej podstawowy przykład]({{ site.baseurl }}/img/learnopengl/hellowindow.png){: .center-image}
 
 Jeżeli jest to bardzo monotonny i nudny czarny obraz, to wszystko zrobiłeś dobrze! Jeżeli nie dostałeś takiego wyniku, albo jesteś zmieszany tym, jak to wszystko jest powiązane, sprawdź pełny kod źródłowy [tutaj](https://learnopengl.com/code_viewer_gh.php?code=src/1.getting_started/1.1.hello_window/hello_window.cpp).
 
-Jeżeli masz problemy związane ze skompilowaniem aplikacji, upewnij się najpierw czy masz dobrze ustawione opcje linkera i czy poprawnie dodałeś odpowiednie scieżki/lokalizacje do swojego IDE (zostało to wytłumaczone w poprzedniej części kursu). Dodatkowo upewnij się, że Twój kod jest poprawny; możesz to łatwo zweryfikować poprzez porównanie go z wcześniej udostępnionym kodem źródłowym. Jeżeli nadal masz problemy, napisz komentarz niżej opisując swój problem. Wtedy ja albo ktoś ze społeczności postara się Tobie pomóc.
+Jeżeli masz problemy związane ze skompilowaniem aplikacji, upewnij się najpierw czy masz dobrze ustawione opcje linkera i czy poprawnie dodałeś odpowiednie ścieżki/lokalizacje do swojego IDE (zostało to wytłumaczone w poprzedniej części kursu). Dodatkowo upewnij się, że Twój kod jest poprawny; możesz to łatwo zweryfikować poprzez porównanie go z wcześniej udostępnionym kodem źródłowym. Jeżeli nadal masz problemy, napisz komentarz niżej opisując swój problem. Wtedy ja albo ktoś ze społeczności postara się Tobie pomóc.
 
 ## Wejście
 
@@ -173,7 +174,7 @@ while (!glfwWindowShouldClose(window))
 } 
 ```
 
-Daje nam to możlwiość sprawdzenia w łatwy sposób reagowania na wciśnięcie danego klawisza w każdej nowej ramce.
+Daje nam to możliwość sprawdzenia w łatwy sposób reagowania na wciśnięcie danego klawisza w każdej nowej ramce.
 
 ## Renderowanie
 
@@ -195,14 +196,14 @@ while(!glfwWindowShouldClose(window))
 }
 ```
 
-Żeby sprawdzić czy wszystko działa jak należy, wyczyśćmy ekran za pomocą koloru, który sami wybierzemy. Na początku każdej iteracji pętli, chcemy zawsze czyścić ekran. W przeciwnym razie będziemy obserwować wyniki z poprzednej iteracji (może to być celowy efekt, ale zazwyczaj nie jest). Możemy wyczyścić bufor koloru naszego ekranu używając funkcji <span class="fun">glClear</span>, gdzie przekazujemy bufory, w formie bitów, by wybrać, który bufor chcemy wyczyścić. Możliwe wartości bitowe jakie możemy tu przekazać to <span class="var">GL_COLOR_BUFFER_BIT</span>, <span class="var">GL_DEPTH_BUFFER_BIT</span> i <span class="var">GL_STENCIL_BUFFER_BIT</span>. Na chwilę obecną, interesują nas tylko wartości koloru dlatego wyczyścimy bufor koloru.
+Żeby sprawdzić czy wszystko działa jak należy, wyczyśćmy ekran za pomocą koloru, który sami wybierzemy. Na początku każdej iteracji pętli, chcemy zawsze czyścić ekran. W przeciwnym razie będziemy obserwować wyniki z poprzedniej iteracji (może to być celowy efekt, ale zazwyczaj nie jest). Możemy wyczyścić bufor koloru naszego ekranu używając funkcji <span class="fun">glClear</span>, gdzie przekazujemy bufory, w formie bitów, by wybrać, który bufor chcemy wyczyścić. Możliwe wartości bitowe jakie możemy tu przekazać to <span class="var">GL_COLOR_BUFFER_BIT</span>, <span class="var">GL_DEPTH_BUFFER_BIT</span> i <span class="var">GL_STENCIL_BUFFER_BIT</span>. Na chwilę obecną, interesują nas tylko wartości koloru dlatego wyczyścimy bufor koloru.
 
 ```cpp
 glClearColor(0.2f, 0.3f, 0.3f, 1.0f);  
 glClear(GL_COLOR_BUFFER_BIT);
 ```
 
-Zauważ, że ustawiamy również kolor czyszczący za pomocą funkcji <span class="fun">glClearColor</span>, którym będziemy czyścić ekran. Za każdym razem kiedy wywołamy funkcję <span class="fun">glClear</span> z zamiarem czyszczenia bufora koloru, to cały ten bufor będzie wyczyszczony za pomocą wartości zdefiniowanych za pomoca funkcji <span class="fun">glClearColor</span>. Te operacje powinny dać nam kolor zbliżony do ciemno-zielono-niebieskiego koloru.
+Zauważ, że ustawiamy również kolor czyszczący za pomocą funkcji <span class="fun">glClearColor</span>, którym będziemy czyścić ekran. Za każdym razem kiedy wywołamy funkcję <span class="fun">glClear</span> z zamiarem czyszczenia bufora koloru, to cały ten bufor będzie wyczyszczony za pomocą wartości zdefiniowanych za pomocą funkcji <span class="fun">glClearColor</span>. Te operacje powinny dać nam kolor zbliżony do ciemno-zielono-niebieskiego koloru.
 
 {: .box-note }
 Jak możesz sobie przypominać z części kursu pt. _OpenGL_, funkcja <span class="fun">glClearColor</span> jest funkcją _ustawiającą stan_ (ang. _state-setting_), natomiast funkcja <span class="fun">glClear</span> jest funkcją _używającą stanu_ (ang. _state-using_) - używa obecnego stanu by pobrać wartość koloru czyszczącego.

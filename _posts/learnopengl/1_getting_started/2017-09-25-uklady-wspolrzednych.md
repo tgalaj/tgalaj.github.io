@@ -47,13 +47,13 @@ Wierzchołki kontenera, których używaliśmy, zostały określone jako współr
 
 ## Przestrzeń Świata
 
-Gdybyśmy chcieli zimportować wszystkie nasze obiekty bezpośrednio do aplikacji, prawdopodobnie wszystkie znalazłyby się gdzieś ułożone jeden na drugim wokół środka całego wirtualnego świata <span class="var">(0,0,0)</span>, czego nie chcemy. Chcemy zdefiniować pozycję dla każdego obiektu z osobna, aby umieścić je w większym świecie. Współrzędne przestrzeni świata są dokładnie tym: współrzędne wszystkich wierzchołków są umieszczane względem świata (gry). Jest to przestrzeń współrzędnych, w której obiekty przekształcane są w taki sposób, że wszystkie są w jakiś sposób rozmieszczone (najlepiej w sposób realistyczny). Współrzędne obiektu są przekształcane z przestrzeni lokalnej do przestrzeni świata; odbywa się to za pomocą macierzy <span class="def">model/world</span>.
+Gdybyśmy chcieli zaimportować wszystkie nasze obiekty bezpośrednio do aplikacji, prawdopodobnie wszystkie znalazłyby się gdzieś ułożone jeden na drugim wokół środka całego wirtualnego świata <span class="var">(0,0,0)</span>, czego nie chcemy. Chcemy zdefiniować pozycję dla każdego obiektu z osobna, aby umieścić je w większym świecie. Współrzędne przestrzeni świata są dokładnie tym: współrzędne wszystkich wierzchołków są umieszczane względem świata (gry). Jest to przestrzeń współrzędnych, w której obiekty przekształcane są w taki sposób, że wszystkie są w jakiś sposób rozmieszczone (najlepiej w sposób realistyczny). Współrzędne obiektu są przekształcane z przestrzeni lokalnej do przestrzeni świata; odbywa się to za pomocą macierzy <span class="def">model/world</span>.
 
-Macierz modelu/świata jest macierzą transformacji, która przesuwa, skaluje i/lub obraca obiekt, aby umieścić go w świecie w określonej lokalizacji/orientacji. Zastanów się nad tym, jak przekształcić dom, skalując go w dół (był nieco zbyt duży w przestrzeni lokalnej), ustawiając go na przedmieściach i obracając go nieco w lewo na osi y, tak aby pasował idealnie do sąsiednich domów. Możesz pomyśleć o macierzy, z poprzedniego samouczka, która umieszczała kontener w konkrentej lokalizacji na scenie jako o rodzaju macierzy modelu; przekształciliśmy lokalne współrzędne kontenera w inne miejsce na scenie/świecie.
+Macierz modelu/świata jest macierzą transformacji, która przesuwa, skaluje i/lub obraca obiekt, aby umieścić go w świecie w określonej lokalizacji/orientacji. Zastanów się nad tym, jak przekształcić dom, skalując go w dół (był nieco zbyt duży w przestrzeni lokalnej), ustawiając go na przedmieściach i obracając go nieco w lewo na osi y, tak aby pasował idealnie do sąsiednich domów. Możesz pomyśleć o macierzy, z poprzedniego samouczka, która umieszczała kontener w konkretnej lokalizacji na scenie jako o rodzaju macierzy modelu; przekształciliśmy lokalne współrzędne kontenera w inne miejsce na scenie/świecie.
 
 ## Przestrzeń Widoku
 
-Przestrzeń widoku jest tym, co ludzie zwykle określają jako <span class="def">kamera</span> OpenGL (czasami też znana jest jako <span class="def">przestrzeń kamery</span> lub <span class="def">przestrzeń oka</span>). Przestrzeń widoku jest wynikiem przekształcania współrzędnych przestrzeni świata na współrzędne, które znajdują się przed widokiem użytkownikiem. Przestrzeń widoku jest zatem przestrzenią, dzięki której obserwujemy scenę z punktu widzenia kamery. Zwykle odbywa się to za pomocą kombinacji translacji i rotacji, aby przesunać/obrócić scenę tak, aby niektóre elementy zostały przekształcone tak, aby były na przeciw kamery. Te połączone transformacje są zazwyczaj przechowywane wewnątrz <span class="def">macierzy widoku</span>, która przekształca współrzędne świata do przestrzeni widoku. W następnym ćwiczeniu będziemy szerzej mówić o tym, jak utworzyć taką macierz widoku w celu symulacji wirtualnej kamery.
+Przestrzeń widoku jest tym, co ludzie zwykle określają jako <span class="def">kamera</span> OpenGL (czasami też znana jest jako <span class="def">przestrzeń kamery</span> lub <span class="def">przestrzeń oka</span>). Przestrzeń widoku jest wynikiem przekształcania współrzędnych przestrzeni świata na współrzędne, które znajdują się przed widokiem użytkownikiem. Przestrzeń widoku jest zatem przestrzenią, dzięki której obserwujemy scenę z punktu widzenia kamery. Zwykle odbywa się to za pomocą kombinacji translacji i rotacji, aby przesunąć/obrócić scenę tak, aby niektóre elementy zostały przekształcone tak, aby były na przeciw kamery. Te połączone transformacje są zazwyczaj przechowywane wewnątrz <span class="def">macierzy widoku</span>, która przekształca współrzędne świata do przestrzeni widoku. W następnym ćwiczeniu będziemy szerzej mówić o tym, jak utworzyć taką macierz widoku w celu symulacji wirtualnej kamery.
 
 ## Przestrzeń Obcinania
 
@@ -66,7 +66,7 @@ W celu przekształcenia współrzędnych wierzchołków z przestrzeni widoku do 
 {: .box-note }
 Zauważ, że jeśli tylko część prymitywu, np. trójkąta, znajduje się poza <span class="def">obszarem obcinania</span>, to OpenGL zrekonstruuje trójkąt jako jeden lub więcej trójkątów, aby dopasować go do obszaru obcinania.
 
-To _pudełko widoku_ macierzy projekcji nazywa się <span class="def">frustum</span> i każda współrzędna, która znajduje się wewnątrz frustum, znajdzie się na ekranie użytkownika. Całkowity proces przekształcania współrzędnych z określonego zakresu do NDC, który może być łatwo odwzorowywany na współrzędne 2D przestrzeni widoku, nazywa się <span class="def">projekcją</span>, ponieważ macierze projekcji <span class="def">mapują/rzutują</span> współrzędne 3D na współrzedne 2D NDC.
+To _pudełko widoku_ macierzy projekcji nazywa się <span class="def">frustum</span> i każda współrzędna, która znajduje się wewnątrz frustum, znajdzie się na ekranie użytkownika. Całkowity proces przekształcania współrzędnych z określonego zakresu do NDC, który może być łatwo odwzorowywany na współrzędne 2D przestrzeni widoku, nazywa się <span class="def">projekcją</span>, ponieważ macierze projekcji <span class="def">mapują/rzutują</span> współrzędne 3D na współrzędne 2D NDC.
 
 Kiedy wszystkie wierzchołki zostaną przekształcone do przestrzeni obcinania, wykonana zostaje ostatnia operacja zwana <span class="def">dzieleniem perspektywicznym</span>, gdzie dzielimy komponenty <span class="var">x, y</span> i <span class="var">z</span> wektorów pozycji przez składnik <span class="var">w</span> tego wektora; dzielenie perspektywiczne jest tym, co przekształca współrzędne w przestrzeni obcinania 4D w współrzędnych 3D w NDC. Ten krok jest wykonywany automatycznie po zakończeniu każdego wywołania shadera.
 
@@ -88,7 +88,7 @@ Aby utworzyć macierz projekcji ortograficznej używamy wbudowanej funkcji GLM <
 glm::ortho(0.0f, 800.0f, 0.0f, 600.0f, 0.1f, 100.0f);
 ```
 
-Pierwsze dwa parametry określają lewą i prawą współrzędną frustum, a trzeci i czwarty parametr określają dolną i górną część frustum. Za pomocą tych 4 punktów określiliśmy rozmiary bliskiej i dalekiej płaszczyzny, a parametr 5. i 6. następnie określaja odległości pomiędzy bliską i daleką płaszczyzną. Ta specyficzna macierz projekcji przekształca wszystkie współrzędne z tego zakresu <span class="var">x, y</span> i <span class="var">z</span> na znormalizowane współrzędne urządzenia (NDC).
+Pierwsze dwa parametry określają lewą i prawą współrzędną frustum, a trzeci i czwarty parametr określają dolną i górną część frustum. Za pomocą tych 4 punktów określiliśmy rozmiary bliskiej i dalekiej płaszczyzny, a parametr 5. i 6. następnie określają odległości pomiędzy bliską i daleką płaszczyzną. Ta specyficzna macierz projekcji przekształca wszystkie współrzędne z tego zakresu <span class="var">x, y</span> i <span class="var">z</span> na znormalizowane współrzędne urządzenia (NDC).
 
 Macierz projekcji ortograficznej bezpośrednio mapuje współrzędne na płaszczyznę 2D, która znajduje się na Twoim ekranie, ale w rzeczywistości bezpośrednia projekcja daje nierealistyczne wyniki, ponieważ nie uwzględnia <span class="def">perspektywy</span>. To jest coś co <span class="def">projekcja perspektywiczna</span> naprawia za nas.
 
@@ -114,7 +114,7 @@ Funkcja <span class="fun">glm::perspective</span> tworzy duże _frustum_, które
 
 ![]({{ site.baseurl }}/img/learnopengl/perspective_frustum.png){: .center-image }
 
-Pierwszy parametr definiuje wartość <span class="def">fov</span>, która oznacza <span class="def">pole widzenia</span> (ang. _field of view_) i określa jak duży jest obszar widoku. Dla realistycznego widoku, ta wartość, jest zazwyczaj ustawiana na <span class="var">45.0f</span> stopni, ale w przypadku efektów rodem z Doom'a możesz ustawić ją na większą wartość. Drugi parametr określa współczynnik _aspect ratio_, który jest obliczany przez podzielenie szerokości przez wysokość ekranu. Trzeci i czwarty parametr ustawia bliską i daleką płaszczyznę frustum. Zwykle ustawiamy odległość do bliskiej płaszczyzny w pobliżu wartości <span class="var">0.1f</span> i odległość od daleszej płaszczyzny w okolicy <span class="var">100.0f</span>. Wszystkie wierzchołki między płaszczyzną _bliską_ a _daleką_ są wewnątrz frustum i zostaną wyrenderowane.
+Pierwszy parametr definiuje wartość <span class="def">fov</span>, która oznacza <span class="def">pole widzenia</span> (ang. _field of view_) i określa jak duży jest obszar widoku. Dla realistycznego widoku, ta wartość, jest zazwyczaj ustawiana na <span class="var">45.0f</span> stopni, ale w przypadku efektów rodem z Doom'a możesz ustawić ją na większą wartość. Drugi parametr określa współczynnik _aspect ratio_, który jest obliczany przez podzielenie szerokości przez wysokość ekranu. Trzeci i czwarty parametr ustawia bliską i daleką płaszczyznę frustum. Zwykle ustawiamy odległość do bliskiej płaszczyzny w pobliżu wartości <span class="var">0.1f</span> i odległość od dalszej płaszczyzny w okolicy <span class="var">100.0f</span>. Wszystkie wierzchołki między płaszczyzną _bliską_ a _daleką_ są wewnątrz frustum i zostaną wyrenderowane.
 
 {: .box-note }
 Kiedy wartość _bliskiej płaszczyzny_ Twojej macierzy perspektywicznej jest zbyt wysoka (na przykład <span class="var">10.0f</span>), OpenGL będzie blokował wszystkie wierzchołki znajdujące się w pobliżu wirtualnej kamery (między <span class="var">0.0f</span> i <span class="var">10.0f</span>), co daje w efekcie znajomy efekt wizualny z gier wideo, dzięki któremu można patrzeć przez obiekty jeśli jest się zbyt blisko tych obiektów.
@@ -135,7 +135,7 @@ Zauważ, że kolejność mnożenia macierzy jest odwrotna (pamiętaj, że musimy
 
 {: .box-note }
 **A potem?**  
-Wyjście Vertex Shader'a wymaga, aby współrzędne znajdowały się w przestrzeni obcinania, co właśnie zrobiliśmy za pomocą macierzy transformacji. Następnie OpenGL wykonuje _dzielenie perspektywiczne_ na _współrzędnych w przestrzneni obcinania_, aby przekształcić je w _znormalizowane współrzędne urządzenia (NDC)_. OpenGL używa parametrów z funkcji <span class="fun">glViewport</span>, aby odwzorować znormalizowane współrzędne urządzenia do _współrzędnych w przestrzeni ekranu_, gdzie każda współrzędna odpowiada punktowi na ekranie (w naszym przypadku ekran ma rozmiar <span class="var">800x600</span>). Proces ten nazywa się _transformacją obszaru renderowania_.
+Wyjście Vertex Shader'a wymaga, aby współrzędne znajdowały się w przestrzeni obcinania, co właśnie zrobiliśmy za pomocą macierzy transformacji. Następnie OpenGL wykonuje _dzielenie perspektywiczne_ na _współrzędnych w przestrzeni obcinania_, aby przekształcić je w _znormalizowane współrzędne urządzenia (NDC)_. OpenGL używa parametrów z funkcji <span class="fun">glViewport</span>, aby odwzorować znormalizowane współrzędne urządzenia do _współrzędnych w przestrzeni ekranu_, gdzie każda współrzędna odpowiada punktowi na ekranie (w naszym przypadku ekran ma rozmiar <span class="var">800x600</span>). Proces ten nazywa się _transformacją obszaru renderowania_.
 
 Jest to trudny temat do zrozumienia, więc jeśli nadal nie jesteś pewien do czego używana jest każda z przestrzeni to nie martw się. Poniżej zobaczysz, w jaki sposób możemy użyć tych przestrzeni współrzędnych.
 
@@ -171,7 +171,7 @@ Aby zrozumieć, dlaczego nazywamy to prawoskrętnym układem współrzędnych, w
 *   Palec wskazujący niech będzie skierowany w górę.
 *   Teraz zegnij palec środkowy w dół o 90 stopni.
 
-Jeśli zrobiłeś to dobrze, Twój kciuk powinien wskazywać dodatnią oś x, palec wskazujący powinien być skierowany w kierunku dodatniej osi y i środkowy palec w kierunku dodatniej osi z. Gdybyś to zrobił lewą ręką, to zobaczysz, że oś z będzie odwrócona. Jest to znane jako lewoskrętny układ współrzednych i jest powszechnie używany przez DirectX. Zauważ, że w znormalizowanych współrzędnych urządzenia (NDC) OpenGL wykorzystuje właściwie lewoskrętny układ współrzednych (macierz projekcji przełącza "skrętność").
+Jeśli zrobiłeś to dobrze, Twój kciuk powinien wskazywać dodatnią oś x, palec wskazujący powinien być skierowany w kierunku dodatniej osi y i środkowy palec w kierunku dodatniej osi z. Gdybyś to zrobił lewą ręką, to zobaczysz, że oś z będzie odwrócona. Jest to znane jako lewoskrętny układ współrzędnych i jest powszechnie używany przez DirectX. Zauważ, że w znormalizowanych współrzędnych urządzenia (NDC) OpenGL wykorzystuje właściwie lewoskrętny układ współrzędnych (macierz projekcji przełącza "skrętność").
 
 </div>
 
@@ -190,7 +190,7 @@ glm::mat4 projection;
 projection = glm::perspective(glm::radians(45.0f), screenWidth / screenHeight, 0.1f, 100.0f);
 ```
 
-Teraz, gdy stworzyliśmy macierze transformacyjne, powinniśmy przekazać je do naszych shader'ów. Najpierw zadeklaruj macierze transformacji jako zmienne uniform w Vertex Shader i pomnoż je przez współrzędne wierzchołków:
+Teraz, gdy stworzyliśmy macierze transformacyjne, powinniśmy przekazać je do naszych shader'ów. Najpierw zadeklaruj macierze transformacji jako zmienne uniform w Vertex Shader i pomnóż je przez współrzędne wierzchołków:
 
 ```cpp
 #version 330 core  
@@ -208,7 +208,7 @@ void main()
 }
 ```
 
-Powinniśmy też wysyłać macierze do programu cieniującego (zazwyczaj jest to wykonywane w każdej iteracji renderowania, ponieważ macierze transformacyji mają tendencję do ulegania ciągłym zmianom):
+Powinniśmy też wysyłać macierze do programu cieniującego (zazwyczaj jest to wykonywane w każdej iteracji renderowania, ponieważ macierze transformacji mają tendencję do ulegania ciągłym zmianom):
 
 ```cpp
 GLint modelLoc = glGetUniformLocation(ourShader.Program, "model"));  
@@ -299,7 +299,7 @@ glm::vec3 cubePositions[] = {
 };
 ```
 
-Teraz, w obrębie pętli gry chcemy wywołać funkcję <span class="fun">glDrawArrays</span> 10 razy, ale za każdym razem przesłając inną macierz modelu do Vertex Shader'a zanim dana kostka zostanie wyrenderowana. Tworzymy małą pętlę w obrębie pętli gry, która renderuje nasz obiekt 10 razy przy użyciu różnych macierzy modelu. Należy pamiętać, że dodajemy również niewielką rotację do każdego pojemnika.
+Teraz, w obrębie pętli gry chcemy wywołać funkcję <span class="fun">glDrawArrays</span> 10 razy, ale za każdym razem przesyłając inną macierz modelu do Vertex Shader'a zanim dana kostka zostanie wyrenderowana. Tworzymy małą pętlę w obrębie pętli gry, która renderuje nasz obiekt 10 razy przy użyciu różnych macierzy modelu. Należy pamiętać, że dodajemy również niewielką rotację do każdego pojemnika.
 
 ```cpp
 glBindVertexArray(VAO);  

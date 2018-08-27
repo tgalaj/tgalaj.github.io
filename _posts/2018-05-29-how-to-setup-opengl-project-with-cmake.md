@@ -124,7 +124,7 @@ file(GLOB_RECURSE HEADER_FILES
 ```
 
 The *file* command can take as a first parameter a lot of options, but we will focus only on two of them:
-* **GLOB** - it will generate a list of files that match the globbing expression, which is very similar to regular expressions.
+* **GLOB** - it will generate a list of files that match the globing expression, which is very similar to regular expressions.
 * **GLOB_RECURSE** - it works the same as the **GLOB** with exception that it will traverse all subdirectories of the matched directory and will match the files.
 
 So, in our case using *GLOB_RECURSE* is much convenient as we store source files in different subdirectories. However, if we would like to use *GLOB*, we should add these subdirectories to the *file* command ourselves.

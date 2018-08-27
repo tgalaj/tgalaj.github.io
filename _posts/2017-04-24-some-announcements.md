@@ -8,4 +8,4 @@ I would love to announce the appearance of a new OpenGL course for beginners! Ne
 
 I mentioned this undertaking in the [previous]({% post_url 2016-03-09-opengl-course-4-farewell %}) entry where I decided to end the OpenGL course, that was run on this site, mainly because of the fact that on the Internet appeared such tutorials as the one mentioned above.
 
-In addition, I will continue developement of the [Vertex Engine](https://github.com/Shot511/VertexEngine "Vertex Engine"), about which you can read more [here]({{ site.baseurl }}/pages/projects).
+In addition, I will continue development of the [Vertex Engine](https://github.com/Shot511/VertexEngine "Vertex Engine"), about which you can read more [here]({{ site.baseurl }}/pages/projects).

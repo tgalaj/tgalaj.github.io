@@ -189,7 +189,7 @@ Nie zapominajmy, że musimy również zdefiniować wektor pozycji dla każdego z
     };  
 ```
 
-Następnie, zaindeksuj odpowiednią strukturę <span class="fun">PointLight</span> w tablicy <span class="var">pointLights</span> i ustaw jej zmienną <span class="var">position</span> jako jedną z pozycji, które właśnie zdefiniowaliśmy. Pamiętaj też, aby teraz narysować 4 kostki rezprezentujące światła zamiast 1. Po prostu utwórz kolejną macierz dla każdej kostki rezprezentującej światło, tak jak zrobiliśmy to z pojemnikami.
+Następnie, zaindeksuj odpowiednią strukturę <span class="fun">PointLight</span> w tablicy <span class="var">pointLights</span> i ustaw jej zmienną <span class="var">position</span> jako jedną z pozycji, które właśnie zdefiniowaliśmy. Pamiętaj też, aby teraz narysować 4 kostki reprezentujące światła zamiast 1. Po prostu utwórz kolejną macierz dla każdej kostki reprezentującej światło, tak jak zrobiliśmy to z pojemnikami.
 
 Jeśli dodatkowo użyjesz latarki, wynik wszystkich połączonych świateł wygląda mniej więcej tak:
 

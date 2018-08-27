@@ -8,13 +8,13 @@ subtag: pierwsze-kroki
 
 {% include learnopengl.md link="Getting-started/Creating-a-window" %}
 
-Pierwszą rzeczą jaką musimy zrobić, zanim zaczniemy tworzyć zapierające dech w piersi efekty graficzne, to musimy stworzyć kontekst OpenGL oraz okienko aplikacji, do którego będziemy rysować. Jednakże, te operacje są inne dla każdego systemu operacyjnego, a OpenGL specjalnie nie daje żadnego API do zrobienia tych rzeczy. Dlatego sami musimy stworzyć okienko, zdefiniować kontekst i przechtywyać sygnały z urządzeń wejściowych takich jak np. kalwiatura i mysz.  
+Pierwszą rzeczą jaką musimy zrobić, zanim zaczniemy tworzyć zapierające dech w piersi efekty graficzne, to musimy stworzyć kontekst OpenGL oraz okienko aplikacji, do którego będziemy rysować. Jednakże, te operacje są inne dla każdego systemu operacyjnego, a OpenGL specjalnie nie daje żadnego API do zrobienia tych rzeczy. Dlatego sami musimy stworzyć okienko, zdefiniować kontekst i przechwytywać sygnały z urządzeń wejściowych takich jak np. klawiatura i mysz.  
 
 Na szczęście, istnieje kilka bibliotek, które dostarczają już odpowiednich funkcjonalności, których nam tutaj potrzeba. Niektóre z tych bibliotek są specjalnie pisane pod zastosowanie OpenGL. Dzięki nim możemy zaoszczędzić sobie sporo pracy związanej z specyficznymi operacjami dla danego systemu i dostarczają nam gotowe okienko z kontekstem OpenGL, do którego możemy rysować. Niektóre spośród najbardziej popularnych bibliotek to GLUT, SDL, SFML i GLFW. Na potrzeby tego kursu będziemy używać **GLFW**.
 
 ## GLFW
 
-GLFW jest biblioteką napisaną w języku C, ukierunkowaną na OpenGL i dostarczającą tylko niezbędne funkcje jakie są potrzebne podczas renderowania rzeczy na ekranie. Pozwala nam ona na stworzenie kontekstu OpenGL, zdefiniowanie parametrów okna oraz przechytywanie sygnałów z urządzeń wejściowych.
+GLFW jest biblioteką napisaną w języku C, ukierunkowaną na OpenGL i dostarczającą tylko niezbędne funkcje jakie są potrzebne podczas renderowania rzeczy na ekranie. Pozwala nam ona na stworzenie kontekstu OpenGL, zdefiniowanie parametrów okna oraz przechwytywanie sygnałów z urządzeń wejściowych.
 
 <img src="{{ site.baseurl }}/img/learnopengl/glfw.png" alt="GLFW logo" class="right">
 
@@ -32,21 +32,21 @@ Kiedy pobrałeś już pliki źródłowe, wypakuj je i otwórz zawartość folder
 *   Wynikowa biblioteka po kompilacji.
 *   Folder **include**.
 
-"Własnoręczne" zbudowanie biblioteki z kodów źródłowych gwarantuje, że wynikowa biblioteka będzie idealnie dopasowna do naszego CPU/OS, czego wygodne, pre-kompilowane wersje nie mogą zagwarantować (czasami pre-kompilowane biblioteki nie są dostępne dla danego systemu). Jednym problemem związanym z udostępnianiem światu kodu źródłowego jest to, że nie każdy używa tego samego IDE do tworzenia własnych aplikacji, co oznacza, że dostarczone pliki projektu/solucji mogą nie być kompatybilne z IDE używanymi przez inne osoby. Dlatego inni ludzie muszą budować sobie sami własne projekty/solucje z dostępnych plików .c/.cpp i .h/.hpp, co jest żmudnym zajęciem. Dlatego, z tego powodu powstało takie narzędzie jak <span class="var">CMake</span>.
+"Własnoręczne" zbudowanie biblioteki z kodów źródłowych gwarantuje, że wynikowa biblioteka będzie idealnie dopasowana do naszego CPU/OS, czego wygodne, pre-kompilowane wersje nie mogą zagwarantować (czasami pre-kompilowane biblioteki nie są dostępne dla danego systemu). Jednym problemem związanym z udostępnianiem światu kodu źródłowego jest to, że nie każdy używa tego samego IDE do tworzenia własnych aplikacji, co oznacza, że dostarczone pliki projektu/solucji mogą nie być kompatybilne z IDE używanymi przez inne osoby. Dlatego inni ludzie muszą budować sobie sami własne projekty/solucje z dostępnych plików .c/.cpp i .h/.hpp, co jest żmudnym zajęciem. Dlatego, z tego powodu powstało takie narzędzie jak <span class="var">CMake</span>.
 
 ### CMake
 
-CMake jest narzędziem, które pozwala na wygenerowanie gotowego projektu/solucji dla wybranego przez użytkownika IDE (np. Visual Studio, Code::Blocks, Eclipse) z zestawu plików źródłowych używając pre-definiowanych skryptów CMake. Pozwala to nam na wygenerowanie projektu Visual Studio 2012 z paczki plików źródłowych GLFW, których możemy użyć do skompilowania tejże biblioteki. Na wstępie musimy sciągnąć i zainstalować CMake, który możesz znaleźć na ich [stronie](http://www.cmake.org/cmake/resources/software.html). Osobiście (Joey de Vries) użyłem instalatora Win32\.
+CMake jest narzędziem, które pozwala na wygenerowanie gotowego projektu/solucji dla wybranego przez użytkownika IDE (np. Visual Studio, Code::Blocks, Eclipse) z zestawu plików źródłowych używając pre-definiowanych skryptów CMake. Pozwala to nam na wygenerowanie projektu Visual Studio 2012 z paczki plików źródłowych GLFW, których możemy użyć do skompilowania tejże biblioteki. Na wstępie musimy ściągnąć i zainstalować CMake, który możesz znaleźć na ich [stronie](http://www.cmake.org/cmake/resources/software.html). Osobiście (Joey de Vries) użyłem instalatora Win32\.
 
-Jak tylko CMake zostanie zainstalowany, możesz wybrać czy chcesz uruchomić CMake z lini poleceń czy za pomocą ich GUI. Jako, że nie chcemy komplikować sobie rzeczy, użyjemy GUI. CMake wymaga folderów z kodem źródłowym i folderu dla plików wynikowych - binarek (ang. _destination folder_). Jako folder z kodem źródłowym wybierzemy główny folder, sciągniętych wcześniej plików źródłowych GLFW. Natomiast folder dla plików wynikowych musimy stworzyć sami - najlepiej pod nazwą _build_ i następnie w GUI wybierzmy ten folder.
+Jak tylko CMake zostanie zainstalowany, możesz wybrać czy chcesz uruchomić CMake z linii poleceń czy za pomocą ich GUI. Jako, że nie chcemy komplikować sobie rzeczy, użyjemy GUI. CMake wymaga folderów z kodem źródłowym i folderu dla plików wynikowych - binarek (ang. _destination folder_). Jako folder z kodem źródłowym wybierzemy główny folder, ściągniętych wcześniej plików źródłowych GLFW. Natomiast folder dla plików wynikowych musimy stworzyć sami - najlepiej pod nazwą _build_ i następnie w GUI wybierzmy ten folder.
 
 <img src="{{ site.baseurl }}/img/learnopengl/cmake.png" alt="Logo CMake" class="center-image">
 
-Jak już ustwaliśmy foldery z plikami źródłowymi i dla plików wynikowych, kliknij przycisk <span class="var">Configure</span>, co sprawi, że CMake odczyta ustawione parametry oraz pliki źródłowe. Następnie musimy wybrać generator dla projektu. Skoro używamy Visual Studio 2015 wybierzmy opcję <span class="var">Visual Studio 14</span> (Visual Studio 2015 jest również nazywany jako Visual Studio 2014). Następnie CMake wyświetli możliwe opcje budowania, do skonfigurowania wynikowej biblioteki. Możemy je zostawić tak jak są i kliknąć ponownie przycisk <span class="var">Configure</span> do zapisania ustawień. Jak wszystkie opcje zostały już ustawione, klikamy na przycisk Generate i wynikowe pliki projektu zostaną wygenerowane i zapisane we wcześniej stworzonym folderze <span class="var">build</span>.
+Jak już ustawiliśmy foldery z plikami źródłowymi i dla plików wynikowych, kliknij przycisk <span class="var">Configure</span>, co sprawi, że CMake odczyta ustawione parametry oraz pliki źródłowe. Następnie musimy wybrać generator dla projektu. Skoro używamy Visual Studio 2015 wybierzmy opcję <span class="var">Visual Studio 14</span> (Visual Studio 2015 jest również nazywany jako Visual Studio 2014). Następnie CMake wyświetli możliwe opcje budowania, do skonfigurowania wynikowej biblioteki. Możemy je zostawić tak jak są i kliknąć ponownie przycisk <span class="var">Configure</span> do zapisania ustawień. Jak wszystkie opcje zostały już ustawione, klikamy na przycisk Generate i wynikowe pliki projektu zostaną wygenerowane i zapisane we wcześniej stworzonym folderze <span class="var">build</span>.
 
 ### Kompilacja
 
-W folderze <span class="var">build</span>, znajdź plik o nazwie <span class="var">GLFW.sln</span> i otwórz go za pomocą Visual Studio 2015\. Skoro CMake sam wygenerował nam projekt, który zawiera prawidłową konfigurację, możemy od razu klkiknąć przycisk <span class="var">Build Solution</span>. Wynikowa, skompilowana biblioteka może zostać znaleziona w folderze <span class="var">src/Debug</span> o nazwie <span class="var">glfw3.lib</span> (zauważ, że używamy wersji 3).
+W folderze <span class="var">build</span>, znajdź plik o nazwie <span class="var">GLFW.sln</span> i otwórz go za pomocą Visual Studio 2015\. Skoro CMake sam wygenerował nam projekt, który zawiera prawidłową konfigurację, możemy od razu kliknąć przycisk <span class="var">Build Solution</span>. Wynikowa, skompilowana biblioteka może zostać znaleziona w folderze <span class="var">src/Debug</span> o nazwie <span class="var">glfw3.lib</span> (zauważ, że używamy wersji 3).
 
 Jak tylko biblioteka została wygenerowana, musimy się upewnić, że nasze IDE wie, gdzie znajduje się biblioteka oraz pliki nagłówkowe. Są na to dwa sposoby:
 
@@ -65,17 +65,17 @@ W celu użycia GLFW w naszym projekcie, musimy podłączyć tą bibliotekę do n
 
 Możemy dodać te foldery (gdzie VS powinien szukać bibliotek/plików nagłówkowych) poprzez otworzenie ustawień projektu (prawy przycisk myszy na nazwie projektu w Solution Explorer) i wybranie <span class="var">VC++ Directories</span>, jak zostało to przedstawione na poniższym obrazku:
 
-[![Image of Visual Studio's VC++ Directories configuration]({{ site.baseurl }}/img/learnopengl/vc_directories.png)](http://www.rtrclass.type.pl/wp-content/uploads/2017/03/vc_directories.png){: .center-image}
+![Obraz skonfigurowanych katalogów VC ++ programu Visual Studio]({{ site.baseurl }}/img/learnopengl/vc_directories.png){: .center-image}
 
 Możesz tutaj dodać swoje własne lokalizacje, żeby projekt wiedział gdzie ma szukać odpowiednich plików. Może to zostać zrobione manualnie poprzez wpisanie odpowiedniej ścieżki lub poprzez kliknięcie na tekście odpowiedniej lokalizacji i wybranie opcji <span class="var">\<Edit..\></span>. Powinieneś zobaczyć takie oto okno dla np. <span class="var">Include Directories</span>:
 
-[![Image of Visual Studio's Include Directories configuration]({{ site.baseurl }}/img/learnopengl/include_directories.png)](http://www.rtrclass.type.pl/wp-content/uploads/2017/03/include_directories.png){: .center-image}
+![Obraz konfiguracji Visual Studio Include Directories]({{ site.baseurl }}/img/learnopengl/include_directories.png){: .center-image}
 
 Możesz tutaj dodać tyle dodatkowych ścieżek ile tylko chcesz, i od tego momentu IDE będzie przeszukiwało te lokalizacje w poszukiwaniu plików nagłówkowych. Jak tylko Twój folder <span class="var">Include</span>, który zawiera folder GLFW, zostanie dołączony do projektu, będziesz mógł odwoływać się z poziomu kodu do jego plików nagłówkowych poprzez dyrektywę <span class="var">#include <GLFW/..></span>. To samo tyczy się folderów z plikami bibliotek.
 
 Jak już VS jest w stanie odnaleźć wszystkie potrzebne pliki, możemy w końcu przejść do podłączenia GLFW do naszego projektu. W tym celu w ustawieniach projektu wybieramy zakładkę <span class="var">Linker</span> i wybieramy <span class="var">input</span>:
 
-[![Image of Visual Studio's link configuration]({{ site.baseurl }}/img/learnopengl/linker_input.png)](http://www.rtrclass.type.pl/wp-content/uploads/2017/03/linker_input.png){: .center-image}
+![Obraz konfiguracji łącza Visual Studio]({{ site.baseurl }}/img/learnopengl/linker_input.png){: .center-image}
 
 Żeby podłączyć bibliotekę, musisz podać jej nazwę linkerowi. Skoro biblioteka ma nazwę <span class="var">glfw3.lib</span>, dodajemy tą nazwę do pola <span class="var">Additional Dependencies</span> (albo poprzez manualne wpisanie tekstu, albo poprzez opcję <span class="var">\<Edit..\></span>). Teraz GLFW będzie linkowane kiedy będziemy kompilować nasz projekt. Oprócz GLFW powinieneś również dodać do linkowania bibliotekę OpenGL - może to się różnić w zależności od systemu operacyjnego.
 

@@ -17,7 +17,7 @@ Po włączeniu testu głębokości (ang. *depth test*), OpenGL testuje wartość
 
 Test głębi odbywa się w przestrzeni ekranu po uruchomieniu Fragment Shader'a (i po teście szablonu (ang. *stencil test*), który omówimy w następnym samouczku). Współrzędne ekranowe odnoszą się bezpośrednio do widoku zdefiniowanego przez funkcję <span class = "fun">glViewport</span> i mogą być pobrane za pośrednictwem wbudowanej funkcji GLSL <span class="var">gl_FragCoord</span> w Fragment Shaderze. Składniki `x` i `y` <span class = "var">gl_FragCoord</span> reprezentują współrzędne fragmentu w przestrzeni ekranu (gdzie (0,0) jest lewym dolnym rogiem). Funkcja <span class = "var">gl_FragCoord</span> zawiera również składnik `z`, który zawiera faktyczną wartość głębokości fragmentu. Ta wartość `z` jest wartością porównywalną z zawartością bufora głębi.
 
-<div class="box-note">Obecnie większość procesorów graficznych obsługuje funkcję sprzętową o nazwie <span class = "def">wczesny test głębokości</span> (ang. *early depth testing*). Wczesny test głębokości umożliwiaja uruchomienie testu głębokości przed uruchomieniem Fragment Shadera. Jeżeli jesteśmy pewni, że fragment nigdy nie będzie widoczny (znajduje się za innymi obiektami) możemy przedwcześnie odrzucić ten fragment.
+<div class="box-note">Obecnie większość procesorów graficznych obsługuje funkcję sprzętową o nazwie <span class = "def">wczesny test głębokości</span> (ang. *early depth testing*). Wczesny test głębokości umożliwiają uruchomienie testu głębokości przed uruchomieniem Fragment Shadera. Jeżeli jesteśmy pewni, że fragment nigdy nie będzie widoczny (znajduje się za innymi obiektami) możemy przedwcześnie odrzucić ten fragment.
 
 Fragment Shadery są zwykle dość drogie, więc powinniśmy szukać obszarów, gdzie możemy zminimalizować ich pracę. Ograniczeniem dla Fragment Shaderów dla wczesnego testu głębokości jest to, że nie możesz zapisywać danych do głębi fragmentu z poziomu shadera. Jeśli Fragment Shader zapisuje cokolwiek do wartości głębokości, wczesne testy głębokości są niemożliwe do wykonania; OpenGL nie będzie wcześniej w stanie ustalić wartości głębokości fragmentu.
 </div>
@@ -169,7 +169,7 @@ Następnie przyjmujemy wynikową wartość `z` i stosujemy odwrotną transformac
     float linearDepth = (2.0 * near * far) / (far + near - z * (far - near));	
 ```
 
-To równanie pochodzi z macierzy projekcji, która ponownie używa równania 2 do "odliniowania" wartości głębokości zwracanych z zakresu <span class = "var">near</span> i <span class = "var">far</span>. Ten [matematyczny artykuł](http://www.songho.ca/opengl/gl_projectionmatrix.html) wyjaśnia macierz projekcji w ogromnych szczegółach; pokazuje również, skąd pochodzą równania.
+To równanie pochodzi z macierzy projekcji, która ponownie używa równania 2 do "odlinearyzowania" wartości głębokości zwracanych z zakresu <span class = "var">near</span> i <span class = "var">far</span>. Ten [matematyczny artykuł](http://www.songho.ca/opengl/gl_projectionmatrix.html) wyjaśnia macierz projekcji w ogromnych szczegółach; pokazuje również, skąd pochodzą równania.
 
 Pełny Fragment Shader przekształcający nieliniową głębokość w przestrzeni ekranu na liniową wartość głębokości jest następujący:
 

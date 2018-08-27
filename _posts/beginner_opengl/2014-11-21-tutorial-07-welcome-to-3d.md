@@ -145,7 +145,7 @@ void main ()
 }  
 ```
 
-The only changes made since the previous part of the tutorial are in the lines #7 and #13\.  In the first, we define _uniform_ variable of type _mat4_ (4×4 matrix), which is called _wvp_. Qualifier _uniform_ allows us to transfer data to the shader just like variable with a qualifier _in_. The only difference between these two qualifiers is that the _uniform_ does not change its value during the consecutive calls of a shader (for example in one render() call there may be 100 vertex shader calls – one for each vertex).
+The only changes made since the previous part of the tutorial are in the lines #7 and #13.  In the first, we define _uniform_ variable of type _mat4_ (4×4 matrix), which is called _wvp_. Qualifier _uniform_ allows us to transfer data to the shader just like variable with a qualifier _in_. The only difference between these two qualifiers is that the _uniform_ does not change its value during the consecutive calls of a shader (for example in one render() call there may be 100 vertex shader calls – one for each vertex).
 
 In the line #13 we transform the position of the vertex to screen coordinates using _wvp_ matrix.
 

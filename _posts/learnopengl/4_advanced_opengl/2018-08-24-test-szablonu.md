@@ -36,7 +36,7 @@ Możesz włączyć test szablonu, włączając opcję <var>GL_STENCIL_TEST</var>
     glEnable(GL_STENCIL_TEST);    
 ```
 
-Zauważ, że musisz także wyczyścić bufor szablonu przed każdą nową iteracjią, podobnie jak bufor koloru i głębi:
+Zauważ, że musisz także wyczyścić bufor szablonu przed każdą nową iteracją, podobnie jak bufor koloru i głębi:
 
 ```cpp
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT); 

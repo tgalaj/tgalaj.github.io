@@ -8,7 +8,7 @@ subtag: intro-learnopengl-2
 
 {% include learnopengl.md link="Code-repository" %}
 
-Możesz znaleźć wszystkie odpowiednie przykłady kodu online w każdym tutorialu, ale jeśli chcesz szybko uruchomić dema samouczków lub porównać swój kod z działającymi przykładami, możesz znaleźć repozytorium kodu [tutaj](https://github.com/JoeyDeVries/LearnOpenGL) na Github.
+Możesz znaleźć wszystkie odpowiednie przykłady kodu online w każdym tutorialu, ale jeśli chcesz szybko uruchomić demo samouczków lub porównać swój kod z działającymi przykładami, możesz znaleźć repozytorium kodu [tutaj](https://github.com/JoeyDeVries/LearnOpenGL) na Github.
 
 W tej chwili plik `CMakeLists.txt` może poprawnie generować pliki projektów Visual Studio, Makefile i działa zarówno w systemie Windows, jak i Linux. Nie był on szeroko testowany na systemie Apple X OS X, ani na wszystkich IDE, więc możesz zostawić komentarz lub zaktualizować `CMakeLists.txt` za pomocą pull request, jeśli uruchomisz ten kod na innych systemach/IDE.
 

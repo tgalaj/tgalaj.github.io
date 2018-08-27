@@ -261,7 +261,7 @@ Now we can move to complete _loadContent()_ function.
 glGenBuffers(1, &VBO);  
 ```
 
-Using this instruction we generate a new buffer. The function _glGenBuffers()_ takes two parameters: the first tells you how many objects/buffers you want to create, and the second is the address of the GLuint array, which holds handles that this funciton generates for us (make sure that it is large enough to accommodate the number of objects you want to generate). Subsequent calls of this function won't generate the same objects until you call _glDeleteBuffers()_ function.
+Using this instruction we generate a new buffer. The function _glGenBuffers()_ takes two parameters: the first tells you how many objects/buffers you want to create, and the second is the address of the GLuint array, which holds handles that this function generates for us (make sure that it is large enough to accommodate the number of objects you want to generate). Subsequent calls of this function won't generate the same objects until you call _glDeleteBuffers()_ function.
 
 ```cpp
 /* Tell OpenGL to use this buffer and inform that this buffer will contain an array of vertices*/  
@@ -289,7 +289,7 @@ After calling this function, OpenGL will have access to an array of vertices wit
 glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);  
 ```
 
-This function determines how to interpret the data stored in the buffer. The first parameter specifies where the data was sent (to which array, for which index). The second parameter tells you how many components consists of a vertex attribute (in this case, his position). The third parameter is the data type of our vertices. The fourth parameter can normalize our position vectors for us if we pass GL_TRUE, otherwise this function will do nothing with them. The fifth parameter is the distance between the components of the vertices (in our case, consecutive components are tightly packed next to each other - hence the value 0). The sixth parameter is the distance in the buffer from which we store our data. Our buffer is made up of the same positions values so we set 0\. The last parameter is useful when in the buffer we store not only the information about the position, but also we have information abouta vertex color, texture coordinates, etc.
+This function determines how to interpret the data stored in the buffer. The first parameter specifies where the data was sent (to which array, for which index). The second parameter tells you how many components consists of a vertex attribute (in this case, his position). The third parameter is the data type of our vertices. The fourth parameter can normalize our position vectors for us if we pass GL_TRUE, otherwise this function will do nothing with them. The fifth parameter is the distance between the components of the vertices (in our case, consecutive components are tightly packed next to each other - hence the value 0). The sixth parameter is the distance in the buffer from which we store our data. Our buffer is made up of the same positions values so we set 0\. The last parameter is useful when in the buffer we store not only the information about the position, but also we have information about a vertex color, texture coordinates, etc.
 
 ```cpp
 /* Draw our triangle */  

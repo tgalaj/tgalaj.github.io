@@ -13,9 +13,9 @@ W [poprzednim]({% post_url /learnopengl/6_pbr/2018-09-21-mapa-irradiancji-diffus
 
 $$L_o(p,\omega_o) = \int\limits_{\Omega} (k_d\frac{c}{\pi} + k_s\frac{DFG}{4(\omega_o \cdot n)(\omega_i \cdot n)}) L_i(p,\omega_i) n \cdot \omega_i d\omega_i$$
 
-Zauważysz, że część lustrzana/specular Cook-Torrance'a (pomnożona przez $kS$) nie jest stałą w całce i jest zależna od kierunku światła, ale **również** od kierunku patrzenia. Próba rozwiązania całki dla wszystkich kierunków światła, w tym wszystkich możliwych kierunków patrzenia, jest przeciążeniem kombinatorycznym i jest to zbyt drogie do obliczenia w czasie rzeczywistym. Epic Games zaproponowało rozwiązanie, w którym udało im się pre-konwolować część lustrzaną w czasie rzeczywistym, biorąc pod uwagę kilka kompromisów, zwanych <def>aproksymacją rodzielonych sum</def>.
+Zauważysz, że część lustrzana/specular Cook-Torrance'a (pomnożona przez $kS$) nie jest stałą w całce i jest zależna od kierunku światła, ale **również** od kierunku patrzenia. Próba rozwiązania całki dla wszystkich kierunków światła, w tym wszystkich możliwych kierunków patrzenia, jest przeciążeniem kombinatorycznym i jest to zbyt drogie do obliczenia w czasie rzeczywistym. Epic Games zaproponowało rozwiązanie, w którym udało im się pre-konwolować część lustrzaną w czasie rzeczywistym, biorąc pod uwagę kilka kompromisów, zwanych <def>aproksymacją rozdzielonych sum</def>.
 
-Aproksymacja rodzielonych sum dzieli część lustrzaną równania odbicia na dwie oddzielne części, które możemy konwolować pojedynczo, a następnie połączyć w shaderze PBR dla oświetlenia specular opartego na obrazie. Podobnie do tego, jak konwolowaliśmy mapę irradiancji, przybliżenie w postaci rozdzielonych sum wymaga mapy środowiska HDR jako wejścia do operatora splotu. Aby zrozumieć aproksymację rozdzielonych sum, ponownie przyjrzymy się równaniu odbicia, ale tym razem skupimy się tylko na części lustrzanej (wyodrębniliśmy część rozproszoną w [poprzednim]({% post_url /learnopengl/6_pbr/2018-09-21-mapa-irradiancji-diffuse %}) samouczku):
+Aproksymacja rozdzielonych sum dzieli część lustrzaną równania odbicia na dwie oddzielne części, które możemy konwolować pojedynczo, a następnie połączyć w shaderze PBR dla oświetlenia specular opartego na obrazie. Podobnie do tego, jak konwolowaliśmy mapę irradiancji, przybliżenie w postaci rozdzielonych sum wymaga mapy środowiska HDR jako wejścia do operatora splotu. Aby zrozumieć aproksymację rozdzielonych sum, ponownie przyjrzymy się równaniu odbicia, ale tym razem skupimy się tylko na części lustrzanej (wyodrębniliśmy część rozproszoną w [poprzednim]({% post_url /learnopengl/6_pbr/2018-09-21-mapa-irradiancji-diffuse %}) samouczku):
 
 $$L_o(p,\omega_o) = \int\limits_{\Omega} (k_s\frac{DFG}{4(\omega_o \cdot n)(\omega_i \cdot n)} L_i(p,\omega_i) n \cdot \omega_i d\omega_i = \int\limits_{\Omega} f_r(p, \omega_i, \omega_o) L_i(p,\omega_i) n \cdot \omega_i d\omega_i$$
 
@@ -45,7 +45,7 @@ W ten sposób konwolucja pre-filtrowania mapy środowiska nie musi być świadom
 
 ![Usuwanie odbić lustrzanych z przybliżeniem rozdzielonych sum V = R = N.](/img/learnopengl/ibl_grazing_angles.png){: .center-image }
 
-Druga część równania jest równa części BRDF całki zwierciadlanej/specular. Jeśli udamy, że nadchodząca jasność jest całkowicie biała dla każdego kierunku (stąd $L (p, x) = 1.0$), możemy wstępnie obliczyć wartość BRDF z uwzględnieniem szorstkości wejściowej i kąta wejściowego między kierunkiem normalej $n$ i kierunkiem światła $\omega_i$, lub $n \cdot \omega_i$. Epic Games przechowuje wstępnie obliczoną odpowiedź BRDF na każdą kombinację wektora normalnego i kierunku światła dla różnych wartości chropowatości w teksturach 2D (LUT) znanych jako mapa <def>całkowania BRDF</def>. Tekstura 2D LUT daje w wyniku skalę (kanał czerwony) i wartość odchylenia (ang. *bias*) (kanał zielony) i przekazuje ją do funkcji Fresnela, dając nam drugą część rozdzielonej całki lustrzanej:
+Druga część równania jest równa części BRDF całki zwierciadlanej/specular. Jeśli udamy, że nadchodząca jasność jest całkowicie biała dla każdego kierunku (stąd $L (p, x) = 1.0$), możemy wstępnie obliczyć wartość BRDF z uwzględnieniem szorstkości wejściowej i kąta wejściowego między kierunkiem normalnej $n$ i kierunkiem światła $\omega_i$, lub $n \cdot \omega_i$. Epic Games przechowuje wstępnie obliczoną odpowiedź BRDF na każdą kombinację wektora normalnego i kierunku światła dla różnych wartości chropowatości w teksturach 2D (LUT) znanych jako mapa <def>całkowania BRDF</def>. Tekstura 2D LUT daje w wyniku skalę (kanał czerwony) i wartość odchylenia (ang. *bias*) (kanał zielony) i przekazuje ją do funkcji Fresnela, dając nam drugą część rozdzielonej całki lustrzanej:
 
 ![Wizualizacja 2D BRDF LUT zgodnie z aproksymacją rodzielonych sum dla PBR w OpenGL.](/img/learnopengl/ibl_brdf_lut.png){: .center-image }
 
@@ -115,7 +115,7 @@ Jeśli chodzi o całkowanie Monte Carlo, niektóre próbki mogą mieć większe 
 
 Jednak niektóre estymatory Monte Carlo są <def>stronnicze</def> (ang. *biased*), co oznacza, że ​​wygenerowane próbki nie są całkowicie losowe, ale skupiają się wokół określonej wartości lub kierunku. Te stronnicze estymatory Monte Carlo mają <def>szybszą zbieżność</def>, co oznacza, że ​​mogą zbiegać się do dokładnego rozwiązania w znacznie szybszym tempie, ale z powodu ich tendencyjnego charakteru prawdopodobnie nigdy nie zbiegną się do dokładnego rozwiązania . Jest to ogólnie akceptowalny kompromis, zwłaszcza w grafice komputerowej, ponieważ dokładne rozwiązanie nie jest zbyt ważne, o ile wyniki są akceptowalne wizualnie. Jak wkrótce zobaczymy z ważnością próbkowania (która korzysta ze stronniczego estymatora) generowane próbki są stronnicze względem konkretnych kierunków, w którym to przypadku uwzględniamy to przez pomnożenie lub podzielenie każdej próbki przez odpowiadający jej pdf.
 
-Całkowanie Monte Carlo jest dość powszechne w grafice komputerowej, ponieważ jest to dość intuicyjny sposób przybliżania całek ciągłych w dyskretny i wydajny sposób: weź dowolny obszar/objętość, aby pobierać próbki (jak półkula $\Omega$), wygeneruj $N$ losowych próbek w obrębie powierzchni/objętości po czym zsummuj oraz zważ każdy wkład próbki do końcowego wyniku.
+Całkowanie Monte Carlo jest dość powszechne w grafice komputerowej, ponieważ jest to dość intuicyjny sposób przybliżania całek ciągłych w dyskretny i wydajny sposób: weź dowolny obszar/objętość, aby pobierać próbki (jak półkula $\Omega$), wygeneruj $N$ losowych próbek w obrębie powierzchni/objętości po czym zsumuj oraz zważ każdy wkład próbki do końcowego wyniku.
 
 Całkowanie Monte Carlo jest obszernym tematem matematycznym i nie będę się dalej zagłębiać w szczegóły, ale wspomnimy, że istnieje również wiele sposobów generowania _losowych próbek_. Domyślnie każda próbka jest całkowicie (pseudo) losowa, jak jesteśmy do tego przyzwyczajeni, ale wykorzystując pewne właściwości sekwencji pół-losowych, możemy generować wektory próbek, które są nadal losowe, ale mają interesujące właściwości. Na przykład możemy wykonać całkowanie Monte Carlo na czymś, co nazywa się <def>sekwencjami o niskiej rozbieżności</def>, które wciąż generują losowe próbki, ale każda próbka jest bardziej równomiernie rozmieszczona:
 
@@ -184,7 +184,7 @@ Nie wszystkie sterowniki OpenGL obsługują operatory bitowe (na przykład WebGL
     }
 ```
 
-Zauważ, że ze względu na ograniczenia pętli GLSL na starszym sprzęcie, sekwencja iteruje po wszystkich możliwych `32` bitach. Ta wersja jest mniej wydajna, ale działa na kaźdym sprzęcie, który nie wspiera operacji bitowych.
+Zauważ, że ze względu na ograniczenia pętli GLSL na starszym sprzęcie, sekwencja iteruje po wszystkich możliwych `32` bitach. Ta wersja jest mniej wydajna, ale działa na każdym sprzęcie, który nie wspiera operacji bitowych.
 </div>
 
 ### Ważność próbkowania GGX
@@ -322,7 +322,7 @@ Otrzymujemy wynik, który rzeczywiście wygląda jak rozmyta wersja oryginalnego
 
 ![Wizualizacja poziomu mip LOD na pre-filtrowanej mapie środowiska w skybox.](/img/learnopengl/ibl_prefilter_map_sample.png){: .center-image }
 
-Jeśli uzyskałeś nieco podobny wynik, to udało Ci się pre-filtrować mapę środowiska HDR. Pobaw się z różnymi poziomami mipmap, aby zobaczyć, jak mapa pre-filtracji stopniowo zmienia się z ostrych na rozmyte odbicia wraz ze wzrotem poziomów mipmapy.
+Jeśli uzyskałeś nieco podobny wynik, to udało Ci się pre-filtrować mapę środowiska HDR. Pobaw się z różnymi poziomami mipmap, aby zobaczyć, jak mapa pre-filtracji stopniowo zmienia się z ostrych na rozmyte odbicia wraz ze wzrostem poziomów mipmapy.
 
 ## Artefakty pre-filtracji
 
@@ -344,7 +344,7 @@ Po prostu włącz tę właściwość gdzieś na początku aplikacji, a szwy znik
 
 ### Jasne kropki w mapie pre-filtracji
 
-Ze względu na detale o wysokiej częstotliwości i gwałtownie zmieniające się natężenia światła w odbiciach lustrzanych, konwolucja odbić lustrzanych wymaga dużej liczby próbek, aby odpowiednio uwzględnić zmienny charakter odbić środowiskowych HDR. Pobieramy już bardzo dużą liczbę próbek, ale dla niektórych środowisk może to wciąż nie wystarczać i możesz dostrzeć kropki pojawiające się wokół jasnych obszarów:
+Ze względu na detale o wysokiej częstotliwości i gwałtownie zmieniające się natężenia światła w odbiciach lustrzanych, konwolucja odbić lustrzanych wymaga dużej liczby próbek, aby odpowiednio uwzględnić zmienny charakter odbić środowiskowych HDR. Pobieramy już bardzo dużą liczbę próbek, ale dla niektórych środowisk może to wciąż nie wystarczać i możesz dostrzec kropki pojawiające się wokół jasnych obszarów:
 
 ![Widoczne kropki na mapach HDR o wysokiej częstotliwości na głębszych poziomach LOD na mapie pre-filtracji.](/img/learnopengl/ibl_prefilter_dots.png){: .center-image }
 
@@ -499,7 +499,7 @@ Ponieważ splot BRDF jest częścią zwierciadlanej całki IBL, użyjemy $k_{IBL
     }  
 ```
 
-Zauważ, że podczas gdy $k$ przyjmuje <var>a</var> jako swój parametr, nie podnieśliśmy do kwadratu <var>roughness</var> jako zmiennej <var>a</var> tak, jak pierwotnie robiliśmy dla innych interpretacji <var>a</var>; prawdopodobnie dlatego, że <var>a</var> jest już podniesione do kwadratu. Nie jestem pewien, czy jest to niezgodność ze strony Epic Games, czy oryginalnnego artykułu Disneya, ale bezpośrednie przełożenie <var>roughness</var> na <var>a</var> daje mapę integracji BRDF, która jest identyczna z wersją Epic Games.
+Zauważ, że podczas gdy $k$ przyjmuje <var>a</var> jako swój parametr, nie podnieśliśmy do kwadratu <var>roughness</var> jako zmiennej <var>a</var> tak, jak pierwotnie robiliśmy dla innych interpretacji <var>a</var>; prawdopodobnie dlatego, że <var>a</var> jest już podniesione do kwadratu. Nie jestem pewien, czy jest to niezgodność ze strony Epic Games, czy oryginalnego artykułu Disneya, ale bezpośrednie przełożenie <var>roughness</var> na <var>a</var> daje mapę integracji BRDF, która jest identyczna z wersją Epic Games.
 
 Na koniec, aby zapisać wynik splotu BRDF, wygenerujemy teksturę 2D o rozdzielczości 512 na 512.
 

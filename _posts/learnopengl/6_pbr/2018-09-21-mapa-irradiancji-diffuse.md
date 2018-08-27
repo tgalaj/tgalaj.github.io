@@ -17,7 +17,7 @@ Aby rozpocząć wprowadzanie IBL do naszego systemu PBR, ponownie przyjrzyjmy si
 
 $$L_o(p,\omega_o) = \int\limits_{\Omega} (k_d\frac{c}{\pi} + k_s\frac{DFG}{4(\omega_o \cdot n)(\omega_i \cdot n)}) L_i(p,\omega_i) n \cdot \omega_i d\omega_i$$
 
-Jak opisano wcześniej, naszym głównym celem jest rozwiązanie całki dla wszystkich kierunków światła $w_i$ na półkuli $\Omega$. Rozwiązanie całki w poprzednim tutorialu było łatwe, ponieważ znaliśmy wcześniej dokładnie kilka kierunków światła $w_i$. Tym razem jednak **każdy** kierunek światła $w_i$ pochodzacy z otaczającego środowiska może potencjalnie mieć nieco radiancji, co sprawia, że ​​rozwiązanie problemu nie jest takie proste. Daje nam to dwa główne wymagania dotyczące rozwiązania całki:
+Jak opisano wcześniej, naszym głównym celem jest rozwiązanie całki dla wszystkich kierunków światła $w_i$ na półkuli $\Omega$. Rozwiązanie całki w poprzednim tutorialu było łatwe, ponieważ znaliśmy wcześniej dokładnie kilka kierunków światła $w_i$. Tym razem jednak **każdy** kierunek światła $w_i$ pochodzący z otaczającego środowiska może potencjalnie mieć nieco radiancji, co sprawia, że ​​rozwiązanie problemu nie jest takie proste. Daje nam to dwa główne wymagania dotyczące rozwiązania całki:
 
 *   Potrzebujemy jakiegoś sposobu na pobranie radiancji sceny z dowolnego wektora kierunku $w_i$.
 *   Rozwiązanie całki musi być szybkie i realizowane w czasie rzeczywistym.
@@ -437,7 +437,7 @@ Za pomocą Fragment Shadera do obliczania splotu, konwolujemy mapę środowiska 
     glBindFramebuffer(GL_FRAMEBUFFER, 0);  
 ```
 
-Teraz po tej funkcji powinniśmy mieć obliczoną mapę irradiancji, którą możemy bezpośrednio wykorzystać do oświetlenia rozproszonego opartego na obrazie. Aby sprawdzić, czy pomyślnie splotliśmy mapę środowiska, zamieńmy mapę środowiska na mapę irradiancji jako sampler skyboxa:
+Teraz po tej funkcji powinniśmy mieć obliczoną mapę irradiancji, którą możemy bezpośrednio wykorzystać do oświetlenia rozproszonego opartego na obrazie. Aby sprawdzić, czy pomyślnie spletliśmy mapę środowiska, zamieńmy mapę środowiska na mapę irradiancji jako sampler skyboxa:
 
 ![Wyświetlanie mapy irradiancji PBR jako skyboxa.](/img/learnopengl/ibl_irradiance_map_background.png){: .center-image }
 

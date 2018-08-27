@@ -8,7 +8,7 @@ subtag: zaawansowany-opengl
 
 {% include learnopengl.md link="Advanced-OpenGL/Anti-Aliasing" %}
 
-Gdzieś podczas przygody z renderowaniem pojawiły się poszarpane wzory przypominające piłę wzdłuż krawędzi modeli. Powód pojawiania się <def>postrzępionych krawędzi</def> wynika z tego, jak rasteryzator przekształca dane wierzchołków w rzeczywiste fragmenty. Przykład tego, jak wyglądają postrzępione krawędzie, można już zobaczyć podczas rysowania prostego sześcianu:
+Gdzieś podczas przygody z renderowaniem pojawiły się poszarpane wzory przypominające piłę wzdłuż krawędzi modeli. Powód pojawiania się <def>postrzępionych krawędzi</def> wynika z tego, jak rasteryzer przekształca dane wierzchołków w rzeczywiste fragmenty. Przykład tego, jak wyglądają postrzępione krawędzie, można już zobaczyć podczas rysowania prostego sześcianu:
 
 ![Pojemnik z widocznym aliasingiem](/img/learnopengl/anti_aliasing_aliasing.png){: .center-image }
 
@@ -24,9 +24,9 @@ Technika ta dała początek bardziej nowoczesnej technice zwanej <def>multisampl
 
 ## Multisampling
 
-Aby zrozumieć, czym jest multisampling i jak on działa, aby rozwiązać problem aliasingu, najpierw musimy zagłębić się nieco we wewnętrzne działanie rasteryzatora OpenGL.
+Aby zrozumieć, czym jest multisampling i jak on działa, aby rozwiązać problem aliasingu, najpierw musimy zagłębić się nieco we wewnętrzne działanie rasteryzera OpenGL.
 
-Rasteryzator jest kombinacją wszystkich algorytmów i procesów, które znajdują się pomiędzy końcowymi przetworzonymi wierzchołkami a Fragment Shaderem. Rasteryzator przyjmuje wszystkie wierzchołki należące do pojedynczego prymitywu i przekształca je w zestaw fragmentów. Współrzędne wierzchołków mogą teoretycznie mieć dowolną współrzędną, ale fragmenty nie mogą być, ponieważ są powiązane z rozdzielczością twojego okna. Niemal nigdy nie będzie mapowania jeden do jednego między współrzędnymi wierzchołka i fragmentami, więc rasteryzer musi w jakiś sposób określić, na którym fragmencie/współrzednej ekranu znajduje się każdy konkretny wierzchołek.
+Rasteryzer jest kombinacją wszystkich algorytmów i procesów, które znajdują się pomiędzy końcowymi przetworzonymi wierzchołkami a Fragment Shaderem. Rasteryzer przyjmuje wszystkie wierzchołki należące do pojedynczego prymitywu i przekształca je w zestaw fragmentów. Współrzędne wierzchołków mogą teoretycznie mieć dowolną współrzędną, ale fragmenty nie mogą być, ponieważ są powiązane z rozdzielczością twojego okna. Niemal nigdy nie będzie mapowania jeden do jednego między współrzędnymi wierzchołka i fragmentami, więc rasteryzer musi w jakiś sposób określić, na którym fragmencie/współrzędnej ekranu znajduje się każdy konkretny wierzchołek.
 
 ![Rasteryzowanie trójkąta w OpenGL](/img/learnopengl/anti_aliasing_rasterization.png){: .center-image }
 
@@ -95,7 +95,7 @@ Ten pojemnik rzeczywiście wygląda na bardziej gładki i to samo dotyczy każde
 
 Ponieważ GLFW dba o tworzenie wielopróbkowych buforów, włączenie MSAA jest dość łatwe. Jeśli jednak chcemy używać własnych buforów ramek, dla niektórych obrazów renderowanych poza głównym ekranem, musimy sami wygenerować multisamplingowe bufory; teraz musimy sami zadbać o stworzenie wielopróbkowych buforów.
 
-Istnieją dwa sposoby stworzenia multisamplingowych buforów do działania jako załączniki dla buforów ramki: tekstury i renderbuffery, podobne do tych, które zostały omówione w samoczuku Framebuffers.
+Istnieją dwa sposoby stworzenia multisamplingowych buforów do działania jako załączniki dla buforów ramki: tekstury i renderbuffery, podobne do tych, które zostały omówione w samouczku Framebuffers.
 
 ### Wielopróbkowe załączniki tekstur
 
@@ -107,7 +107,7 @@ Aby utworzyć teksturę, która obsługuje przechowywanie wielu punktów próbko
     glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, 0);  
 ```
 
-Drugi argument określa teraz liczbę próbek, które chcemy mieć. Jeśli ostatni argument jest równy <var>GL_TRUE</var>, obraz użyje identycznych lokalizacji próbek i tej samej liczby podpróbek dla każdego texela.
+Drugi argument określa teraz liczbę próbek, które chcemy mieć. Jeśli ostatni argument jest równy <var>GL_TRUE</var>, obraz użyje identycznych lokalizacji próbek i tej samej liczby podpróbek dla każdego teksela.
 
 Aby dołączyć teksturę wielopróbkową do bufora ramki używamy <fun>glFramebufferTexture2D</fun>, ale tym razem z opcją <var>GL_TEXTURE_2D_MULTISAMPLE</var> jako typem tekstury:
 
@@ -176,7 +176,7 @@ Ale co by było, gdybyśmy chcieli użyć wyniku tekstury z wielopróbkowego fra
     }
 ```
 
-Gdybyśmy następnie zaimplementowali to w kodzie post-processingu z tutoriala Framebuffers, bylobyśmy w stanie stworzyć wszystkie fajne efekty postprocessingu na teksturze sceny bez postrzępionych krawędzi. Po zastosowaniu filtru z rozmyciem będzie wyglądać to mniej więcej tak:
+Gdybyśmy następnie zaimplementowali to w kodzie post-processingu z tutoriala Framebuffers, bylibyśmy w stanie stworzyć wszystkie fajne efekty postprocessingu na teksturze sceny bez postrzępionych krawędzi. Po zastosowaniu filtru z rozmyciem będzie wyglądać to mniej więcej tak:
 
 ![Obraz postprocessingu na scenie narysowanej za pomocą MSAA w OpenGL](/img/learnopengl/anti_aliasing_post_processing.png){: .center-image } 
 

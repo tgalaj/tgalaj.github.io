@@ -11,7 +11,7 @@ mathjax: true
 
 Mapowanie paralaksy to technika podobna do normal mappingu, ale oparta na innych zasadach. Podobnie jak w przypadku zwykłego normal mappingu, jest to technika, która znacznie zwiększa szczegółowość oteksturowanej powierzchni i daje poczucie głębi. Choć jest to iluzja, mapowanie paralaksy jest o wiele lepsze w uwypuklaniu głębi i wraz z normal mappingiem daje niewiarygodnie realistyczne rezultaty. Chociaż mapowanie paralaksy niekoniecznie jest techniką bezpośrednio związaną z (zaawansowanym) oświetleniem, przedyskutuję ją tutaj, ponieważ ta technika jest logiczną kontynuacją normal mappingu. Zwróć uwagę, że uzyskanie wiedzy na temat normal mappingu, w szczególności o przestrzeni stycznych, jest zdecydowanie zalecane przed opanowaniem mapowania paralaksy.
 
-Mapowanie paralaksy należy do rodziny technik <def>displacement mappingu</def>, które _przesuwaja_ lub _przemieszczają_ wierzchołki na podstawie informacji geometrycznych przechowywanych wewnątrz tekstury. Jednym ze sposobów, aby to zrobić, jest wzięcie płaszczyzny o około 1000 wierzchołkach i przesunięcie każdego z tych wierzchołków w oparciu o wartość zapisaną w teksturze, która mówi nam o wysokości wierzchołka w określonym obszarze. Taka tekstura, która zawiera wartości wysokości na teksel jest nazywana <def>mapą wysokości</def> (ang. *height map*). Przykładowa mapa wysokości wyprowadzona z właściwości geometrycznych prostej ceglanej powierzchni wygląda tak:
+Mapowanie paralaksy należy do rodziny technik <def>displacement mappingu</def>, które _przesuwają_ lub _przemieszczają_ wierzchołki na podstawie informacji geometrycznych przechowywanych wewnątrz tekstury. Jednym ze sposobów, aby to zrobić, jest wzięcie płaszczyzny o około 1000 wierzchołkach i przesunięcie każdego z tych wierzchołków w oparciu o wartość zapisaną w teksturze, która mówi nam o wysokości wierzchołka w określonym obszarze. Taka tekstura, która zawiera wartości wysokości na teksel jest nazywana <def>mapą wysokości</def> (ang. *height map*). Przykładowa mapa wysokości wyprowadzona z właściwości geometrycznych prostej ceglanej powierzchni wygląda tak:
 
 ![Mapa wysokości używana w OpenGL do mapowania paralaksy](/img/learnopengl/parallax_mapping_height_map.png){: .center-image }
 
@@ -235,7 +235,7 @@ Tutaj iterujemy po każdej warstwie głębi i zatrzymujemy się, kiedy znajdziem
 
 Przy około `10` próbkach, powierzchnia cegieł wygląda już bardziej wiarygodnie, nawet gdy patrzy się na nią pod kątem, ale Steep Parallax Mapping naprawdę wygląda dobrze, gdy ma złożoną powierzchnię z dużymi zmianami wysokości, jak wcześniej wyświetlana drewniana powierzchnia:
 
-![Steep Parallax Mapping zaimplementowny w OpenGL](/img/learnopengl/parallax_mapping_steep_parallax_mapping.png){: .center-image }
+![Steep Parallax Mapping zaimplementowany w OpenGL](/img/learnopengl/parallax_mapping_steep_parallax_mapping.png){: .center-image }
 
 Możemy nieco ulepszyć algorytm, wykorzystując jedną z właściwości Parallax Mappingu. Patrząc prosto na powierzchnię, nie ma zbyt dużego przemieszczania tekstury, podczas gdy występuje duże przesunięcie podczas patrzenia na powierzchnię pod kątem (w obu przypadkach zwizualizuj kierunek patrzenia). Używając mniejszej ilości próbek, gdy patrzymy prosto na powierzchnię i większej ilości próbek, gdy patrzymy pod kątem, próbkujemy tylko potrzebną ilość razy:
 
@@ -245,7 +245,7 @@ Możemy nieco ulepszyć algorytm, wykorzystując jedną z właściwości Paralla
     float numLayers = mix(maxLayers, minLayers, abs(dot(vec3(0.0, 0.0, 1.0), viewDir)));  
 ```
 
-Tutaj bierzemy iloczyn skalarny <var>viewDir</var> i pozytywnego kieruneku `z` i wykorzystujemy jego wynik do wyrównania liczby próbek bardziej do <var>minLayers</var> lub <var>maxLayers</var> bazując na kącie, pod którym patrzymy w kierunku powierzchni (zauważmy, że dodatni kierunek `z` jest równy wektorowi normalnemu powierzchni w przestrzeni stycznych). Gdybyśmy spojrzeli w kierunku równoległym do ​​powierzchni, użylibyśmy w sumie `32` warstw.
+Tutaj bierzemy iloczyn skalarny <var>viewDir</var> i pozytywnego kierunku `z` i wykorzystujemy jego wynik do wyrównania liczby próbek bardziej do <var>minLayers</var> lub <var>maxLayers</var> bazując na kącie, pod którym patrzymy w kierunku powierzchni (zauważmy, że dodatni kierunek `z` jest równy wektorowi normalnemu powierzchni w przestrzeni stycznych). Gdybyśmy spojrzeli w kierunku równoległym do ​​powierzchni, użylibyśmy w sumie `32` warstw.
 
 Możesz znaleźć zaktualizowany kod źródłowy [tutaj](https://learnopengl.com/code_viewer_gh.php?code=src/5.advanced_lighting/5.2.steep_parallax_mapping/steep_parallax_mapping.cpp). Możesz również znaleźć powierzchnię drewnianego pudełka z zabawkami tutaj: [diffuse](https://learnopengl.com/img/textures/wood.png), [normal](https://learnopengl.com/img/textures/toy_box_normal.png) i [depth](https://learnopengl.com/img/textures/toy_box_disp.png).
 

@@ -53,6 +53,6 @@ Niektóre słowa są wyświetlane w innym kolorze, aby jasno pokazać, że te s�
 {: .box-warning}
 W tym tłumaczeniu, niżej opisana funkcjonalność nie jest wspierana.
 
-Szczególnie dobrze docenianą funkcją LearnOpenGL jest możliwość sprawdzania znaczenia większości funkcji OpenGL wszędzie tam, gdzie pojawja się ona w treści. Zawsze, gdy funkcja znajduje się w treści, która jest udokumentowana w witrynie, funkcja pojawi się z lekko zauważalnym podkreśleniem. Możesz przesunąć kursor myszy nad funkcję, a po krótkim odstępie czasowym, pojawi się okno, które pokaże istotne informacje o tej funkcji, w tym informacje na temat tego, co funkcja rzeczywiście robi. Najedź myszą na <span class="fun">glEnable</span>, aby zobaczyć to w akcji.
+Szczególnie dobrze docenianą funkcją LearnOpenGL jest możliwość sprawdzania znaczenia większości funkcji OpenGL wszędzie tam, gdzie pojawia się ona w treści. Zawsze, gdy funkcja znajduje się w treści, która jest udokumentowana w witrynie, funkcja pojawi się z lekko zauważalnym podkreśleniem. Możesz przesunąć kursor myszy nad funkcję, a po krótkim odstępie czasowym, pojawi się okno, które pokaże istotne informacje o tej funkcji, w tym informacje na temat tego, co funkcja rzeczywiście robi. Najedź myszą na <span class="fun">glEnable</span>, aby zobaczyć to w akcji.
 
 Teraz, kiedy znasz strukturę witryny, przejdź do sekcji Pierwsze Kroki, by rozpocząć podróż w świat OpenGL!

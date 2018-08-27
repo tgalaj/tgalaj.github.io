@@ -278,7 +278,7 @@ W obrębie Fragment Shadera nie transformujemy wektora normalnego, lecz przekszt
     }  
 ```
 
-Drugie podejście wydaje się bardziej pracochłonne, a także wymaga większej liczby mnożeń macierzyowych w Fragment Shader (które są nieco drogie), więc dlaczego mielibyśmy się przejmować drugim podejściem?
+Drugie podejście wydaje się bardziej pracochłonne, a także wymaga większej liczby mnożeń macierzowych w Fragment Shader (które są nieco drogie), więc dlaczego mielibyśmy się przejmować drugim podejściem?
 
 Przekształcanie wektorów z przestrzeni świata do przestrzeni stycznych ma dodatkową zaletę, ponieważ możemy przekształcić wszystkie odpowiednie wektory do przestrzeni stycznych w Vertex Shaderze zamiast w Fragment Shaderze. Działa to, ponieważ <var>lightPos</var> i <var>viewPos</var> nie zmieniają przebiegu każdego Fragment Shadera, a dla <var>fs_in.FragPos</var> możemy również obliczyć jego pozycję w przestrzeni stycznych w Vertex Shader i interpolacja fragmentów wykona swoją pracę. Zasadniczo, nie ma potrzeby przekształcania żadnego wektora do przestrzeni stycznych w Fragment Shaderze, podczas gdy jest to konieczne w pierwszym podejściu, ponieważ próbkowane wektory normalne są specyficzne dla każdego przebiegu Fragment Shadera.
 

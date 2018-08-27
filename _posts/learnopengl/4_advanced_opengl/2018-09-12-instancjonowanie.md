@@ -30,7 +30,7 @@ Funkcja sama w sobie jest nieco bezużyteczna. Renderowanie tego samego obiektu 
 
 Podczas rysowania za pośrednictwem jednego z wywołań renderowania instancjonowanego, <var>gl_InstanceID</var> jest zwiększany dla każdej renderowanej instancji począwszy od `0`. Gdybyśmy mieli na przykład renderować 43-cią instancję, <var>gl_InstanceID</var> miałoby wartość `42` w Vertex Shader. Posiadanie unikalnej wartości dla każdej instancji oznacza, że ​​możemy teraz na przykład indeksować dużą tablicę wartości pozycji, aby ustawić każdą instancję w innym miejscu na scenie.
 
-Aby uzyskać wrażenie renderowania instancjonowanego, przedstawimy prosty przykład, który renderuje sto dwuwymiarowych kwadratów w znormalizowanych współrzędnych urządzenia za pomocą tylko jednego wywołania renderowania. Osiągamy to, dodając małe przesunięcie do każdego instancjonowanego kwadrata, indeksując tablicę uniform za pomocą `100` wektorów przesunięcia. Rezultatem jest zgrabnie zorganizowana siatka kwadratów wypełniająca całe okno:
+Aby uzyskać wrażenie renderowania instancjonowanego, przedstawimy prosty przykład, który renderuje sto dwuwymiarowych kwadratów w znormalizowanych współrzędnych urządzenia za pomocą tylko jednego wywołania renderowania. Osiągamy to, dodając małe przesunięcie do każdego instancjonowanego kwadratu, indeksując tablicę uniform za pomocą `100` wektorów przesunięcia. Rezultatem jest zgrabnie zorganizowana siatka kwadratów wypełniająca całe okno:
 
 ![100 kwadratów narysowanych za pomocą instancji OpenGL.](/img/learnopengl/instancing_quads.png){: .center-image }
 
@@ -49,7 +49,7 @@ Każdy z kwadratów składa się z 2 trójkątów o łącznej liczbie 6 wierzcho
     };  
 ```
 
-Kolory kwadratów są kolorwane za pomocą Fragment Shadera, który odbiera wektor koloru z Vertex Shadera:
+Kolory kwadratów są kolorowane za pomocą Fragment Shadera, który odbiera wektor koloru z Vertex Shadera:
 
 ```glsl
     #version 330 core
@@ -82,7 +82,7 @@ Nic nowego jak dotąd, ale w Vertex Shader zaczyna się dziać coś interesując
     }  
 ```
 
-Tutaj zdefiniowaliśmy tablicę uniformów o nazwie <var>offsets</var>, która zawiera łącznie `100` wektorów przesunięcia. Wewnątrz Vertex Shadera pobieramy wektor przesunięcia dla każdej instancji, indeksując tablicę <var>offsets</var>, używając parametru <var>gl_InstanceID</var>. Gdybyśmy narysowali `100` kwadratów za pomocą instancjonowanego wywołania renderowania, otrzymalibyśmy `100` kwadratów znajdujących się w różnych miejsach.
+Tutaj zdefiniowaliśmy tablicę uniformów o nazwie <var>offsets</var>, która zawiera łącznie `100` wektorów przesunięcia. Wewnątrz Vertex Shadera pobieramy wektor przesunięcia dla każdej instancji, indeksując tablicę <var>offsets</var>, używając parametru <var>gl_InstanceID</var>. Gdybyśmy narysowali `100` kwadratów za pomocą instancjonowanego wywołania renderowania, otrzymalibyśmy `100` kwadratów znajdujących się w różnych miejscach.
 
 Musimy właściwie ustawić pozycje przesunięcia, które obliczamy w zagnieżdżonej pętli for przed wejściem do pętli gry:
 
@@ -180,7 +180,7 @@ Jeśli mamy teraz ponownie renderować kwadraty za pomocą <fun>glDrawArraysInst
 
 Jest to dokładnie to samo, co poprzedni przykład, ale tym razem został on wygenerowany za pomocą tablic instancji, co pozwala nam przekazać dużo więcej danych (tyle, ile pozwala na to nam pamięć) do Vertex Shadera dla instancjonowanego renderowania.
 
-Dla zabawy moglibyśmy również powoli zmniejszać skalę każdego kwadrata od prawego górnego rogu aż do dolnego lewego rogu, ponownie używając <var>gl_InstanceID</var>.
+Dla zabawy moglibyśmy również powoli zmniejszać skalę każdego kwadratu od prawego górnego rogu aż do dolnego lewego rogu, ponownie używając <var>gl_InstanceID</var>.
 
 ```glsl
     void main()

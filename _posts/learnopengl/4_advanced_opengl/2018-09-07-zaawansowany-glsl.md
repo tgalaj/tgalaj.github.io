@@ -66,9 +66,9 @@ W Fragment Shader mamy również dostęp do interesujących zmiennych. GLSL daje
 
 Kilkakrotnie widzieliśmy <var>gl_FragCoord</var> podczas dyskusji o teście głębokości, ponieważ składnik `z` wektora <var>gl_FragCoord</var> jest równy wartości głębi tego konkretnego fragmentu. Jednak możemy również użyć komponentu `x` i `y` wektora dla osiągnięcia interesujących efektów.
 
-Składniki `x` i `y` <var>gl_FragCoord</var> są współrzędnymi fragmentu w przestrzeni okna, które początek mają w lewym dolnym rogu okna. Określiliśmy okno o wielkości 800x600 za pomoca funkcji <fun>glViewport</fun>, więc współrzędne przestrzeni okna fragmentu będą miały wartości `x` między 0 a 800, a wartości `y` między 0 i 600.
+Składniki `x` i `y` <var>gl_FragCoord</var> są współrzędnymi fragmentu w przestrzeni okna, które początek mają w lewym dolnym rogu okna. Określiliśmy okno o wielkości 800x600 za pomocą funkcji <fun>glViewport</fun>, więc współrzędne przestrzeni okna fragmentu będą miały wartości `x` między 0 a 800, a wartości `y` między 0 i 600.
 
-Za pomocą Fragment Shadera możemy obliczyć inną wartość koloru na podstawie współrzędnej fragmentu. Typowe użycie zmiennej <var>gl_FragCoord</var> służy do porównywania efektów wizualnych różnych obliczeń na fragmentach, jak to zwykle widać w demonstracjach technicznych. Możemy na przykład podzielić ekran na dwie części, wyświetlając jednen efekt z lewej strony okna, a drugi z prawej strony okna. Przykładowy Fragment Shader, który wyświetla inny kolor na podstawie współrzędnych okna fragmentu, jest podany poniżej:
+Za pomocą Fragment Shadera możemy obliczyć inną wartość koloru na podstawie współrzędnej fragmentu. Typowe użycie zmiennej <var>gl_FragCoord</var> służy do porównywania efektów wizualnych różnych obliczeń na fragmentach, jak to zwykle widać w demonstracjach technicznych. Możemy na przykład podzielić ekran na dwie części, wyświetlając jeden efekt z lewej strony okna, a drugi z prawej strony okna. Przykładowy Fragment Shader, który wyświetla inny kolor na podstawie współrzędnych okna fragmentu, jest podany poniżej:
 
 ```glsl
     void main()

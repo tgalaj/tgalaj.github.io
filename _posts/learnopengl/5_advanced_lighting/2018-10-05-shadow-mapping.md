@@ -162,7 +162,7 @@ Ponieważ nie mamy bufora kolorów, powstałe fragmenty nie wymagają żadnego p
     }  
 ```
 
-Pusty Fragment Shader nie wykonuje żadnego przetwarzania, a po zakończeniu działania bufor głębi jest aktualizowany. Możemy wyraźnie ustawić głębokość poprzez odkomentowanie tej jednej linii, ale tak naprawdę dzieje się to za kulisami.
+Pusty Fragment Shader nie wykonuje żadnego przetwarzania, a po zakończeniu działania bufor głębi jest aktualizowany. Możemy wyraźnie ustawić głębokość poprzez od komentowanie tej jednej linii, ale tak naprawdę dzieje się to za kulisami.
 
 Teraz renderowanie bufora głębokości wygląda tak:
 
@@ -311,7 +311,7 @@ Ponieważ głębokość z mapy głębokości mieści się w zakresie [`0`, `1`] 
     projCoords = projCoords * 0.5 + 0.5; 
 ```
 
-Tymi zrzutowanymo współrzędnymi możemy próbkować mapę głębokości, ponieważ wynikowe współrzędne [`0`, `1`] z <var>projCoords</var> odpowiadają bezpośrednio przekształconym współrzędnym NDC z pierwszego etapu renderowania. To daje nam najbliższą głębię z punktu widzenia światła:
+Tymi zrzutowanymi współrzędnymi możemy próbkować mapę głębokości, ponieważ wynikowe współrzędne [`0`, `1`] z <var>projCoords</var> odpowiadają bezpośrednio przekształconym współrzędnym NDC z pierwszego etapu renderowania. To daje nam najbliższą głębię z punktu widzenia światła:
 
 ```glsl
     float closestDepth = texture(shadowMap, projCoords.xy).r;   
@@ -361,7 +361,7 @@ Udało nam się uzyskać podstawy shadow mappingu, ale jak widać, wciąż jest 
 
 ### Shadow acne
 
-Jest oczywiste, że coś jest nie tak w poprzednim obrazzie. Zoom pokazuje nam bardzo oczywisty wzór przypominający wzór Moiré:
+Jest oczywiste, że coś jest nie tak w poprzednim obrazie. Zoom pokazuje nam bardzo oczywisty wzór przypominający wzór Moiré:
 
 ![Obraz shadow acne jako wzór Moiré w shadow mappingu](/img/learnopengl/shadow_mapping_acne.png){: .center-image }
 

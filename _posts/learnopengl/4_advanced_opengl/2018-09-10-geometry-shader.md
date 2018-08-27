@@ -178,7 +178,7 @@ Geometry Shader musi zostać skompilowany i połączony z programem podobnie jak
 
 Kod kompilacji shaderów jest w zasadzie taki sam jak kod Vertex Shader i Fragment Shader. Sprawdź, czy nie występują błędy kompilacji lub linkowania!
 
-Jeśli teraz skompilujesz i uruchamisz aplikację, powinieneś zobaczyć wynik podobny do następującego:
+Jeśli teraz skompilujesz i uruchomisz aplikację, powinieneś zobaczyć wynik podobny do następującego:
 
 ![4 Punkty narysowane za pomocą OpenGL (tym razem z Geometry Shaderem)!)](/img/learnopengl/geometry_shader_points.png){: .center-image }
 

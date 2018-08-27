@@ -12,7 +12,7 @@ W [poprzednim]({% post_url /learnopengl/2_lighting/2018-08-03-materialy %}) tuto
 
 W poprzednim tutorialu zdefiniowaliśmy materiał dla całego obiektu, ale obiekty w świecie rzeczywistym zwykle nie składają się z jednego materiału, ale składają się z kilku materiałów. Pomyśl o samochodzie: jego zewnętrzna część składa się z błyszczącego materiału, ma okna, które częściowo odbijają otaczające środowisko, jego opony są lśniące, więc nie mają refleksów i mają bardzo błyszczące obręcze (jeśli dobrze myjesz swój samochód). Samochód ma również składowe kolorów otoczenia i rozproszenia, które nie są takie same dla całego obiektu; samochód posiada wiele różnych składowych kolorów otoczenia/rozproszenia. W sumie taki obiekt ma różne właściwości materiałowe dla każdej z jego części.
 
-Zatem system materiałoów w poprzednim samouczku nie jest wystarczający dla wszystkich modeli, dlatego musimy rozszerzyć poprzedni system, wprowadzając mapy _diffuse_ i _specular_. Dzięki temu możemy wpływać na składową rozproszenia (i pośrednio na składową otoczenia, ponieważ prawie zawsze są takie same) oraz na komponent lustrzany obiektu z znacznie większą precyzją.
+Zatem system materiałów w poprzednim samouczku nie jest wystarczający dla wszystkich modeli, dlatego musimy rozszerzyć poprzedni system, wprowadzając mapy _diffuse_ i _specular_. Dzięki temu możemy wpływać na składową rozproszenia (i pośrednio na składową otoczenia, ponieważ prawie zawsze są takie same) oraz na komponent lustrzany obiektu z znacznie większą precyzją.
 
 # Mapy diffuse (ang. *diffuse maps*)
 

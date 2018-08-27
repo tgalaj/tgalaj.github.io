@@ -10,7 +10,7 @@ subtag: oswietlenie
 
 Gratulacje, że dotarliście tak daleko! Nie jestem pewien, czy zauważyliście, ale we wszystkich tutorialach o oświetleniu nie dowiedzieliśmy się niczego nowego o OpenGL, z wyjątkiem kilku drobnych elementów, takich jak dostęp do tablic uniformów. Wszystkie tutoriale do tej pory polegały na manipulowaniu shaderami za pomocą technik i równań, aby uzyskać realistyczne efekty oświetleniowe. To ponownie pokazuje moc shaderów. Shadery są niezwykle elastyczne i widziałeś na własne oczy, że za pomocą zaledwie kilku wektorów 3D i niektórych konfigurowalnych zmiennych udało nam się stworzyć niesamowitą grafikę!
 
-Kilka ostatnich tutoriali, poszerzyło naszą wiedzę o kolorach, modelu oświetlenia Phong'a (obejmujący oświetlenie otoczenia, rozproszone i lustrzane), materiałach obiektów, konfigurowalneychwłaściwościach światła, mapach diffuse i specular, różnych rodzajach świateł i jak połączyć całą tę wiedzę w jednej scenie. Koniecznie poeksperymentuj z różnymi światłami, kolorami materiałów, właściwościami światła i spróbuj stworzyć własną scenę za pomocą odrobiny kreatywności.
+Kilka ostatnich tutoriali, poszerzyło naszą wiedzę o kolorach, modelu oświetlenia Phong'a (obejmujący oświetlenie otoczenia, rozproszone i lustrzane), materiałach obiektów, konfigurowalnych właściwościach światła, mapach diffuse i specular, różnych rodzajach świateł i jak połączyć całą tę wiedzę w jednej scenie. Koniecznie poeksperymentuj z różnymi światłami, kolorami materiałów, właściwościami światła i spróbuj stworzyć własną scenę za pomocą odrobiny kreatywności.
 
 W następnych tutorialach będziemy dodawać bardziej zaawansowane kształty do naszej sceny, które wyglądają naprawdę dobrze pod wpływem omówionych modelach oświetlenia.
 

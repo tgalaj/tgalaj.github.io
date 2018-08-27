@@ -16,7 +16,7 @@ Uff, nauczyliśmy się bardzo dużo z ostatnich kilku rozdziałów. Staraj się 
 
 *   <span class="var">OpenGL</span>: formalna specyfikacja graficznego API, która definiuje wygląd i rezultat każdej z funkcji.
 *   <span class="var">GLAD</span>: biblioteka ładująca i ustawiająca wszystkie wskaźniki funkcji OpenGL za nas, dzięki czemu możemy używać wszystkich (nowoczesnych) funkcji OpenGL.
-*   <span class="var">Viewport</span>: obszar, w któym renderujemy.
+*   <span class="var">Viewport</span>: obszar, w którym renderujemy.
 *   <span class="var">Potok renderowania</span>: cały proces jaki musi przejść wierzchołek zanim zostanie wyświetlony jako piksel na ekranie.
 *   <span class="var">Shader</span>: mały program działający na karcie graficznej. Kilka etapów z potoku graficznego może używać stworzonych przez użytkownika programów cieniujących, w celu transformacji wierzchołków i wyświetleniu obiektów na ekranie.
 *   <span class="var">Wierzchołek (ang. _Vertex_)</span>: zbiór danych reprezentujących jeden punkt.

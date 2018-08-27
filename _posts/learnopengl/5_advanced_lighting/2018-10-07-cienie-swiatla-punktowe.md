@@ -24,7 +24,7 @@ Potrzebna nam mapa głębi wymaga renderowania sceny ze wszystkich otaczających
 
 Wygenerowana cubemapa głębokości jest następnie przekazywana do shadera oświetlenia, który pobiera próbkę cubemapy za pomocą wektora kierunkowego, aby pobrać głębię (z perspektywy światła) dla tego fragmentu. Większość skomplikowanych rzeczy omówiliśmy już w poprzednim samouczku o shadow mappingu. Tym, co czyni ten algorytm nieco trudniejszym, jest generowanie cubemapy głębokości.
 
-## Generowanie cubemapy głęobokości
+## Generowanie cubemapy głębokości
 
 Aby utworzyć cubemapę głębokości otoczenia światła, musimy renderować scenę 6 razy: raz dla każdej ścianki. Jednym (dość oczywistym) sposobem na zrobienie tego jest renderowanie sceny 6 razy z 6 różnymi macierzami widoku, za każdym razem dołączając inną ściankę do obiektu bufora ramki. Wyglądałoby to mniej więcej tak:
 
@@ -183,7 +183,7 @@ Geometry Shader ma wbudowaną zmienną o nazwie <var>gl_Layer</var>, która okre
     }  
 ```
 
-Ten Geometry Shader powinien być stosunkowo prosty. Jako dane wejściowe przyjmujemy trójkąt i wyprowadzamy w sumie 6 trójkątów (6 * 3 wierzchołki, co równa się 18 wierzchołkom). W funkcji <fun>main</fun> wykonujemy iteracje na 6 ściakach cubemapy, gdzie określamy każdą ściankę jako powierzchnię wyjściową, zapisując liczbę całkowitą powierzchni w <var>gl_Layer</var>. Następnie generujemy każdy trójkąt, przekształcając każdy wierzchołek z przestrzeni świata do odpowiedniej przestrzeni światła, mnożąc <var>FragPos</var> z macierzą transformacji światła danej ścianki cubemapy. Zauważ, że wysłaliśmy również wynikową zmienną <var>FragPos</var> do Fragment Shadera, którego będziemy potrzebować do obliczenia wartości głębokości.
+Ten Geometry Shader powinien być stosunkowo prosty. Jako dane wejściowe przyjmujemy trójkąt i wyprowadzamy w sumie 6 trójkątów (6 * 3 wierzchołki, co równa się 18 wierzchołkom). W funkcji <fun>main</fun> wykonujemy iteracje na 6 ściankach cubemapy, gdzie określamy każdą ściankę jako powierzchnię wyjściową, zapisując liczbę całkowitą powierzchni w <var>gl_Layer</var>. Następnie generujemy każdy trójkąt, przekształcając każdy wierzchołek z przestrzeni świata do odpowiedniej przestrzeni światła, mnożąc <var>FragPos</var> z macierzą transformacji światła danej ścianki cubemapy. Zauważ, że wysłaliśmy również wynikową zmienną <var>FragPos</var> do Fragment Shadera, którego będziemy potrzebować do obliczenia wartości głębokości.
 
 W ostatnim tutorialu użyliśmy pustego Fragment Shadera i pozwoliliśmy OpenGL określić wartości głębokości mapy głębi. Tym razem będziemy obliczać naszą własną (liniową) głębokość jako odległość liniową między pozycją każdego fragmentu a pozycją źródła światła. Obliczanie własnych wartości głębokości sprawia, że ​​późniejsze obliczenia cieni są nieco bardziej intuicyjne.
 
@@ -226,7 +226,7 @@ Po ustawieniu wszystkiego nadszedł czas, aby wyrenderować rzeczywiste cienie �
     RenderScene();
 ```
 
-Tutaj funkcja <fun>renderScene</fun> renderuje kostki w dużym pokoju, które są rozproszonee wokół źródła światła znajdującego się na środku sceny.
+Tutaj funkcja <fun>renderScene</fun> renderuje kostki w dużym pokoju, które są rozproszone wokół źródła światła znajdującego się na środku sceny.
 
 Vertex Shader i Fragment Shader są w dużej mierze podobne do oryginalnych shaderów shadow mappingu: różnice polegają na tym, że Fragment Shader nie wymaga już położenia fragmentu w przestrzeni światła, ponieważ możemy teraz próbkować wartości głębokości za pomocą wektora kierunkowego.
 
@@ -384,7 +384,7 @@ Prostą sztuczką do wizualizacji bufora głębi jest wzięcie znormalizowanej w
     FragColor = vec4(vec3(closestDepth / far_plane), 1.0);  
 ```
 
-Rezultatem jest wyszarzona scena, w której każdy kolor reprezentuje liniowe wartości głębokości sceny:
+Rezultatem jest scena w szarościach, w której każdy kolor reprezentuje liniowe wartości głębokości sceny:
 
 ![Zwizualizowana mapa głębokości](/img/learnopengl/point_shadows_depth_cubemap.png){: .center-image }
 

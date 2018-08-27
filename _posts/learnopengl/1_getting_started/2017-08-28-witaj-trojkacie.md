@@ -45,7 +45,7 @@ Po ustaleniu wszystkich odpowiednich wartości koloru, obiekt końcowy przechodz
 
 Jak widać, potok graficzny jest całkiem złożoną całością i zawiera wiele konfigurowalnych części. Jednak w niemal wszystkich przypadkach musimy pracować tylko z Vertex i Fragment Shaderem. Geometry Shader jest opcjonalny i zazwyczaj pozostaje domyślnym programem cieniującym.
 
-Nowoczesny OpenGL **wymaga**, abyśmy sami zdefiniowali co najmniej Vertex i Fragment Shader (nie ma domyślnych Vertex / Fragment Shaderów na GPU). Z tego powodu bardzo często trudno jest rozpocząć naukę nowoczesnego OpenGL, ponieważ wymagana jest duża wiedza, zanim będzie można wyrenderować pierwszy trójkąt. Gdy dojdziesz do końca tego rozdziału i wyrenderujesz swój pierwszy trójkąt, to będziesz posiadał znacznie większą wiedzę na temat programowania grafiki.
+Nowoczesny OpenGL **wymaga**, abyśmy sami zdefiniowali co najmniej Vertex i Fragment Shader (nie ma domyślnych Vertex/Fragment Shaderów na GPU). Z tego powodu bardzo często trudno jest rozpocząć naukę nowoczesnego OpenGL, ponieważ wymagana jest duża wiedza, zanim będzie można wyrenderować pierwszy trójkąt. Gdy dojdziesz do końca tego rozdziału i wyrenderujesz swój pierwszy trójkąt, to będziesz posiadał znacznie większą wiedzę na temat programowania grafiki.
 
 ## Vertex input
 
@@ -265,7 +265,7 @@ Vertex Shader pozwala nam określić dowolne dane wejściowe w postaci atrybutó
 
 Nasze dane w buforze wierzchołków są ustawione w następujący sposób:
 
-![Vertex attribte pointer setup of OpenGL VBO]({{ site.baseurl }}/img/learnopengl/vertex_attribute_pointer.png)
+![Ustawienie wskaźnika atrybutu Vertex lub OpenGL VBO]({{ site.baseurl }}/img/learnopengl/vertex_attribute_pointer.png)
 
 *   Dane pozycji są zapisywane jako 32-bitowe (4 bajtowe) wartości zmiennoprzecinkowe.
 *   Każda pozycja składa się z 3 takich wartości.
@@ -286,7 +286,7 @@ Funkcja <span class="fun">glVertexAttribPointer</span> ma kilka parametrów, wi�
 *   Trzeci argument określa typ danych, którym jest <span class="var">GL_FLOAT</span> (typ <span class="var">vec*</span> w GLSL składa się z wartości zmiennoprzecinkowych).
 *   Następny argument określa, czy chcemy, aby dane zostały znormalizowane. Jeśli ustawimy to na wartość <span class="var">GL_TRUE</span> to wszystkie dane, których wartość nie zawiera wartości w przedziale <span class="var">0</span> (lub <span class="var">-1</span> dla wartości ze znakiem), a <span class="var">1</span> to zostaną one zmapowane do tego przedziału. Ustawiamy to na wartość <span class="var">GL_FALSE</span>.
 *   Piąty argument jest znany jako <span class="def">skok</span> (ang. stride) i mówi nam o tym, jaka jest przestrzeń pomiędzy kolejnymi zestawami atrybutów wierzchołków. Ponieważ następny zestaw danych dotyczących pozycji znajduje się dokładnie po 3 danych typu <span class="var">GLfloat</span>, to ustawiamy tę wartość jako skok. Zauważ, że skoro wiemy, że tablica jest ściśle upakowana (nie ma miejsca pomiędzy kolejnymi wartościami atrybutów wierzchołków) to możemy też określić skok jako <span class="var">0</span>, aby OpenGL mógł sam określić skok (to tylko działa gdy wartości są szczelnie upakowane). Kiedy mamy więcej atrybutów wierzchołków, musimy sami dokładnie określić odstęp między każdym atrybutem wierzchołka. Jak to zrobić zobaczymy w późniejszym przykładzie.
-*   Ostatni parametr jest typu <span class="var">GLvoid*</span> i dlatego wymaga tego dziwnego rzutowania. Jest to <span class="def">offset</span> oznaczajacy gdzie dane pozycji zaczynają się w buforze. Ponieważ dane pozycji znajdują się na początku tablicy danych, wartość ta wynosi <span class="var">0</span>. Później zbadamy ten parametr bardziej szczegółowo.
+*   Ostatni parametr jest typu <span class="var">GLvoid*</span> i dlatego wymaga tego dziwnego rzutowania. Jest to <span class="def">offset</span> oznaczający gdzie dane pozycji zaczynają się w buforze. Ponieważ dane pozycji znajdują się na początku tablicy danych, wartość ta wynosi <span class="var">0</span>. Później zbadamy ten parametr bardziej szczegółowo.
 
 {: .box-note }
 Każdy atrybut wierzchołka pobiera swoje dane z pamięci zarządzanej przez VBO, i z którego VBO pobiera dane (może być wiele VBO). Jest to określane przez aktualnie powiązane VBO z <span class="var">GL_ARRAY_BUFFER</span> podczas wywołania funkcji <span class="fun">glVertexAttribPointer</span>. Ponieważ wcześniej zdefiniowany VBO był powiązany przed wywołaniem funkcji <span class="fun">glVertexAttribPointer</span> atrybut wierzchołka <span class="var">0</span> jest teraz skojarzony z jego danymi wierzchołków.
@@ -321,7 +321,7 @@ VAO przechowuje następujące informacje:
 *   Konfigurację atrybutów wierzchołków za pomocą funkcji <span class="fun">glVertexAttribPointer</span>.
 *   Vertex Buffer Objects, które są skojarzone z odpowiednimi atrybutami wierzchołków, poprzez wywołanie fukcji <span class="fun">glVertexAttribPointer</span>.
 
-![Image of how a VAO (Vertex Array Object) operates and what it stores in OpenGL]({{ site.baseurl }}/img/learnopengl/vertex_array_objects.png){: .center-image }
+![Obraz działania VAO (Vertex Array Object) i jego zawartości w OpenGL]({{ site.baseurl }}/img/learnopengl/vertex_array_objects.png){: .center-image }
 
 Proces generowania VAO wygląda podobnie do VBO:
 
@@ -368,7 +368,7 @@ Funkcja <span class="fun">glDrawArrays</span> przyjmuje jako pierwszy argument t
 
 Teraz spróbuj skompilować kod i jeśli pojawią się jakieś błędy to je napraw. Gdy skompilujesz aplikację, powinieneś zobaczyć następujący wynik:
 
-![An image of a basic triangle rendered in modern OpenGL]({{ site.baseurl }}/img/learnopengl/hellotriangle.png){: .center-image }
+![Obraz podstawowego trójkąta renderowanego w nowoczesnym OpenGL]({{ site.baseurl }}/img/learnopengl/hellotriangle.png){: .center-image }
 
 Kod źródłowy całego programu można znaleźć [tutaj](https://learnopengl.com/code_viewer_gh.php?code=src/1.getting_started/2.1.hello_triangle/hello_triangle.cpp).
 
@@ -434,7 +434,7 @@ Pierwszy argument określa tryb, w jakim chcemy rysować, podobnie jak w przypad
 
 Funkcja <span class="fun">glDrawElements</span> bierze indeksy z EBO, który jest aktualnie powiązanego z typem <span class="var">GL_ELEMENT_ARRAY_BUFFER</span>. Oznacza to, że musimy powiązać odpowiednie EBO za każdym razem, gdy chcemy renderować obiekt za pomocą indeksów, co wydaje się nieco kłopotliwe. Dzieje się tak dlatego, że VAO śledzi również EBO. EBO, który jest wiązany jest przechowywany jako obiekt VAO (o ile VAO zostało wcześniej powiązane z kontekstem). Wiązanie VAO automatycznie wiąże także EBO z kontekstem.
 
-![Image of VAO's structure / what it stores now also with EBO bindings.]({{ site.baseurl }}/img/learnopengl/vertex_array_objects_ebo.png){: .center-image }
+![Obraz struktury VAO / tego, co przechowuje teraz również z powiązaniami EBO.]({{ site.baseurl }}/img/learnopengl/vertex_array_objects_ebo.png){: .center-image }
 
 {: .box-error }
 VAO śledzi wywołania <span class="fun">glBindBuffer</span> kiedy typem jest <span class="var">GL_ELEMENT_ARRAY_BUFFER</span>. Oznacza to również, że równieź śledzi funkcje, które odwiązują EBO od kontekstu. Musisz uważać, żeby nie odwiązać EBO kiedy podłączone jest w tym momencie VAO. W przeciwnym razie spowoduje to, że Twoje EBO nie zostanie skonfigurowane.
@@ -466,7 +466,7 @@ glBindVertexArray(0);
 
 Uruchomienie programu powinno dawać obraz podobny do tego poniżej. Lewy obraz powinien wyglądać bardzo podobnie. Natomiast prawy obraz przedstawia prostokąt narysowany w <span class="def">trybie szkieletowym</span> (ang. _wireframe mode_). Prostokąt szkieletowy pokazuje, że faktycznie składa się on z dwóch trójkątów.
 
-![A rectangle drawn using indexed rendering in OpenGL]({{ site.baseurl }}/img/learnopengl/hellotriangle2.png){: .center-image }
+![Prostokąt narysowany za pomocą indeksowanego renderowania w OpenGL]({{ site.baseurl }}/img/learnopengl/hellotriangle2.png){: .center-image }
 
 {: .box-note }
 **Tryb szkieletowy**  
@@ -482,7 +482,7 @@ Jeśli udało Ci się narysować trójkąt lub prostokąt tak, jak to zrobiliśm
 *   [open.gl/drawing](https://open.gl/drawing): Alexander Overvoorde rysuje pierwszy trójkąt.
 *   [antongerdelan.net/vertexbuffers](http://antongerdelan.net/opengl/vertexbuffers.html): kilka dodatkowych informacji na temat VBO.
 *   [learnopengl.com/#!In-Practice/Debugging](https://learnopengl.com/#!In-Practice/Debugging): w tym samouczku było wiele kroków; jeżeli gdzieś stanąłeś, to być może lektura tego samoczuka pomoże Ci "zdebugować" aplikację OpenGL (tłumaczenie w przygotowaniu).
-*   [Tutorial 03 – Pierwszy trójkąt]({% post_url beginner_opengl/2014-03-10-tutorial-03-pierwszy-trojkat %}): w tym samoczuku opisywałem proces rysowania pierwszego trójkąta - może się przydać.  
+*   [Tutorial 03 – Pierwszy trójkąt]({% post_url beginner_opengl/2014-03-10-tutorial-03-pierwszy-trojkat %}): w tym samouczku opisywałem proces rysowania pierwszego trójkąta - może się przydać.  
 
 ## Ćwiczenia
 

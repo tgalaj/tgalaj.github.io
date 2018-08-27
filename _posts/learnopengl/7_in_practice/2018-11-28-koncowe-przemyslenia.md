@@ -1,0 +1,31 @@
+---
+layout: post
+title: Końcowe przemyślenia
+subtitle: LearnOpenGL.com
+tags: [learnopengl, tutorial]
+subtag: in-practice-2dgame-p2
+---
+
+{% include learnopengl.md link="In-Practice/2D-Game/Final-thoughts" %}
+
+Te ostatnie samouczki dały wyobrażenie o tym, jak to jest stworzyć coś więcej niż tylko demonstrację techniczną w OpenGL. Stworzyliśmy od podstaw kompletną grę 2D i nauczyliśmy się, jak stworzyć abstrakcję dla pewnych niskopoziomowych koncepcji graficznych, wykorzystywać podstawowe techniki wykrywania kolizji, tworzyć cząstki i pokazaliśmy praktyczny scenariusz dla macierzy rzutu prostopadłego. Wszystko to za pomocą koncepcji, które omówiliśmy w poprzedniej serii samouczków. Tak naprawdę nie nauczyliśmy się nowych i ekscytujących technik graficznych wykorzystujących OpenGL, ale nauczyliśmy się jak połączyć całą dotychczasową wiedzę w większą całość.
+
+Tworzenie prostej gry takiej jak Breakout może odbywać się na tysiące sposobów, z których to podejście jest tylko jednym z wielu. Im większa gra, tym bardziej zaczynasz stosować abstrakcje i wzorce projektowe. W celu dalszego uczenia się można znaleźć większość z tych abstrakcji i wzorców projektowych na wspaniałej stronie [game programming patterns](http://gameprogrammingpatterns.com/).
+
+Pamiętaj, że trudno jest stworzyć grę z wyjątkowo czystym i dobrze przemyślanym kodem (często jest to prawie niemożliwe). Po prostu stwórz swoją grę w dowolny sposób, jaki uważasz za właściwy w danej chwili. Im więcej ćwiczysz się w tworzeniu gier wideo, tym więcej uczysz się nowych i lepszych podejść do rozwiązywania problemów. Nie pozwól, aby trud stworzenia idealnego kodu demotywował cię - programuj!
+
+## Optymalizacje
+
+Treść tych samouczków i gotowy kod gry skupiały się na wyjaśnieniu pojęć tak prosto, jak to tylko możliwe, bez zagłębiania się w szczegóły optymalizacji. Z tego powodu wiele instrukcji dotyczących wydajności zostało pominiętych w samouczkach. Wymienimy niektóre z bardziej typowych ulepszeń, jakie znajdziesz w nowoczesnych grach 2D OpenGL, aby zwiększyć wydajność, gdy twoja liczba klatek na sekundę zacznie spadać:
+
+*   **Sprite sheet / Texture atlas**: zamiast renderować sprite'y z pojedynczą teksturą na raz, łączymy wszystkie wymagane tekstury w pojedynczą dużą teksturę (jak czcionki bitmapowe) i wybieramy odpowiednią teksturę sprite'a z ukierunkowanym zestawem współrzędnych tekstury. Przełączanie stanów tekstury może być drogie, więc sprite sheet sprawia, że ​​rzadko musimy przełączać się między teksturami; umożliwia to również procesorowi GPU wydajniejsze buforowanie tekstury w pamięci w celu szybszego wyszukiwania.
+*   **Instancjonowanie**: zamiast renderować jeden quad na raz, mogliśmy również <def>grupować</def> (ang. *batch*) wszystkie quady, które chcemy renderować, a następnie za pomocą [instancjonowania]({% post_url /learnopengl/4_advanced_opengl/2018-09-12-instancjonowanie %}) renderować wszystkie sprite'y za pomocą pojedynczego draw call'a. Jest to możliwe, ponieważ każdy sprite składa się z tych samych wierzchołków, ale różni się tylko macierzą modelu; coś, co możemy łatwo umieścić w tablicy instancji. Dzięki temu OpenGL może renderować o wiele więcej ikonek na klatkę. Instancjonowania można również używać do renderowania cząsteczek i/lub znaków glifów.
+*   **Triangle strips**: zamiast renderować każdy quad jako dwa trójkąty, moglibyśmy wyrenderować je za pomocą prymitywu renderowania OpenGL <var>TRIANGLE_STRIP</var>, który zamiast `6` renderowałby tylko `4` wierzchołki. To oszczędza jedną trzecią danych przesyłanych do GPU.
+*   **Algorytmy dzielenia przestrzeni** (ang. *Space partitioning algorithms*): podczas sprawdzania możliwych kolizji porównujemy obiekt piłki z **każdą z** cegieł na aktywnym poziomie, co jest marnowaniem zasobów procesora, ponieważ możemy łatwo stwierdzić, że do większości cegieł piłka nie ma możliwości się zbliżyć w danej ramce. Używając <def>algorytmów partycjonowania przestrzeni</def>, takich jak BSP, Octrees lub kd, dzielimy widoczną przestrzeń na kilka mniejszych regionów i ustalamy, w którym regionie(-ach) znajduje się piłka. Sprawdzamy tylko kolizje między innymi cegłami w danym regionie(-ach), w którym znajduje się piłka, co pozwala nam zredukować znaczną liczbę sprawdzania kolizji. W przypadku prostej gry typu Breakout najprawdopodobniej będzie to przesada, ale w przypadku bardziej skomplikowanych gier z bardziej skomplikowanymi algorytmami wykrywania kolizji spowoduje to znaczny wzrost wydajności.
+*   **Minimalizuj zmiany stanu**: zmiany stanu (takie jak bindowanie tekstur lub przełączanie shaderów) są na ogół dość drogie w OpenGL, więc nie należy wykonywać dużych zmian stanu. Jednym ze sposobów minimalizacji zmian stanu jest utworzenie własnego menedżera stanu, który przechowuje bieżącą wartość stanu OpenGL (np. która z tekstur jest powiązana) i zmienia się tylko wtedy, gdy ta wartość wymaga zmiany; Zapobiega to niepotrzebnym zmianom stanu. Innym podejściem jest sortowanie wszystkich renderowanych obiektów względem stanu: najpierw wyrenderuj wszystkie obiekty za pomocą shadera numer jeden, a następnie wszystkie obiekty z shaderem numer dwa, i tak dalej; można to oczywiście rozszerzyć na shadery, wiązania tekstur, przełączanie buforów ramki itp.
+
+Powinno ci to dać wskazówki, jakie zaawansowane sztuczki możemy zastosować, aby jeszcze bardziej zwiększyć wydajność gry 2D. Daje to również wgląd w moc OpenGL: wykonując większość renderowania ręcznie, mamy pełną kontrolę nad tym, w jaki sposób realizujemy cały proces, a tym samym również mamy pełną kontrolę nad optymalizacją procesu. Jeśli nie jesteś zadowolony z osiągów Breakout, możesz wziąć dowolną z tych rad i zaimplementować ją w ramach ćwiczeń.
+
+## Bądź kreatywny
+
+Teraz, gdy zobaczyłeś jak stworzyć prostą grę w OpenGL, możesz stworzyć własne aplikacje do renderowania/gry. Wiele technik, które omawialiśmy do tej pory, może być używanych w większości gier 2D, takich jak rendering sprite'ów, podstawowe wykrywanie kolizji, postprocessing, renderowanie tekstu i cząstki. Od Ciebie zależy, czy weźmiesz te techniki i połączysz/zmodyfikujesz je w dowolny sposób, jaki uznasz za właściwy, i stworzysz własną, ręcznie wykonaną grę.

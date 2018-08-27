@@ -10,7 +10,7 @@ Why OpenGL? I've chosen this technology because it is the number one library tha
 
 In this course I will be using Microsoft Visual C++ 2010 Express as a programming environment, which is free to use and download and in my humble opinion it is very good for C++ development. If you don't have this program, you can download it from [this](http://www.microsoft.com/visualstudio/plk/downloads#d-2010-express) site.
 
-I will try to separate each part of this course from each other because sometimes not everybody has time and willingness to go through the whole course to get to know just one thing that interests this particular person. I will try to write the code as easy as possible to be easilyunderstood by everybody.
+I will try to separate each part of this course from each other because sometimes not everybody has time and willingness to go through the whole course to get to know just one thing that interests this particular person. I will try to write the code as easy as possible to be easily understood by everybody.
 
 Additionally, to every part of this course I will include the code, which everybody may download because sometimes I would not write every line of the code in a tutorial. If somebody would like to upload my code somewhere, please add a note with information who is the author of this code and from where it was downloaded.
 

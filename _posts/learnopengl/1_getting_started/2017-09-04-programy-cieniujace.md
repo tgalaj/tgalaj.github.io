@@ -154,7 +154,7 @@ void main()
 }
 ```
 
-W FS zadeklarowaliśmy uniform o typie <span class="var">vec4</span> i nazwie <span class="var">ourColor</span> i ustawiliśmy finalny kolor fragmentu na wartość tego uniforma. Ponieważ uniformy są zmiennymi globalnymi, możemy je zdefiniować w dowolnym shaderze, więc nie wracać do VS, by dopisać tam jakiś kod, który przenieie wartość uniforma do FS. Nie używamy uniforma w VS, więc nie ma potrzeby go tam definiować.
+W FS zadeklarowaliśmy uniform o typie <span class="var">vec4</span> i nazwie <span class="var">ourColor</span> i ustawiliśmy finalny kolor fragmentu na wartość tego uniforma. Ponieważ uniformy są zmiennymi globalnymi, możemy je zdefiniować w dowolnym shaderze, więc nie wracać do VS, by dopisać tam jakiś kod, który przeniesie wartość uniforma do FS. Nie używamy uniforma w VS, więc nie ma potrzeby go tam definiować.
 
 {: .box-error }
 Jeśli zadeklarujesz uniform, który nie jest używany w żadnym miejscu kodu GLSL, kompilator automatycznie usunie zmienną z wersji skompilowanej, co jest często powodem kilku frustrujących błędów; pamiętaj o tym!
@@ -171,7 +171,7 @@ glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
 
 Najpierw pobieramy czas w sekundach za pomocą funkcji <span class="fun">glfwGetTime()</span>. Następnie zmieniamy kolor w zakresie <span class="var">0.0 - 1.0</span> przy użyciu funkcji <span class="fun">sin</span> i zapisujemy wynik w <span class="var">greenValue</span>.
 
-Następnie pobieramy lokalizację uniforma <span class="var">ourColor</span> za pomocą <span class="fun">glGetUniformLocation</span>. Przekazujemy do tej funkjcji Program Object i nazwę uniforma (którego lokalizację chcemy pobrać). Jeśli <span class="fun">glGetUniformLocation</span> zwróci wartość <span class="var">-1</span> to oznacza, że nie może znaleźć danej lokalizacji. Na koniec możemy ustawić wartość uniforma za pomocą funkcji <span class="fun">glUniform4f</span>. Zauważ, że znalezienie lokalizacji uniforma nie wymaga wcześniejszego aktywowania Program Object. Natomiast uaktualnienie uniforma **wymaga** wcześniejszego aktywowania programu (wywołując funkcję <span class="fun">glUseProgram</span>), ponieważ ustawia uniform na aktualnie aktywnym programie cieniującym.
+Następnie pobieramy lokalizację uniforma <span class="var">ourColor</span> za pomocą <span class="fun">glGetUniformLocation</span>. Przekazujemy do tej funkcji Program Object i nazwę uniforma (którego lokalizację chcemy pobrać). Jeśli <span class="fun">glGetUniformLocation</span> zwróci wartość <span class="var">-1</span> to oznacza, że nie może znaleźć danej lokalizacji. Na koniec możemy ustawić wartość uniforma za pomocą funkcji <span class="fun">glUniform4f</span>. Zauważ, że znalezienie lokalizacji uniforma nie wymaga wcześniejszego aktywowania Program Object. Natomiast uaktualnienie uniforma **wymaga** wcześniejszego aktywowania programu (wywołując funkcję <span class="fun">glUseProgram</span>), ponieważ ustawia uniform na aktualnie aktywnym programie cieniującym.
 
 <div class="box-note">Ponieważ OpenGL jest w swoim rdzeniu biblioteką C, to nie posiada on natywnej obsługi przeciążania typów, dlatego wszędzie tam, gdzie można wywołać funkcję z różnymi typami OpenGL definiuje nowe funkcje dla każdego typu; <span class="fun">glUniform</span> jest doskonałym tego przykładem. Funkcja wymaga określonego przyrostka dla typu uniformu, który ma zostać ustawiony. Kilka z możliwych przyrostków to:
 
@@ -271,7 +271,7 @@ void main()
 
 Ponieważ dodaliśmy kolejny atrybut wierzchołka i zaktualizowaliśmy pamięć VBO musimy ponownie skonfigurować wskaźniki atrybutu wierzchołka. Zaktualizowane dane w pamięci VBO wyglądają teraz tak:
 
-![Interleaved data of position and color within VBO to be configured wtih glVertexAttribPointer]({{ site.baseurl }}/img/learnopengl/vertex_attribute_pointer_interleaved.png){: .center-image }
+![Przeplot danych dotyczących położenia i koloru w VBO, które mają być skonfigurowane za pomocą glVertexAttribPointer]({{ site.baseurl }}/img/learnopengl/vertex_attribute_pointer_interleaved.png){: .center-image }
 
 Wiedząc obecny układ możemy zaktualizować format wierzchołków za pomocą <span class="fun">glVertexAttribPointer</span>:
 
@@ -295,14 +295,14 @@ Uruchomienie aplikacji powinno pokazać następujący obraz:
 
 Jeżeli utknąłeś, sprawdź kod źródłowy [tutaj](https://learnopengl.com/code_viewer_gh.php?code=src/1.getting_started/3.2.shaders_interpolation/shaders_interpolation.cpp).
 
-Obraz może nie być dokładnie taki, jakiego byś oczekiwał, ponieważ dostarcziliśmy tylko 3 kolory, a nie całą paletę kolorów, którą widzimy teraz. Jest to wynik czegoś, co nazywa się <span class="def">interpolacją fragmentu</span> w Fragment Shader. Podczas renderowania trójkąta, etap rasteryzacji zazwyczaj generuje więcej fragmentów niż wierzchołkó, które zostały wcześniej zdefiniowane. Następnie rasteryzer określa położenie każdego z tych fragmentów w oparciu o miejsce, w którym znajdują się na trójkącie.  
+Obraz może nie być dokładnie taki, jakiego byś oczekiwał, ponieważ dostarczyliśmy tylko 3 kolory, a nie całą paletę kolorów, którą widzimy teraz. Jest to wynik czegoś, co nazywa się <span class="def">interpolacją fragmentu</span> w Fragment Shader. Podczas renderowania trójkąta, etap rasteryzacji zazwyczaj generuje więcej fragmentów niż wierzchołków, które zostały wcześniej zdefiniowane. Następnie rasteryzer określa położenie każdego z tych fragmentów w oparciu o miejsce, w którym znajdują się na trójkącie.  
 Opierając się na tych pozycjach, <span class="def">interpoluje</span> wszystkie zmienne wejściowe FS. Powiedzmy na przykład, że mamy linię, gdzie górny punkt ma zielony kolor, a dolny punkt niebieski kolor. Jeśli fragment shader jest uruchamiany na fragmencie, który znajduje się koło pozycji w <span class="var">70%</span> długości linii, to jego atrybutem wejściowym koloru, byłaby liniowa kombinacja koloru zielonego i niebieskiego; żeby być bardziej precyzyjnym: <span class="var">30%</span> niebieskiego i <span class="var">70%</span> zielonego.
 
 To jest dokładnie to, co się stało w naszym trójkącie. Mamy 3 wierzchołki, a więc 3 kolory i prawdopodobnie trójkąt zawiera około 50000 fragmentów, gdzie fragment shader interpolował kolory wśród tych pikseli. Jeśli dobrze przyjrzymy się kolorom, które widzisz, wszystko ma sens: idąc od czerwonego do niebieskiego, kolor najpierw staje się fioletowy, a następnie na niebieski. Interpolacja fragmentów jest stosowana do wszystkich atrybutów wejściowych Fragment Shader'a.
 
 ## Nasza własna klasa Shader
 
-Pisanie, kompilowanie i zarządzanie shaderami może być dość kłopotliwe. Ostatnią rzeczą jaką zrobimy w tematcie shaderów to sprawienie, żeby nasze życie stało się łatwiejsze. Zbudujemy klasę Shader, która czyta programy cieniujące z dysku, kompiluje i łączy je, sprawdza błędy i jest łatwa w użyciu. To także daje Ci trochę pojęcia, jak możemy opakować część wiedzy, której nauczyliśmy się do tej pory, w użyteczne, abstrakcyjne obiekty.
+Pisanie, kompilowanie i zarządzanie shaderami może być dość kłopotliwe. Ostatnią rzeczą jaką zrobimy w temacie shaderów to sprawienie, żeby nasze życie stało się łatwiejsze. Zbudujemy klasę Shader, która czyta programy cieniujące z dysku, kompiluje i łączy je, sprawdza błędy i jest łatwa w użyciu. To także daje Ci trochę pojęcia, jak możemy opakować część wiedzy, której nauczyliśmy się do tej pory, w użyteczne, abstrakcyjne obiekty.
 
 Utworzymy klasę Shader całkowicie w pliku nagłówkowym, głównie w celach edukacyjnych i przenośności. Zacznijmy od dołączenia wymaganych plików nagłówkowych i zdefiniujmy strukturę klasy:
 

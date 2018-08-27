@@ -6,7 +6,7 @@ tags: [beginner-opengl-en, tutorial]
 ---
 
 ## Setting up the environment
-Before we start creating our awesome graphical applications in OpenGL technology, first, we have to adjust ourprogramming environment to cooperate with this library. To begin, we have to have Microsoft Visual C++ 2010 Expressinstalled (here is the [link](http://www.microsoft.com/visualstudio/plk#downloads+d-2010-express)). 
+Before we start creating our awesome graphical applications in OpenGL technology, first, we have to adjust our programming environment to cooperate with this library. To begin, we have to have Microsoft Visual C++ 2010 Express installed (here is the [link](http://www.microsoft.com/visualstudio/plk#downloads+d-2010-express)). 
 
 Moreover, we have to download the following libraries:
 
@@ -171,7 +171,7 @@ while (!glfwWindowShouldClose(window))
 
 The above loop is the heart of the any graphical application. It's called main application loop, where in every frame will be drawn our 3D models and all the algorithms will be evaluated.
 
-In the while loop we check the condition if application's window is about to close down. The __*glfwWindowShouldClose()*__ returns 1 if a user presses the cross button (which is used to close the application's window) or when user presses the keys combination Alt+F4\. Further in the loop we call all the functions that are connected with rendering/drawing (which are not crated yet - that's why we see black background).
+In the while loop we check the condition if application's window is about to close down. The __*glfwWindowShouldClose()*__ returns 1 if a user presses the cross button (which is used to close the application's window) or when user presses the keys combination Alt+F4. Further in the loop we call all the functions that are connected with rendering/drawing (which are not crated yet - that's why we see black background).
 
 The GLFW window always uses double buffers, which prevents flickering when we render consecutive frames. The __*glfwSwapBuffers()*__ swaps the front and back buffers.
 

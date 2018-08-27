@@ -53,11 +53,11 @@ Such an approach was good up to a point where the capabilities of these "bricks"
 
 {% include lightbox src="img/beginner_opengl/GL-Pipeline.jpg" data="data" title="OpenGL's rendering pipeline" img-style="max-width:70%;" class="center-image" %}
 
-As you can see from the above diagram, we start by transfering primitives' vertices that we want to draw. Primitive is the basic geometric figure, which we can draw. OpenGL offers us primitives such as points (GL_POINTS), lines (GL_LINES), line strips (GL_LINE_STRIP), line loops (GL_LINE_LOOP), triangles (GL_TRIANGLES), triangle strips (GL_TRIANGLE_STRIP), triangle fans (GL_TRIANGLE_FAN). Below is a picture of the previously mentioned geometric primitives:
+As you can see from the above diagram, we start by transferring primitives' vertices that we want to draw. Primitive is the basic geometric figure, which we can draw. OpenGL offers us primitives such as points (GL_POINTS), lines (GL_LINES), line strips (GL_LINE_STRIP), line loops (GL_LINE_LOOP), triangles (GL_TRIANGLES), triangle strips (GL_TRIANGLE_STRIP), triangle fans (GL_TRIANGLE_FAN). Below is a picture of the previously mentioned geometric primitives:
 
 {% include lightbox src="img/beginner_opengl/GL-Primitives.jpg" data="data" title="OpenGL supported primitives" img-style="max-width:70%;" class="center-image" %}
 
-Then the vertex shader is processing these data that transforms vertices from the local coordinate system of the object to the screen coordinates (more about transformations will be in the following tutorials); Tesselation shader that actually consists of two separate programs and Geometry Shader (more on Tesselation and Geometry shaders will be in the following tutorials). Then, primitives are created which are then "cut" if they come out of the visibility of virtual "eye" (camera). At the end, the fragment shader is run, which colors the pixels/fragments. After this, different tests are run (scissor test, alpha, stencil test, depth, blending) and finally we get rendered 3D scene.
+Then the vertex shader is processing these data that transforms vertices from the local coordinate system of the object to the screen coordinates (more about transformations will be in the following tutorials); Tessellation shader that actually consists of two separate programs and Geometry Shader (more on Tessellation and Geometry shaders will be in the following tutorials). Then, primitives are created which are then "cut" if they come out of the visibility of virtual "eye" (camera). At the end, the fragment shader is run, which colors the pixels/fragments. After this, different tests are run (scissor test, alpha, stencil test, depth, blending) and finally we get rendered 3D scene.
 
 In the following sections we will look closely at each of these steps to find out what each of them is exactly doing.
 
@@ -71,13 +71,13 @@ The next process, which gets data after expressing a desire to draw is Vertex Sh
 
 Vertex Shader is a simple program that we write and is called for each vertex, we want to draw. Its main objective is to convert the coordinates of the vertices to the screen coordinates, but it also can be used, for example to transform the position of these vertices.
 
-## Tesselation Control & Evaluation Shader
+## Tessellation Control & Evaluation Shader
 
-Now the data is on stage of Tesselation Control Shader and Tesselation Evaluation Shader. They are similar to Vertex Shader, over which we have full control. They are not mandatory as they are used for special purposes. Unlike the Vertex Shader, Tesselation shaders work on _patches_. Generally they are used for tessellating geometry - increase the number of primitives in the geometric shape in order to obtain smoother mesh of a model.
+Now the data is on stage of Tessellation Control Shader and Tessellation Evaluation Shader. They are similar to Vertex Shader, over which we have full control. They are not mandatory as they are used for special purposes. Unlike the Vertex Shader, Tessellation shaders work on _patches_. Generally they are used for tessellating geometry - increase the number of primitives in the geometric shape in order to obtain smoother mesh of a model.
 
 ## Geometry Shader
 
-The next process, which gets the data is Geometry Shader. It is, like Tesselation shader, not compulsory stage (you can but you do not have to write it) and is used for additional processing of geometry (transmitted data), for example to create new geometric primitives before rasterization.
+The next process, which gets the data is Geometry Shader. It is, like Tessellation shader, not compulsory stage (you can but you do not have to write it) and is used for additional processing of geometry (transmitted data), for example to create new geometric primitives before rasterization.
 
 ## Primitive Setup
 
@@ -103,7 +103,7 @@ Just as the vertex shader, this is the stage over which we have full control and
 
 Fragment Shader can also stop processing of the fragment if it should not be drawn.
 
-The difference between the Vertex (including Tesselation and Geometry shaders), and the fragment shader is that the Vertex Shader positions and transforms the primitive on the scene, and the fragment shader gives a color to the fragment.
+The difference between the Vertex (including Tessellation and Geometry shaders), and the fragment shader is that the Vertex Shader positions and transforms the primitive on the scene, and the fragment shader gives a color to the fragment.
 
 ## Post Fragment Shader operations
 
@@ -121,7 +121,7 @@ After the scissor test, it is time for alpha test. It is used to determine the t
 
 Another test is a test template that reads the value of the stencil buffer in the position of the specific fragment and compares them with the values defined by the application. Stencil test passes only if the corresponding relationship is satisfied (the value is equal to, greater than, less than, etc.). Otherwise, the test fails, and the fragment is discarded.
 
-In this case, we can define what happens in the stancil buffer if the test is successful (it is used in one shadow rendering technique which will be shown in the following parts of this tutorial).
+In this case, we can define what happens in the stencil buffer if the test is successful (it is used in one shadow rendering technique which will be shown in the following parts of this tutorial).
 
 ### Depth test
 

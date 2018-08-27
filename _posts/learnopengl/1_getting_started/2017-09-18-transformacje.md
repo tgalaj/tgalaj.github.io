@@ -9,7 +9,7 @@ mathjax: true
 
 {% include learnopengl.md link="Getting-started/Transformations" %}
 
-Wiemy już, jak tworzyć obiekty, kolorować je i / lub nadawać im szczegółowy wygląd przy użyciu tekstur, ale wciąż nie są one interesujące, ponieważ są to statyczne obiekty. Moglibyśmy spróbować zmusić je do ruchu, zmieniając ich wierzchołki i ponownie konfigurując ich bufory w każdej ramce, ale jest to kłopotliwe i kosztuje trochę mocy obliczeniowej. Istnieje wiele lepszych sposobów <span class="def">transformowania</span> obiektu, przy użyciu (kilku) <span class="def">macierzy</span>. To nie oznacza, że będziemy rozmawiać o kungfu i dużym cyfrowym, sztucznym świecie.
+Wiemy już, jak tworzyć obiekty, kolorować je i / lub nadawać im szczegółowy wygląd przy użyciu tekstur, ale wciąż nie są one interesujące, ponieważ są to statyczne obiekty. Moglibyśmy spróbować zmusić je do ruchu, zmieniając ich wierzchołki i ponownie konfigurując ich bufory w każdej ramce, ale jest to kłopotliwe i kosztuje trochę mocy obliczeniowej. Istnieje wiele lepszych sposobów <span class="def">transformowania</span> obiektu, przy użyciu (kilku) <span class="def">macierzy</span>. To nie oznacza, że będziemy rozmawiać o kung-fu i dużym cyfrowym, sztucznym świecie.
 
 Macierze są bardzo potężnymi konstrukcjami matematycznymi, które wydają się na początku straszne, ale gdy już się do nich przyzwyczaisz, okażą się bardzo przydatnym narzędziem. Podczas opowieści o macierzach, musimy trochę zagłębić się w pewnej matematyce. Dla czytelników bardziej skupionych na matematyce dołączę dodatkowe materiały do dalszej lektury.
 
@@ -124,7 +124,7 @@ Jak widać, na pierwszy rzut oka nie ma to działanie sensu. Jeśli jednak wykon
 
 ## Macierze
 
-Teraz, gdy omówiliśmy już prawie wszystko, co dotyczy wektorów, nadszedł czas, aby przejsć do macierzy! Macierz jest w zasadzie prostokątną tablicą liczb, symboli i/lub wyrażeń. Każda pojedyncza pozycja w macierzy jest nazywana <span class="def">elementem</span> macierzy. Przykład macierzy <span class="var">2x3</span> jest pokazany poniżej:
+Teraz, gdy omówiliśmy już prawie wszystko, co dotyczy wektorów, nadszedł czas, aby przejść do macierzy! Macierz jest w zasadzie prostokątną tablicą liczb, symboli i/lub wyrażeń. Każda pojedyncza pozycja w macierzy jest nazywana <span class="def">elementem</span> macierzy. Przykład macierzy <span class="var">2x3</span> jest pokazany poniżej:
 
 $$ \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix} $$
 

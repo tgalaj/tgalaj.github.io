@@ -72,17 +72,17 @@ Kiedy wszystkie wierzchołki zostaną przekształcone do przestrzeni obcinania, 
 
 Po tym etapie uzyskane współrzędne są odwzorowywane na współrzędne ekranu (używając ustawień funkcji <span class="fun">glViewport</span>) i zostają zamienione na fragmenty.
 
-Macierz projekcji przekształcająca współrzędne widoku do współrzędnych obcinania może przybrać dwie różne formy, przy czym każda forma określa własną niepowtarzalną frustę. Możemy utworzyć macierz projekcji <span class="def">ortograficznej</span> lub macierz projekcji <span class="def">perspektywicznej</span>.
+Macierz projekcji przekształcająca współrzędne widoku do współrzędnych obcinania może przybrać dwie różne formy, przy czym każda forma określa własną niepowtarzalną frustę. Możemy utworzyć macierz projekcji <span class="def">prostokątnej</span> lub macierz projekcji <span class="def">perspektywicznej</span>.
 
-### Projekcja ortograficzna
+### Projekcja prostokątna
 
-Macierz projekcji ortograficznej definiuje frustum podobne do sześcianu, który definiuje przestrzeń obcinania, w której każdy wierzchołek poza tym pudełkiem zostanie obcięty. Podczas tworzenia macierzy projekcji ortograficznej określamy szerokość, wysokość i długość widocznej frusty. Wszystkie współrzędne, które znajdą się wewnątrz tej frusty, po przekształceniu ich w przestrzeń obcinania, za pomocą macierzy projekcji ortograficznej, nie zostaną obcięte. Frusta wygląda trochę jak pojemnik:
+Macierz projekcji prostokątnej definiuje frustum podobne do sześcianu, który definiuje przestrzeń obcinania, w której każdy wierzchołek poza tym pudełkiem zostanie obcięty. Podczas tworzenia macierzy projekcji prostokątnej określamy szerokość, wysokość i długość widocznej frusty. Wszystkie współrzędne, które znajdą się wewnątrz tej frusty, po przekształceniu ich w przestrzeń obcinania, za pomocą macierzy projekcji prostokątnej, nie zostaną obcięte. Frusta wygląda trochę jak pojemnik:
 
 ![]({{ site.baseurl }}/img/learnopengl/orthographic_frustum.png){: .center-image }
 
-Frustum określa widoczne współrzędne i jest określona za pomocą szerokości, wysokości i <span class="def">bliską</span> i <span class="def">daleką</span> płaszczyznę. Każda współrzędna znajdująca się przed bliską płaszczyzną zostaje obcięta i to samo dotyczy współrzędnych znajdujących się za daleką płaszczyzną. Frusta ortograficzna bezpośrednio mapuje wszystkie współrzędne wewnątrz frustum do znormalizowanych współrzędnych urządzenia (NDC), ponieważ składnik w każdego z wektorów zostanie nienaruszony; jeśli składnik w jest równy <span class="var">1.0</span> dzielenie perspektywiczne nie zmienia jego współrzędnych.
+Frustum określa widoczne współrzędne i jest określona za pomocą szerokości, wysokości i <span class="def">bliską</span> i <span class="def">daleką</span> płaszczyznę. Każda współrzędna znajdująca się przed bliską płaszczyzną zostaje obcięta i to samo dotyczy współrzędnych znajdujących się za daleką płaszczyzną. Frusta prostokątna bezpośrednio mapuje wszystkie współrzędne wewnątrz frustum do znormalizowanych współrzędnych urządzenia (NDC), ponieważ składnik w każdego z wektorów zostanie nienaruszony; jeśli składnik w jest równy <span class="var">1.0</span> dzielenie perspektywiczne nie zmienia jego współrzędnych.
 
-Aby utworzyć macierz projekcji ortograficznej używamy wbudowanej funkcji GLM <span class="fun">glm::ortho</span>:
+Aby utworzyć macierz projekcji prostokątnej używamy wbudowanej funkcji GLM <span class="fun">glm::ortho</span>:
 
 ```cpp
 glm::ortho(0.0f, 800.0f, 0.0f, 600.0f, 0.1f, 100.0f);
@@ -90,7 +90,7 @@ glm::ortho(0.0f, 800.0f, 0.0f, 600.0f, 0.1f, 100.0f);
 
 Pierwsze dwa parametry określają lewą i prawą współrzędną frustum, a trzeci i czwarty parametr określają dolną i górną część frustum. Za pomocą tych 4 punktów określiliśmy rozmiary bliskiej i dalekiej płaszczyzny, a parametr 5. i 6. następnie określają odległości pomiędzy bliską i daleką płaszczyzną. Ta specyficzna macierz projekcji przekształca wszystkie współrzędne z tego zakresu <span class="var">x, y</span> i <span class="var">z</span> na znormalizowane współrzędne urządzenia (NDC).
 
-Macierz projekcji ortograficznej bezpośrednio mapuje współrzędne na płaszczyznę 2D, która znajduje się na Twoim ekranie, ale w rzeczywistości bezpośrednia projekcja daje nierealistyczne wyniki, ponieważ nie uwzględnia <span class="def">perspektywy</span>. To jest coś co <span class="def">projekcja perspektywiczna</span> naprawia za nas.
+Macierz projekcji prostokątnej bezpośrednio mapuje współrzędne na płaszczyznę 2D, która znajduje się na Twoim ekranie, ale w rzeczywistości bezpośrednia projekcja daje nierealistyczne wyniki, ponieważ nie uwzględnia <span class="def">perspektywy</span>. To jest coś co <span class="def">projekcja perspektywiczna</span> naprawia za nas.
 
 ### Projekcja perspektywiczna
 
@@ -102,7 +102,7 @@ Jak widać, z uwagi na perspektywę, linie im są dalej to wydają się jakby mi
 
 $$ out = \begin{pmatrix} x /w \\ y / w \\ z / w \end{pmatrix} $$
 
-Każdy składnik wierzchołka podzielony jest przez jego składnik <span class="var">w</span>, dający mniejsze współrzędne wierzchołka, im dalej znajduje się wierzchołek od obserwatora. Jest to kolejny powód, dla którego tak ważny jest składnik <span class="var">w</span>, ponieważ pomaga nam w projekcji perspektywicznej. Otrzymane współrzędne znajdują się następnie w znormalizowanej przestrzeni urządzenia (NDC). Jeśli jesteś zainteresowany, aby dowiedzieć się, jak w rzeczywistości obliczane są macierze projekcji ortograficznej i perspektywicznej (i nie boisz się matematyki) mogę polecić [ten świetny artykuł](http://www.songho.ca/opengl/gl_projectionmatrix.html "undefined") autorstwa Songho.
+Każdy składnik wierzchołka podzielony jest przez jego składnik <span class="var">w</span>, dający mniejsze współrzędne wierzchołka, im dalej znajduje się wierzchołek od obserwatora. Jest to kolejny powód, dla którego tak ważny jest składnik <span class="var">w</span>, ponieważ pomaga nam w projekcji perspektywicznej. Otrzymane współrzędne znajdują się następnie w znormalizowanej przestrzeni urządzenia (NDC). Jeśli jesteś zainteresowany, aby dowiedzieć się, jak w rzeczywistości obliczane są macierze projekcji prostokątnej i perspektywicznej (i nie boisz się matematyki) mogę polecić [ten świetny artykuł](http://www.songho.ca/opengl/gl_projectionmatrix.html "undefined") autorstwa Songho.
 
 W GLM można utworzyć macierz projekcji perspektywicznej w następujący sposób:
 
@@ -119,11 +119,11 @@ Pierwszy parametr definiuje wartość <span class="def">fov</span>, która oznac
 {: .box-note }
 Kiedy wartość _bliskiej płaszczyzny_ Twojej macierzy perspektywicznej jest zbyt wysoka (na przykład <span class="var">10.0f</span>), OpenGL będzie blokował wszystkie wierzchołki znajdujące się w pobliżu wirtualnej kamery (między <span class="var">0.0f</span> i <span class="var">10.0f</span>), co daje w efekcie znajomy efekt wizualny z gier wideo, dzięki któremu można patrzeć przez obiekty jeśli jest się zbyt blisko tych obiektów.
 
-Kiedy używamy projekcji ortograficznej, każda z współrzędnych wierzchołka jest bezpośrednio odwzorowywana w przestrzeni obcinania bez jakiegokolwiek, fantazyjnego dzielenia perspektywicznego (następuje dzielenie perspektywiczne, ale wartość <span class="var">w</span> nie jest zmieniana (pozostaje równe <span class="var">1</span>), a zatem nie ma ta operacja żadnego skutku). Ponieważ projekcja ortograficzna nie wykorzystuje rzutów perspektywicznych, obiekty znajdujące się dalej nie wydają się mniejsze, co powoduje dziwny odbiór wizualny. Z tego powodu projekcja ortograficzna jest wykorzystywana głównie do renderowania 2D oraz dla niektórych zastosowań architektonicznych lub inżynierskich, w których nie chcemy zniekształcać wierzchołków. Aplikacje, takie jak _Blender_, które są używane do modelowania 3D, czasem używa się w nich projekcji ortograficznej do modelowania, ponieważ dokładniej przedstawia ona wymiary każdego obiektu. Poniżej przedstawiono porównanie obu metod projekcji w programie Blender:
+Kiedy używamy projekcji prostokątnej, każda z współrzędnych wierzchołka jest bezpośrednio odwzorowywana w przestrzeni obcinania bez jakiegokolwiek, fantazyjnego dzielenia perspektywicznego (następuje dzielenie perspektywiczne, ale wartość <span class="var">w</span> nie jest zmieniana (pozostaje równe <span class="var">1</span>), a zatem nie ma ta operacja żadnego skutku). Ponieważ projekcja prostokątna nie wykorzystuje rzutów perspektywicznych, obiekty znajdujące się dalej nie wydają się mniejsze, co powoduje dziwny odbiór wizualny. Z tego powodu projekcja prostokątna jest wykorzystywana głównie do renderowania 2D oraz dla niektórych zastosowań architektonicznych lub inżynierskich, w których nie chcemy zniekształcać wierzchołków. Aplikacje, takie jak _Blender_, które są używane do modelowania 3D, czasem używa się w nich projekcji prostokątnej do modelowania, ponieważ dokładniej przedstawia ona wymiary każdego obiektu. Poniżej przedstawiono porównanie obu metod projekcji w programie Blender:
 
 ![]({{ site.baseurl }}/img/learnopengl/perspective_orthographic.png){: .center-image }
 
-Widać że przy projekcji perspektywicznej, wierzchołki znajdujące się dalej oddalone są wydają się być znacznie mniejsze, podczas gdy przy projekcji ortograficznej każdy wierzchołek ma tę samą odległość od użytkownika.
+Widać że przy projekcji perspektywicznej, wierzchołki znajdujące się dalej oddalone są wydają się być znacznie mniejsze, podczas gdy przy projekcji prostokątnej każdy wierzchołek ma tę samą odległość od użytkownika.
 
 ## Łączymy wszystko w całość
 

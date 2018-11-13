@@ -1,0 +1,56 @@
+---
+layout: page
+title: Publications
+---
+
+<textarea id="bibtex_input" style="display:none;">
+    {% include references.bib %}
+</textarea>
+
+<div class="bibtex_structure">
+    <div class="group year" extra="DESC number">
+        <div style="padding-bottom:10px;"></div>
+        <div class="sort journal" extra="DESC string">
+            <div class="templates"></div>
+        </div>
+    </div>
+</div>
+
+<div id="bibtex_display">
+
+    <div class="bibtex_template" style="display: none;">
+        <ul>
+            <li>
+                <span class="if title">
+                    <span style="text-decoration: none; font-style: unset; font-weight: bold;" class="title"></span>
+                </span>
+                <div class="if author">
+                    <span class="author">
+                        <span class="first"></span> <span class="last"></span>
+                    </span>,
+                </div>
+                <div>
+                    <span class="if journal"><em><span class="journal"></span></em>,</span>
+                    <span class="if publisher"><em><span class="publisher"></span></em>,</span>
+                    <span class="if booktitle">In <em><span class="booktitle"></span></em>,</span>
+                    <span class="if address"><span class="address"></span>,</span>
+                    <span class="if month"><span class="month"></span>,</span>
+                    <span class="if year"><span class="year"></span>.</span>
+                    <span class="if note"><span class="note"></span></span>
+                    <a class="bibtexVar" role="button" data-toggle="collapse" href="#bib+BIBTEXKEY+" aria-expanded="false"
+                        aria-controls="bib+BIBTEXKEY+" extra="BIBTEXKEY">
+                        [bib]
+                    </a>
+                    <span class="if pdf"><a class="pdf">[pdf]</a></span>
+                </div>
+                <div class="bibtexVar collapse" id="bib+BIBTEXKEY+" extra="BIBTEXKEY">
+                    <div class="well">
+                        <pre><span class="bibtexraw noread"></span></pre>
+                    </div>
+                </div>
+                <div style="display:none"><span class="bibtextype"></span></div>
+            </li>
+        </ul>
+    </div>
+
+</div>

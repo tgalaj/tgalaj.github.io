@@ -3,7 +3,7 @@ layout: page
 title: LearnOpenGL.com
 ---
 
-This page contains the Polish translation of the most popular OpenGL tutorial series on the Interent - [learnopengl.com](http://learnopengl.com).
+This page contains the Polish translation of the most popular OpenGL tutorial series on the Internet - [learnopengl.com](http://learnopengl.com).
 
 ### Spis treści
 

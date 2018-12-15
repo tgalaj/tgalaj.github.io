@@ -133,13 +133,13 @@ This page contains the Polish translation of the most popular OpenGL tutorial se
       </ul>
     </details>
 
+    {% assign posts=site.posts | where:"subtag", 'in-practice-2dgame-p2' | sort: post.date %}
+    {% for post in posts %}
+      <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+
     </ul>
   </details>
-
-  {% assign posts=site.posts | where:"subtag", 'in-practice-2dgame-p2' | sort: post.date %}
-  {% for post in posts %}
-    <li><a href="{{ post.url }}">{{ post.title }}</a></li>
-  {% endfor %}
 
   </ul>
 </details>

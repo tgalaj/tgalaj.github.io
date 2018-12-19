@@ -111,7 +111,7 @@ Najtrudniejszą częścią jest uzyskanie tego najbliższego punktu $\color{red}
 
 ![AABB - Wykrywanie kolizji koła](/img/learnopengl/collisions_aabb_circle.png){: .center-image }
 
-Najpierw musimy uzyskać wektor różnicy między centrum piłki $\color{blue}{\bar{C}}$ a centrum AABB $\color{green}{\bar{B}}$, aby uzyskać $\color{purple}{\bar{D}}$. Następnie musimy obciąć ten wektor $\color{purple}{\bar{D}}$ do połowy rozmiaru AABB $\color{orange}{{w}}$ i $\color{teal}{\bar{h}}$. Połowa rozmiaru prostokąta to odległości między środkiem prostokąta a jego krawędziami; zasadniczo jego rozmiar podzielony przez dwa. Zwraca to wektor pozycji, który zawsze znajduje się gdzieś na krawędzi AABB (chyba że środek koła znajduje się wewnątrz AABB).
+Najpierw musimy uzyskać wektor różnicy między centrum piłki $\color{blue}{\bar{C}}$ a centrum AABB $\color{green}{\bar{B}}$, aby uzyskać $\color{purple}{\bar{D}}$. Następnie musimy obciąć ten wektor $\color{purple}{\bar{D}}$ do połowy rozmiaru AABB $\color{orange}{w}$ i $\color{teal}{\bar{h}}$. Połowa rozmiaru prostokąta to odległości między środkiem prostokąta a jego krawędziami; zasadniczo jego rozmiar podzielony przez dwa. Zwraca to wektor pozycji, który zawsze znajduje się gdzieś na krawędzi AABB (chyba że środek koła znajduje się wewnątrz AABB).
 
 <div class="box-note">Operacja clamp **obcina** wartość do wartości w podanym zakresie. Jest to często wyrażane jako:
 

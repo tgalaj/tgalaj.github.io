@@ -30,7 +30,7 @@ Shader postprocessingu pozwala na trzy rodzaje efektów: shake, confuse i chaos.
 *   **confuse**: odwraca kolory sceny, ale także oś `x` i `y`.
 *   **chaos**: wykorzystuje jądro (kernel) do wykrywania krawędzi do tworzenia interesujących wizualizacji, a także porusza oteksturowany obraz po okręgu, aby uzyskać ciekawy efekt chaosu.
 
-Poniżej znajduje się rzut oka na to, jak te efekty będą wyglądać:
+Poniżej znajduje się obraz tego, jak te efekty będą wyglądać:
 
 ![Efekty postprocessingu w grze OpenGL Breakout](/img/learnopengl/postprocessing_effects.png){: .center-image }
 

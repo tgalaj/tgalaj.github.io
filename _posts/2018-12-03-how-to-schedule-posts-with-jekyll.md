@@ -115,4 +115,4 @@ If you see this post and my other posts on this site it surely works :wink:
 
 I hope this solution was helpful to you. If you still can't get it working, look at my scripts on [my GitHub repo](https://github.com/Shot511/shot511.github.io) or write a comment in the section down below.
 
-[How to Schedule Jekyll Posts on Github Pages]: https://code.alxmjo.com/how-to-schedule-posts-with-jekyll/
+[How to Schedule Jekyll Posts on Github Pages]: https://alxmjo.com/2017/05/30/how-to-schedule-posts-with-jekyll/

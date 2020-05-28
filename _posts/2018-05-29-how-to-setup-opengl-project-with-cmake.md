@@ -161,7 +161,7 @@ include_directories(${CMAKE_BINARY_DIR}/src)
 ```
 
 ### Executable
-When we have our source files configured, it's time to configure out main project that will create the executable. All we need to do is to call the following function:
+When we have our source files configured, it's time to configure our main project that will create the executable. All we need to do is to call the following function:
 
 ```cmake
 # Define the executable

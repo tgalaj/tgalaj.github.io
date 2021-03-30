@@ -2,7 +2,7 @@
 
 # shot511.github.io
 
-> *Copyright 2020 [Tomasz Gałaj](https://shot511.github.io). Licensed under the MIT license.*
+> *Copyright 2021 [Tomasz Gałaj](https://shot511.github.io). Licensed under the MIT license.*
 
 Real-time rendering class website [https://shot511.github.io](https://shot511.github.io).
 

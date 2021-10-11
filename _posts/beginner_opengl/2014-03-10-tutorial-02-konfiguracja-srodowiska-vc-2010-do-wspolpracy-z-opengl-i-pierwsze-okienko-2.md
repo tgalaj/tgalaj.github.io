@@ -185,7 +185,7 @@ Więcej na temat GLFW można dowiedzieć się w dokumentacji (link na samym dole
 To na tyle. Dla chętnych jeszcze zostawiam ćwiczenie do samodzielnego rozwiązania, które przyda się w następnym wydaniu tego kursu (tam też znajdzie się odpowiedź do tego ćwiczenia). W kolejnej części kursu narysujemy pierwszy trójkąt!
 
 ## Kod źródłowy
-*   [Solucja VC++ 2010](https://drive.google.com/file/d/0B0j4jdWAANaoQnhDUEV0dXJlM1U/view?usp=sharing)
+*   [Solucja VC++ 2010](https://drive.google.com/file/d/0B0j4jdWAANaoQnhDUEV0dXJlM1U/view?usp=sharing&resourcekey=0-RXFYoS1Rgmp1C4N7GMjTPQ)
 
 ## Ćwiczenie
 

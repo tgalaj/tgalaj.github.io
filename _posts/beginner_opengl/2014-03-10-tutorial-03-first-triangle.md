@@ -305,7 +305,7 @@ That's all! We can now compile our code and window should be shown with a large,
 Below are exercises that will help you understand how some OpenGL functions work. I encourage you to experiment with the code and to comment below. Of course, exercise is only for willing people. In the [_Source Code_](#source_code) section is the code and VC++ solution of this tutorial ;) In the next part of the course we will look at the shaders, and we will color our triangle! :)
 
 ## Source Code {#source_code}
-*   [VC++ 2010 solution](https://drive.google.com/file/d/0B0j4jdWAANaoUFZfTFd2MkJOSjg/view?usp=sharing)
+*   [VC++ 2010 solution](https://drive.google.com/file/d/0B0j4jdWAANaoUFZfTFd2MkJOSjg/view?usp=sharing&resourcekey=0-xvVNDHD8RxO5L9Da_VyRTQ)
 
 ## Exercises
 

@@ -304,7 +304,7 @@ To wszystko! Możemy teraz skompilować nasz kod i powinno okazać się okienko 
 Poniżej umieszczone są ćwiczenia, które pomogą zrozumieć jak działają niektóre funkcje OpenGL'a. Zachęcam do własnego poeksperymentowania i komentowania. Oczywiście ćwiczenia są tylko i wyłącznie dla chętnych, w sekcji [_Kod źródłowy_](#source_code) znajduje się kod i solucja z tego tutoriala ;) W następnej części kursu zapoznamy się z programami cieniującymi (shaderami) i sprawimy, że nasz trójkąt zmieni kolor! :)
 
 ## Kod źródłowy {#source_code}
-*   [Solucja VC++ 2010](https://drive.google.com/file/d/0B0j4jdWAANaoUFZfTFd2MkJOSjg/view?usp=sharing)
+*   [Solucja VC++ 2010](https://drive.google.com/file/d/0B0j4jdWAANaoUFZfTFd2MkJOSjg/view?usp=sharing&resourcekey=0-xvVNDHD8RxO5L9Da_VyRTQ)
 
 ## Ćwiczenia
 

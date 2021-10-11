@@ -182,7 +182,7 @@ More on this topic can be found in GLFW documentation (link is on the bottom of 
 That's it for now. There's also an exercise which you can do to do some work and experiment with the above code. I highly recommend doing this exercise since the result of this exercise will be the base code of the next tutorial (the answer for this exercise will be available in the next tutorial). In the next part, we will draw the first triangle!
 
 ## Source Code
-*   [VC++ 2010 solution](https://drive.google.com/file/d/0B0j4jdWAANaoQnhDUEV0dXJlM1U/view?usp=sharing)
+*   [VC++ 2010 solution](https://drive.google.com/file/d/0B0j4jdWAANaoQnhDUEV0dXJlM1U/view?usp=sharing&resourcekey=0-RXFYoS1Rgmp1C4N7GMjTPQ)
 
 ## Exercise 
 Divide the above program into the following functions:

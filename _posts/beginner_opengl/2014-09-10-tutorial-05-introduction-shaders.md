@@ -218,7 +218,7 @@ The overall effect should be as follows:
 That's all for today. If something was not clear from today's lesson, please write to me on email or in the comments below. In the next lesson we will look at the issue of interpolation that OpenGL does automatically :) .
 
 ## Source Code {#source_code}
-*   [VC++ 2010 solution](https://drive.google.com/file/d/0B0j4jdWAANaoVzkyUnpTZWk1eGc/view?usp=sharing)
+*   [VC++ 2010 solution](https://drive.google.com/file/d/0B0j4jdWAANaoVzkyUnpTZWk1eGc/view?usp=sharing&resourcekey=0-fOlo8I3OSPUvgENLQrMnqw)
 
 ## Exercises
 

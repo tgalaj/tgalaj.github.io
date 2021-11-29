@@ -11,10 +11,21 @@ I belevie that knowledge presented on this blog will be easy to understand for e
 
 ### Contact form
 
-<form method="POST" action="https://formspree.io/tomaszgalaj@gmail.com">
-  <input type="email" name="email" class="form-control" placeholder="Your email">
-  <textarea name="message" class="form-control" rows="5" style="resize: none;" placeholder="Your message"></textarea>
-  
-  <input type="text" name="_gotcha" style="display:none" />
-  <button type="submit" class="btn btn-info">Send</button>
+<form
+  action="https://formspree.io/f/xyyogpdb"
+  method="POST"
+>
+  <label>
+    Your name:
+    <input type="text" id="name" minlength="3" maxlength="50" required>
+  </label>
+  <label>
+    Your email:
+    <input type="email" name="_replyto" required>
+  </label>
+  <label>
+    Your message:
+    <textarea name="message" required></textarea>
+  </label>
+  <button type="submit">Send</button>
 </form>

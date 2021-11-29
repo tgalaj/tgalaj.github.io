@@ -17,18 +17,18 @@ I belevie that knowledge presented on this blog will be easy to understand for e
 >
   <label>
     Your name:
-    <input type="text" name="name" style="display: block;" minlength="3" maxlength="50" placeholder="Your name" required>
+    <input type="text" name="name" class="form-control" style="display: block;" minlength="3" maxlength="50" placeholder="Name" required>
   </label>
   
   <label>
     Your email:
-    <input type="email" name="_replyto" style="display: block;" placeholder="Your e-mail" required>
+    <input type="email" name="_replyto" class="form-control" style="display: block;" placeholder="Your e-mail" required>
   </label>
  
   <label>
     Your message:
-    <textarea name="message" style="display: block;" rows="10" cols="50" placeholder="Message" required></textarea>
+    <textarea name="message" class="form-control" style="display: block;" rows="10" cols="50" placeholder="Message" required></textarea>
   </label>
   
-  <button type="submit" style="display: block;">Send</button>
+  <button type="submit" class="form-control" style="display: block;">Send</button>
 </form>

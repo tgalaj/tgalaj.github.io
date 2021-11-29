@@ -17,15 +17,15 @@ I belevie that knowledge presented on this blog will be easy to understand for e
 >
   <label>
     Your name:
-    <input type="text" id="name" minlength="3" maxlength="50" required>
+    <input type="text" name="name" class="form-control" minlength="3" maxlength="50" placehodler="Your name" required>
   </label>
   <label>
     Your email:
-    <input type="email" name="_replyto" required>
+    <input type="email" name="_replyto" class="form-control" placeholder="Your e-mail" required>
   </label>
   <label>
     Your message:
-    <textarea name="message" required></textarea>
+    <textarea name="message" class="form-control" rows="5" required></textarea>
   </label>
   <button type="submit">Send</button>
 </form>

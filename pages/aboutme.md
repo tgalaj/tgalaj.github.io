@@ -16,19 +16,16 @@ I belevie that knowledge presented on this blog will be easy to understand for e
   method="POST"
 >
   <label>
-    Your name:
-    <input type="text" name="name" class="form-control" style="display: block;" minlength="3" maxlength="50" placeholder="Name" required>
+    <input type="text" name="name" class="form-control" minlength="3" maxlength="50" placeholder="Your name" required>
   </label>
   
   <label>
-    Your email:
-    <input type="email" name="_replyto" class="form-control" style="display: block;" placeholder="Your e-mail" required>
+    <input type="email" name="_replyto" class="form-control" placeholder="Your email" required>
   </label>
  
   <label>
-    Your message:
-    <textarea name="message" class="form-control" style="display: block;" rows="10" cols="50" placeholder="Message" required></textarea>
+    <textarea name="message" class="form-control" rows="10" cols="50" placeholder="Your message" required></textarea>
   </label>
   
-  <button type="submit" class="form-control" style="display: block;">Send</button>
+  <button type="submit" class="btn btn-info">Send</button>
 </form>

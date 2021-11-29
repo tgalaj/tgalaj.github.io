@@ -11,21 +11,9 @@ I belevie that knowledge presented on this blog will be easy to understand for e
 
 ### Contact form
 
-<form
-  action="https://formspree.io/f/xyyogpdb"
-  method="POST"
->
-  <label>
-    <input type="text" name="name" class="form-control" minlength="3" maxlength="50" placeholder="Your name" required>
-  </label>
-  
-  <label>
-    <input type="email" name="_replyto" class="form-control" placeholder="Your email" required>
-  </label>
- 
-  <label>
-    <textarea name="message" class="form-control" rows="10" cols="50" placeholder="Your message" required></textarea>
-  </label>
-  
+<form action="https://formspree.io/f/xyyogpdb" method="POST">
+  <input type="text" name="name" class="form-control" minlength="3" maxlength="50" placeholder="Your name" required>
+  <input type="email" name="_replyto" class="form-control" placeholder="Your email" required>
+  <textarea name="message" class="form-control" rows="10" cols="100" placeholder="Your message" required></textarea>
   <button type="submit" class="btn btn-info">Send</button>
 </form>

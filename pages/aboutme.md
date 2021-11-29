@@ -25,7 +25,7 @@ I belevie that knowledge presented on this blog will be easy to understand for e
   </label>
   <label>
     Your message:
-    <textarea name="message" class="form-control" rows="5" required></textarea>
+    <textarea name="message" class="form-control" rows="10" required></textarea>
   </label>
   <button type="submit">Send</button>
 </form>

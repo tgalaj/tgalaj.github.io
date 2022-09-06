@@ -1,4 +1,5 @@
 [![Build Status](https://github.com/Shot511/shot511.github.io/actions/workflows/rebuild.yml/badge.svg)](https://github.com/Shot511/shot511.github.io/actions)
+[![pages-build-deployment](https://github.com/Shot511/shot511.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Shot511/shot511.github.io/actions/workflows/pages/pages-build-deployment)
 
 # shot511.github.io
 

@@ -218,7 +218,7 @@ Efekt całości powinien być następujący:
 To już wszystko na dzisiaj. W razie gdyby było coś nie jasne z dzisiejszej lekcji, proszę pisać do mnie na maila, bądź w komentarzach poniżej. W kolejnej lekcji przyjrzymy się zagadnieniu interpolacji kolorów, którą OpenGL robi automatycznie :) .
 
 ## Kod źródłowy {#source_code}
-*   [Solucja VC++ 2010](https://drive.google.com/file/d/0B0j4jdWAANaoVzkyUnpTZWk1eGc/view?usp=sharing)
+*   [Solucja VC++ 2010](https://drive.google.com/file/d/0B0j4jdWAANaoVzkyUnpTZWk1eGc/view?usp=sharing&resourcekey=0-fOlo8I3OSPUvgENLQrMnqw)
 
 ## Ćwiczenia
 

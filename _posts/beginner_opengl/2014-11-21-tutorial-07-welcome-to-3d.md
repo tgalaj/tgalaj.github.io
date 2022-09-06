@@ -178,4 +178,4 @@ The final result can be seen below:
 This is the end of this part of the course. As usual - if something is not clear, please write comments underneath or contact me by email. I invite you to the second part, in which we will review transforms in a 3D world - there will be some movement on the screen! :-)
 
 ## Source Code {#source_code}
-*   [VC++ 2010 solution](https://drive.google.com/file/d/0B0j4jdWAANaocWFyMGlOdzZ5dWs/view?usp=sharing)
+*   [VC++ 2010 solution](https://drive.google.com/file/d/0B0j4jdWAANaocWFyMGlOdzZ5dWs/view?usp=sharing&resourcekey=0-4KPJGqnxmniljdA4koJX0A)

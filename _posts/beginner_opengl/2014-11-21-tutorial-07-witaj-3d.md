@@ -179,4 +179,4 @@ Efekt końcowy można zobaczyć poniżej:
 To już koniec tej części kursu. Jak zwykle - gdyby było coś nie jasne proszę pisać komentarze pod spodem lub kontaktować się ze mną mailowo. Zapraszam na kolejną część, w której zapoznamy się z transformacjami w świecie 3D - będzie w końcu trochę ruchu! :-)
 
 ## Kod źródłowy {#source_code}
-*   [Solucja VC++ 2010](https://drive.google.com/file/d/0B0j4jdWAANaocWFyMGlOdzZ5dWs/view?usp=sharing)
+*   [Solucja VC++ 2010](https://drive.google.com/file/d/0B0j4jdWAANaocWFyMGlOdzZ5dWs/view?usp=sharing&resourcekey=0-4KPJGqnxmniljdA4koJX0A)

@@ -85,4 +85,4 @@ Solucję można jak zwykle pobrać z sekcji [_Kod źródłowy_](#source_code).
 Mam nadzieję, że tutorial rozjaśnił Wam czym jest interpolacja i co jest odpowiedzialne za nią. W razie wątpliwości proszę o pisanie do mnie na maila bądź po prostu o zostawienie komentarza poniżej. W następnej części kursu wejdziemy razem w trzeci wymiar, w którym nasz trójkąt wyewoluuje do postaci piramidy!
 
 ## Kod źródłowy {#source_code}
-*   [Solucja VC++ 2010](https://drive.google.com/file/d/0B0j4jdWAANaoczF2dXhlSTBOTE0/view?usp=sharing)
+*   [Solucja VC++ 2010](https://drive.google.com/file/d/0B0j4jdWAANaoczF2dXhlSTBOTE0/view?usp=sharing&resourcekey=0-_oGIuBVTC92kypKjPHl-HQg)

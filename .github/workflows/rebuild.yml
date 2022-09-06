@@ -1,6 +1,6 @@
 # Borrowed from: https://svrooij.io/2020/06/27/rebuild-github-pages/
 # File: .github/workflows/rebuild.yml
-name: Rebuild
+name: rebuild
 
 on:
   schedule:

@@ -1,4 +1,4 @@
-[![Build Status](https://app.travis-ci.com/Shot511/shot511.github.io.svg?branch=master)](https://app.travis-ci.com/Shot511/shot511.github.io)
+[![Build Status](https://github.com/Shot511/shot511.github.io/actions/workflows/rebuild.yml/badge.svg)](https://github.com/Shot511/shot511.github.io/actions)
 
 # shot511.github.io
 

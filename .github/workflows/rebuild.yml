@@ -1,21 +1,19 @@
-# Borrowed from: https://svrooij.io/2020/06/27/rebuild-github-pages/
-# File: .github/workflows/rebuild.yml
 name: rebuild
 
 on:
-  schedule:
-    - cron:  '0 6 * * 1' # Runs every Monday at 6am
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
 
 jobs:
-  refresh:
+  github-pages:
     runs-on: ubuntu-latest
+    name: Update GitHub Pages initiatives
     steps:
-      - name: Call GitHub pages build endpoint
-        run: |
-          curl --fail --request POST \
-            --url https://api.github.com/repos/${{ github.repository }}/pages/builds \
-            --header "Authorization: Bearer $GH_TOKEN"
-        env:
-          # Create a token at https://github.com/settings/tokens
-          # since you cannot trigger a new build with the regular token.
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      - name: Jekyll update github pages without new commit
+        uses: DP6/jekyll-update-pages-action@v1.0.1
+        with:
+          DEPLOY_TOKEN: ${{ secrets.GH_PAGES_DEPLOY_TOKEN }}
+          USER: ${{ secrets.GH_PAGES_USER }}
+          FILTER: "is%3Apublic%20org%3Adp6"

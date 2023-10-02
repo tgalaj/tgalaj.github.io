@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Projects
-gh-repo: shot511
+gh-repo: tgalaj
 gh-badge: [follow]
 ---
 
@@ -9,13 +9,13 @@ On this page I would like to share some bigger projects that I have been workin
 
 ### Github
 
-* __[Vertex Engine](https://github.com/Shot511/VertexEngine)__ - project of an engine to create simple games and grind my skills in C++ and OpenGL programming . For now, the project is focused on developing graphics parts.
+* __[Vertex Engine](https://github.com/tgalaj/VertexEngine)__ - project of an engine to create simple games and grind my skills in C++ and OpenGL programming . For now, the project is focused on developing graphics parts.
 
-* __[RapidGL](https://github.com/Shot511/RapidGL)__ - a framework for rapid OpenGL demos prototyping. This is the side project for testing new rendering techniques before implementing them in **Vertex Engine**.
+* __[RapidGL](https://github.com/tgalaj/RapidGL)__ - a framework for rapid OpenGL demos prototyping. This is the side project for testing new rendering techniques before implementing them in **Vertex Engine**.
 
-* __[Vertextracer](https://github.com/Shot511/VertexTracer)__ - project of a simple raytracer that allows you to render quite realistically-looking scenes. It supports several light sources (directional, point), supports various materials (opaque, reflective refractive - Fresnel's equation). In addition, it has various antyaliasing methods (removing the jagged edges), and rendering is done using multithreading.
+* __[Vertextracer](https://github.com/tgalaj/VertexTracer)__ - project of a simple raytracer that allows you to render quite realistically-looking scenes. It supports several light sources (directional, point), supports various materials (opaque, reflective refractive - Fresnel's equation). In addition, it has various antyaliasing methods (removing the jagged edges), and rendering is done using multithreading.
 
-* __[strutil](https://github.com/shot511/strutil)__ - easy to use, header only C++ 11 std::string utility library.
+* __[strutil](https://github.com/tgalaj/strutil)__ - easy to use, header only C++ 11 std::string utility library.
 
 ### University projects
 
